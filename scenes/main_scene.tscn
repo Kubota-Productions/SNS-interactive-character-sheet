@@ -76,3 +76,4 @@ script = ExtResource("6_rt2n2")
 
 [connection signal="editing_toggled" from="Control/LineEdit" to="Control/LineEdit" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit2" to="Control/LineEdit2" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEditname" to="Control/LineEditname" method="_on_editing_toggled"]
