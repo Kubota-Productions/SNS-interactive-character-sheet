@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp13el0w7wefl"]
+[gd_scene load_steps=9 format=3 uid="uid://cp13el0w7wefl"]
 
 [ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/mainscene.gd" id="1_yn51d"]
-[ext_resource type="Texture2D" uid="uid://cuuhnoqi3wtfp" path="res://Imagefiles/page1.png" id="2_xf82k"]
-[ext_resource type="Texture2D" uid="uid://8p655jcetjtt" path="res://Imagefiles/page2.png" id="3_7ykc4"]
-[ext_resource type="Texture2D" uid="uid://c43gxuu68x42j" path="res://Imagefiles/page3.png" id="4_pu3yx"]
+[ext_resource type="Texture2D" uid="uid://837u8ioe0mdm" path="res://Imagefiles/page1.png" id="2_xf82k"]
+[ext_resource type="Texture2D" uid="uid://ba2mn0vsin28" path="res://Imagefiles/page2.png" id="3_7ykc4"]
+[ext_resource type="Texture2D" uid="uid://cqy4asll0txy4" path="res://Imagefiles/page3.png" id="4_pu3yx"]
+[ext_resource type="FontFile" uid="uid://c5vb0i0l4vcxj" path="res://fonts/MuseoModerno-Medium.ttf" id="5_c16ls"]
 [ext_resource type="Script" uid="uid://cwt052el4oey4" path="res://code/line_edit_scripts/line_edit1.gd" id="5_gubc5"]
+[ext_resource type="StyleBox" uid="uid://c3aprgnpedo2g" path="res://fonts/LineEditbackgroundcolour.tres" id="6_18nlu"]
 [ext_resource type="Script" uid="uid://cdyitwb357sub" path="res://code/line_edit_scripts/line_editname.gd" id="6_rt2n2"]
 
 [node name="Node2D" type="Node2D"]
@@ -56,6 +58,11 @@ offset_left = 215.0
 offset_top = 101.0
 offset_right = 322.0
 offset_bottom = 218.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "00"
 script = ExtResource("5_gubc5")
 
 [node name="LineEdit2" type="LineEdit" parent="Control"]
@@ -63,6 +70,11 @@ offset_left = 215.0
 offset_top = 226.0
 offset_right = 322.0
 offset_bottom = 344.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "00"
 script = ExtResource("5_gubc5")
 index = 2
 
@@ -72,6 +84,11 @@ offset_left = 1170.0
 offset_top = 96.0
 offset_right = 1522.0
 offset_bottom = 137.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
 script = ExtResource("6_rt2n2")
 
 [connection signal="editing_toggled" from="Control/LineEdit" to="Control/LineEdit" method="_on_editing_toggled"]
