@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbgar0lsar2q6"]
+
+[ext_resource type="Script" uid="uid://cvjgyf6mhfl4" path="res://code/Gameroot.gd" id="1_ptmwc"]
+
+[node name="GameRoot" type="Node2D"]
+script = ExtResource("1_ptmwc")
