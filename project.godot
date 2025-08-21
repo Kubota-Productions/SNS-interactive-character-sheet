@@ -14,6 +14,10 @@ config/name="SNSinteractivecharactersheet"
 run/main_scene="uid://dbgar0lsar2q6"
 config/features=PackedStringArray("4.4", "Mobile")
 
+[autoload]
+
+GlobalFunctions="*res://code/singleton/global_functions.gd"
+
 [display]
 
 window/size/viewport_width=1920
