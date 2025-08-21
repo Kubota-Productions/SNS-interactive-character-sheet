@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp13el0w7wefl"]
+
+[ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/mainscene.gd" id="1_yn51d"]
+[ext_resource type="Texture2D" uid="uid://cuuhnoqi3wtfp" path="res://Imagefiles/page1.png" id="2_xf82k"]
+[ext_resource type="Texture2D" uid="uid://8p655jcetjtt" path="res://Imagefiles/page2.png" id="3_7ykc4"]
+[ext_resource type="Texture2D" uid="uid://c43gxuu68x42j" path="res://Imagefiles/page3.png" id="4_pu3yx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_yn51d")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BoxContainer" type="BoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -540.0
+offset_right = 1920.0
+offset_bottom = 540.0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_xf82k")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Control/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("3_7ykc4")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_pu3yx")
+expand_mode = 3
