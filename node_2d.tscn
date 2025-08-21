@@ -1,10 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://0hiyhhi2vf6e"]
-
-[ext_resource type="Texture2D" uid="uid://cuuhnoqi3wtfp" path="res://Imagefiles/Asset 36@201x.png" id="1_wtcfe"]
+[gd_scene format=3 uid="uid://cp13el0w7wefl"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Asset36_201x" type="Sprite2D" parent="."]
-position = Vector2(207, 296)
-scale = Vector2(0.0349404, 0.0349404)
-texture = ExtResource("1_wtcfe")
