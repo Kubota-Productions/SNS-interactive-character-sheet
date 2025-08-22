@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cp13el0w7wefl"]
+[gd_scene load_steps=11 format=3 uid="uid://cp13el0w7wefl"]
 
 [ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/mainscene.gd" id="1_yn51d"]
+[ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://scenes/camera_2d.gd" id="2_6wevv"]
 [ext_resource type="Texture2D" uid="uid://837u8ioe0mdm" path="res://Imagefiles/page1.png" id="2_xf82k"]
 [ext_resource type="Texture2D" uid="uid://ba2mn0vsin28" path="res://Imagefiles/page2.png" id="3_7ykc4"]
 [ext_resource type="Texture2D" uid="uid://cqy4asll0txy4" path="res://Imagefiles/page3.png" id="4_pu3yx"]
@@ -12,6 +13,12 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_yn51d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+script = ExtResource("2_6wevv")
+left_limit = 960.0
+right_limit = 1340.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
