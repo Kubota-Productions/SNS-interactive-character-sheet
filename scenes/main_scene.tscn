@@ -52,9 +52,22 @@ layout_mode = 2
 texture = ExtResource("4_pu3yx")
 expand_mode = 3
 
+[node name="LineEditname" type="LineEdit" parent="Control"]
+layout_mode = 0
+offset_left = 1172.0
+offset_top = 97.0
+offset_right = 1522.0
+offset_bottom = 135.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("6_rt2n2")
+
 [node name="LineEdit" type="LineEdit" parent="Control"]
 layout_mode = 0
-offset_left = 215.0
+offset_left = 222.0
 offset_top = 101.0
 offset_right = 322.0
 offset_bottom = 218.0
@@ -63,10 +76,12 @@ theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("5_c16ls")
 theme_override_styles/normal = ExtResource("6_18nlu")
 placeholder_text = "00"
+alignment = 1
 script = ExtResource("5_gubc5")
 
 [node name="LineEdit2" type="LineEdit" parent="Control"]
-offset_left = 215.0
+layout_mode = 0
+offset_left = 222.0
 offset_top = 226.0
 offset_right = 322.0
 offset_bottom = 344.0
@@ -75,22 +90,820 @@ theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("5_c16ls")
 theme_override_styles/normal = ExtResource("6_18nlu")
 placeholder_text = "00"
+alignment = 1
 script = ExtResource("5_gubc5")
 index = 2
 
-[node name="LineEditname" type="LineEdit" parent="Control"]
-layout_mode = 0
-offset_left = 1170.0
-offset_top = 96.0
-offset_right = 1522.0
-offset_bottom = 137.0
+[node name="LineEdit3" type="LineEdit" parent="Control"]
+offset_left = 342.0
+offset_top = 111.0
+offset_right = 555.0
+offset_bottom = 168.0
 theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("5_c16ls")
 theme_override_styles/normal = ExtResource("6_18nlu")
 placeholder_text = "insert"
-script = ExtResource("6_rt2n2")
+script = ExtResource("5_gubc5")
+index = 3
 
+[node name="LineEdit4" type="LineEdit" parent="Control"]
+offset_left = 574.0
+offset_top = 111.0
+offset_right = 756.0
+offset_bottom = 168.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 4
+
+[node name="LineEdit5" type="LineEdit" parent="Control"]
+offset_left = 343.0
+offset_top = 188.0
+offset_right = 522.0
+offset_bottom = 271.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "000"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 5
+
+[node name="LineEdit6" type="LineEdit" parent="Control"]
+offset_left = 542.0
+offset_top = 189.0
+offset_right = 637.0
+offset_bottom = 272.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "00"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 6
+
+[node name="LineEdit7" type="LineEdit" parent="Control"]
+offset_left = 655.0
+offset_top = 188.0
+offset_right = 756.0
+offset_bottom = 271.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "00"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 7
+
+[node name="LineEdit8" type="LineEdit" parent="Control"]
+offset_left = 545.0
+offset_top = 282.0
+offset_right = 756.0
+offset_bottom = 416.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 8
+
+[node name="LineEdit9" type="LineEdit" parent="Control"]
+offset_left = 546.0
+offset_top = 424.0
+offset_right = 756.0
+offset_bottom = 561.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 9
+
+[node name="LineEdit10" type="LineEdit" parent="Control"]
+offset_left = 545.0
+offset_top = 569.0
+offset_right = 757.0
+offset_bottom = 701.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 10
+
+[node name="LineEdit11" type="LineEdit" parent="Control"]
+offset_left = 545.0
+offset_top = 709.0
+offset_right = 757.0
+offset_bottom = 841.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 11
+
+[node name="LineEdit12" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 98.0
+offset_right = 45.0
+offset_bottom = 154.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 12
+
+[node name="LineEdit13" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 98.0
+offset_right = 87.0
+offset_bottom = 154.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 13
+
+[node name="LineEdit14" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 98.0
+offset_right = 130.0
+offset_bottom = 154.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 14
+
+[node name="LineEdit15" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 165.0
+offset_right = 45.0
+offset_bottom = 221.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 15
+
+[node name="LineEdit16" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 165.0
+offset_right = 87.0
+offset_bottom = 221.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 16
+
+[node name="LineEdit17" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 165.0
+offset_right = 130.0
+offset_bottom = 221.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 17
+
+[node name="LineEdit18" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 240.0
+offset_right = 45.0
+offset_bottom = 296.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 18
+
+[node name="LineEdit19" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 240.0
+offset_right = 87.0
+offset_bottom = 296.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 19
+
+[node name="LineEdit20" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 240.0
+offset_right = 130.0
+offset_bottom = 296.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 20
+
+[node name="LineEdit21" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 315.0
+offset_right = 45.0
+offset_bottom = 371.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 21
+
+[node name="LineEdit22" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 315.0
+offset_right = 87.0
+offset_bottom = 371.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 22
+
+[node name="LineEdit23" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 315.0
+offset_right = 130.0
+offset_bottom = 371.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 23
+
+[node name="LineEdit24" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 390.0
+offset_right = 45.0
+offset_bottom = 446.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 24
+
+[node name="LineEdit25" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 390.0
+offset_right = 87.0
+offset_bottom = 446.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 25
+
+[node name="LineEdit26" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 390.0
+offset_right = 130.0
+offset_bottom = 446.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 26
+
+[node name="LineEdit27" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 465.0
+offset_right = 45.0
+offset_bottom = 521.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 27
+
+[node name="LineEdit28" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 465.0
+offset_right = 87.0
+offset_bottom = 521.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 28
+
+[node name="LineEdit29" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 465.0
+offset_right = 130.0
+offset_bottom = 521.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 29
+
+[node name="LineEdit30" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 540.0
+offset_right = 45.0
+offset_bottom = 596.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 30
+
+[node name="LineEdit31" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 540.0
+offset_right = 87.0
+offset_bottom = 596.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 31
+
+[node name="LineEdit32" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 540.0
+offset_right = 130.0
+offset_bottom = 596.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 32
+
+[node name="LineEdit33" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 615.0
+offset_right = 45.0
+offset_bottom = 671.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 33
+
+[node name="LineEdit34" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 615.0
+offset_right = 87.0
+offset_bottom = 671.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 34
+
+[node name="LineEdit35" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 615.0
+offset_right = 130.0
+offset_bottom = 671.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 35
+
+[node name="LineEdit36" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 689.0
+offset_right = 45.0
+offset_bottom = 745.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 36
+
+[node name="LineEdit37" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 689.0
+offset_right = 87.0
+offset_bottom = 745.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 37
+
+[node name="LineEdit38" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 689.0
+offset_right = 130.0
+offset_bottom = 745.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 38
+
+[node name="LineEdit39" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 763.0
+offset_right = 45.0
+offset_bottom = 819.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 39
+
+[node name="LineEdit40" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 763.0
+offset_right = 87.0
+offset_bottom = 819.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 40
+
+[node name="LineEdit41" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 763.0
+offset_right = 130.0
+offset_bottom = 819.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 41
+
+[node name="LineEdit42" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 837.0
+offset_right = 45.0
+offset_bottom = 893.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 42
+
+[node name="LineEdit43" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 837.0
+offset_right = 87.0
+offset_bottom = 893.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 43
+
+[node name="LineEdit44" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 837.0
+offset_right = 130.0
+offset_bottom = 893.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 44
+
+[node name="LineEdit45" type="LineEdit" parent="Control"]
+offset_left = 8.0
+offset_top = 909.0
+offset_right = 45.0
+offset_bottom = 965.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 45
+
+[node name="LineEdit46" type="LineEdit" parent="Control"]
+offset_left = 50.0
+offset_top = 909.0
+offset_right = 87.0
+offset_bottom = 965.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 46
+
+[node name="LineEdit47" type="LineEdit" parent="Control"]
+offset_left = 93.0
+offset_top = 909.0
+offset_right = 130.0
+offset_bottom = 965.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "0"
+alignment = 1
+script = ExtResource("5_gubc5")
+index = 47
+
+[node name="LineEdit48" type="LineEdit" parent="Control"]
+offset_left = 228.0
+offset_top = 853.0
+offset_right = 414.0
+offset_bottom = 1013.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 48
+
+[node name="LineEdit49" type="LineEdit" parent="Control"]
+offset_left = 623.0
+offset_top = 851.0
+offset_right = 758.0
+offset_bottom = 945.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "00"
+script = ExtResource("5_gubc5")
+index = 49
+
+[node name="LineEdit50" type="LineEdit" parent="Control"]
+offset_left = 656.0
+offset_top = 955.0
+offset_right = 756.0
+offset_bottom = 1066.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "00"
+script = ExtResource("5_gubc5")
+index = 49
+
+[node name="LineEdit51" type="LineEdit" parent="Control"]
+offset_left = 783.0
+offset_top = 97.0
+offset_right = 1100.0
+offset_bottom = 298.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 51
+
+[node name="LineEdit52" type="LineEdit" parent="Control"]
+offset_left = 783.0
+offset_top = 305.0
+offset_right = 1100.0
+offset_bottom = 395.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 52
+
+[node name="LineEdit53" type="LineEdit" parent="Control"]
+offset_left = 783.0
+offset_top = 403.0
+offset_right = 1100.0
+offset_bottom = 753.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 53
+
+[node name="LineEdit54" type="LineEdit" parent="Control"]
+offset_left = 1117.0
+offset_top = 142.0
+offset_right = 1523.0
+offset_bottom = 751.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 54
+
+[connection signal="editing_toggled" from="Control/LineEditname" to="Control/LineEditname" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit" to="Control/LineEdit" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit2" to="Control/LineEdit2" method="_on_editing_toggled"]
-[connection signal="editing_toggled" from="Control/LineEditname" to="Control/LineEditname" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit3" to="Control/LineEdit3" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit4" to="Control/LineEdit4" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit5" to="Control/LineEdit5" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit6" to="Control/LineEdit6" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit7" to="Control/LineEdit7" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit8" to="Control/LineEdit8" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit9" to="Control/LineEdit9" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit10" to="Control/LineEdit10" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit11" to="Control/LineEdit11" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit12" to="Control/LineEdit12" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit13" to="Control/LineEdit13" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit14" to="Control/LineEdit14" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit15" to="Control/LineEdit15" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit16" to="Control/LineEdit16" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit17" to="Control/LineEdit17" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit18" to="Control/LineEdit18" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit19" to="Control/LineEdit19" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit20" to="Control/LineEdit20" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit21" to="Control/LineEdit21" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit22" to="Control/LineEdit22" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit23" to="Control/LineEdit23" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit24" to="Control/LineEdit24" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit25" to="Control/LineEdit25" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit26" to="Control/LineEdit26" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit27" to="Control/LineEdit27" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit28" to="Control/LineEdit28" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit29" to="Control/LineEdit29" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit30" to="Control/LineEdit30" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit31" to="Control/LineEdit31" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit32" to="Control/LineEdit32" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit33" to="Control/LineEdit33" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit34" to="Control/LineEdit34" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit35" to="Control/LineEdit35" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit36" to="Control/LineEdit36" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit37" to="Control/LineEdit37" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit38" to="Control/LineEdit38" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit39" to="Control/LineEdit39" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit40" to="Control/LineEdit40" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit41" to="Control/LineEdit41" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit42" to="Control/LineEdit42" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit43" to="Control/LineEdit43" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit44" to="Control/LineEdit44" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit45" to="Control/LineEdit45" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit46" to="Control/LineEdit46" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit47" to="Control/LineEdit47" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit48" to="Control/LineEdit48" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit49" to="Control/LineEdit49" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit50" to="Control/LineEdit50" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit51" to="Control/LineEdit51" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit52" to="Control/LineEdit52" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit53" to="Control/LineEdit53" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit54" to="Control/LineEdit54" method="_on_editing_toggled"]
