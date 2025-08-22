@@ -103,6 +103,7 @@ script = ExtResource("5_gubc5")
 index = 2
 
 [node name="LineEdit3" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 342.0
 offset_top = 111.0
 offset_right = 555.0
@@ -116,6 +117,7 @@ script = ExtResource("5_gubc5")
 index = 3
 
 [node name="LineEdit4" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 574.0
 offset_top = 111.0
 offset_right = 756.0
@@ -129,6 +131,7 @@ script = ExtResource("5_gubc5")
 index = 4
 
 [node name="LineEdit5" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 343.0
 offset_top = 188.0
 offset_right = 522.0
@@ -143,6 +146,7 @@ script = ExtResource("5_gubc5")
 index = 5
 
 [node name="LineEdit6" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 542.0
 offset_top = 189.0
 offset_right = 637.0
@@ -157,6 +161,7 @@ script = ExtResource("5_gubc5")
 index = 6
 
 [node name="LineEdit7" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 655.0
 offset_top = 188.0
 offset_right = 756.0
@@ -171,6 +176,7 @@ script = ExtResource("5_gubc5")
 index = 7
 
 [node name="LineEdit8" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 545.0
 offset_top = 282.0
 offset_right = 756.0
@@ -184,6 +190,7 @@ script = ExtResource("5_gubc5")
 index = 8
 
 [node name="LineEdit9" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 546.0
 offset_top = 424.0
 offset_right = 756.0
@@ -197,6 +204,7 @@ script = ExtResource("5_gubc5")
 index = 9
 
 [node name="LineEdit10" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 545.0
 offset_top = 569.0
 offset_right = 757.0
@@ -210,6 +218,7 @@ script = ExtResource("5_gubc5")
 index = 10
 
 [node name="LineEdit11" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 545.0
 offset_top = 709.0
 offset_right = 757.0
@@ -223,6 +232,7 @@ script = ExtResource("5_gubc5")
 index = 11
 
 [node name="LineEdit12" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 98.0
 offset_right = 45.0
@@ -238,6 +248,7 @@ script = ExtResource("5_gubc5")
 index = 12
 
 [node name="LineEdit13" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 98.0
 offset_right = 87.0
@@ -253,6 +264,7 @@ script = ExtResource("5_gubc5")
 index = 13
 
 [node name="LineEdit14" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 98.0
 offset_right = 130.0
@@ -268,6 +280,7 @@ script = ExtResource("5_gubc5")
 index = 14
 
 [node name="LineEdit15" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 165.0
 offset_right = 45.0
@@ -283,6 +296,7 @@ script = ExtResource("5_gubc5")
 index = 15
 
 [node name="LineEdit16" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 165.0
 offset_right = 87.0
@@ -298,6 +312,7 @@ script = ExtResource("5_gubc5")
 index = 16
 
 [node name="LineEdit17" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 165.0
 offset_right = 130.0
@@ -313,6 +328,7 @@ script = ExtResource("5_gubc5")
 index = 17
 
 [node name="LineEdit18" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 240.0
 offset_right = 45.0
@@ -328,6 +344,7 @@ script = ExtResource("5_gubc5")
 index = 18
 
 [node name="LineEdit19" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 240.0
 offset_right = 87.0
@@ -343,6 +360,7 @@ script = ExtResource("5_gubc5")
 index = 19
 
 [node name="LineEdit20" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 240.0
 offset_right = 130.0
@@ -358,6 +376,7 @@ script = ExtResource("5_gubc5")
 index = 20
 
 [node name="LineEdit21" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 315.0
 offset_right = 45.0
@@ -373,6 +392,7 @@ script = ExtResource("5_gubc5")
 index = 21
 
 [node name="LineEdit22" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 315.0
 offset_right = 87.0
@@ -388,6 +408,7 @@ script = ExtResource("5_gubc5")
 index = 22
 
 [node name="LineEdit23" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 315.0
 offset_right = 130.0
@@ -403,6 +424,7 @@ script = ExtResource("5_gubc5")
 index = 23
 
 [node name="LineEdit24" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 390.0
 offset_right = 45.0
@@ -418,6 +440,7 @@ script = ExtResource("5_gubc5")
 index = 24
 
 [node name="LineEdit25" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 390.0
 offset_right = 87.0
@@ -433,6 +456,7 @@ script = ExtResource("5_gubc5")
 index = 25
 
 [node name="LineEdit26" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 390.0
 offset_right = 130.0
@@ -448,6 +472,7 @@ script = ExtResource("5_gubc5")
 index = 26
 
 [node name="LineEdit27" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 465.0
 offset_right = 45.0
@@ -463,6 +488,7 @@ script = ExtResource("5_gubc5")
 index = 27
 
 [node name="LineEdit28" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 465.0
 offset_right = 87.0
@@ -478,6 +504,7 @@ script = ExtResource("5_gubc5")
 index = 28
 
 [node name="LineEdit29" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 465.0
 offset_right = 130.0
@@ -493,6 +520,7 @@ script = ExtResource("5_gubc5")
 index = 29
 
 [node name="LineEdit30" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 540.0
 offset_right = 45.0
@@ -508,6 +536,7 @@ script = ExtResource("5_gubc5")
 index = 30
 
 [node name="LineEdit31" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 540.0
 offset_right = 87.0
@@ -523,6 +552,7 @@ script = ExtResource("5_gubc5")
 index = 31
 
 [node name="LineEdit32" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 540.0
 offset_right = 130.0
@@ -538,6 +568,7 @@ script = ExtResource("5_gubc5")
 index = 32
 
 [node name="LineEdit33" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 615.0
 offset_right = 45.0
@@ -553,6 +584,7 @@ script = ExtResource("5_gubc5")
 index = 33
 
 [node name="LineEdit34" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 615.0
 offset_right = 87.0
@@ -568,6 +600,7 @@ script = ExtResource("5_gubc5")
 index = 34
 
 [node name="LineEdit35" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 615.0
 offset_right = 130.0
@@ -583,6 +616,7 @@ script = ExtResource("5_gubc5")
 index = 35
 
 [node name="LineEdit36" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 689.0
 offset_right = 45.0
@@ -598,6 +632,7 @@ script = ExtResource("5_gubc5")
 index = 36
 
 [node name="LineEdit37" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 689.0
 offset_right = 87.0
@@ -613,6 +648,7 @@ script = ExtResource("5_gubc5")
 index = 37
 
 [node name="LineEdit38" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 689.0
 offset_right = 130.0
@@ -628,6 +664,7 @@ script = ExtResource("5_gubc5")
 index = 38
 
 [node name="LineEdit39" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 763.0
 offset_right = 45.0
@@ -643,6 +680,7 @@ script = ExtResource("5_gubc5")
 index = 39
 
 [node name="LineEdit40" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 763.0
 offset_right = 87.0
@@ -658,6 +696,7 @@ script = ExtResource("5_gubc5")
 index = 40
 
 [node name="LineEdit41" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 763.0
 offset_right = 130.0
@@ -673,6 +712,7 @@ script = ExtResource("5_gubc5")
 index = 41
 
 [node name="LineEdit42" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 837.0
 offset_right = 45.0
@@ -688,6 +728,7 @@ script = ExtResource("5_gubc5")
 index = 42
 
 [node name="LineEdit43" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 837.0
 offset_right = 87.0
@@ -703,6 +744,7 @@ script = ExtResource("5_gubc5")
 index = 43
 
 [node name="LineEdit44" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 837.0
 offset_right = 130.0
@@ -718,6 +760,7 @@ script = ExtResource("5_gubc5")
 index = 44
 
 [node name="LineEdit45" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 909.0
 offset_right = 45.0
@@ -733,6 +776,7 @@ script = ExtResource("5_gubc5")
 index = 45
 
 [node name="LineEdit46" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 909.0
 offset_right = 87.0
@@ -748,6 +792,7 @@ script = ExtResource("5_gubc5")
 index = 46
 
 [node name="LineEdit47" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 93.0
 offset_top = 909.0
 offset_right = 130.0
@@ -763,6 +808,7 @@ script = ExtResource("5_gubc5")
 index = 47
 
 [node name="LineEdit48" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 228.0
 offset_top = 853.0
 offset_right = 414.0
@@ -777,6 +823,7 @@ script = ExtResource("5_gubc5")
 index = 48
 
 [node name="LineEdit49" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 623.0
 offset_top = 851.0
 offset_right = 758.0
@@ -791,6 +838,7 @@ script = ExtResource("5_gubc5")
 index = 49
 
 [node name="LineEdit50" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 656.0
 offset_top = 955.0
 offset_right = 756.0
@@ -805,6 +853,7 @@ script = ExtResource("5_gubc5")
 index = 49
 
 [node name="LineEdit51" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 783.0
 offset_top = 97.0
 offset_right = 1100.0
@@ -819,6 +868,7 @@ script = ExtResource("5_gubc5")
 index = 51
 
 [node name="LineEdit52" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 783.0
 offset_top = 305.0
 offset_right = 1100.0
@@ -833,6 +883,7 @@ script = ExtResource("5_gubc5")
 index = 52
 
 [node name="LineEdit53" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 783.0
 offset_top = 403.0
 offset_right = 1100.0
@@ -847,6 +898,7 @@ script = ExtResource("5_gubc5")
 index = 53
 
 [node name="LineEdit54" type="LineEdit" parent="Control"]
+layout_mode = 0
 offset_left = 1117.0
 offset_top = 142.0
 offset_right = 1523.0
