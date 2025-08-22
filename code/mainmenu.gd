@@ -4,6 +4,9 @@ extends Control
 @onready var v_box_container: VBoxContainer = $ScrollContainer/VBoxContainer
 var selected_save_file: String = ""
 
+# Keep a reference to the settings scene instance if added
+var settings_instance: Node = null
+
 
 func _enter_tree() -> void:
 	list_save_files()
@@ -23,6 +26,18 @@ func _on_delete_a_sheet_pressed() -> void:
 		selected_save_file = ""  # reset selection
 	else:
 		print("No file selected to delete.")
+
+
+func _on_options_pressed() -> void:
+	var game_root = get_tree().root # adjust if nested deeper
+	if settings_instance == null:
+			var settings_scene = preload("res://scenes/settings.tscn")
+			settings_instance = settings_scene.instantiate()
+			game_root.add_child(settings_instance)
+	else:
+		if settings_instance and settings_instance.is_inside_tree():
+			settings_instance.queue_free()
+			settings_instance = null
 
 
 func _on_exit_pressed() -> void:

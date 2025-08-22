@@ -912,6 +912,21 @@ placeholder_text = "insert"
 script = ExtResource("5_gubc5")
 index = 54
 
+[node name="LineEdit55" type="LineEdit" parent="Control"]
+layout_mode = 0
+offset_left = 1557.0
+offset_top = 89.0
+offset_right = 2285.0
+offset_bottom = 1068.0
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_constants/minimum_character_width = 0
+theme_override_fonts/font = ExtResource("5_c16ls")
+theme_override_styles/normal = ExtResource("6_18nlu")
+placeholder_text = "insert"
+script = ExtResource("5_gubc5")
+index = 54
+
 [node name="TextureButton" type="TextureButton" parent="Control"]
 layout_mode = 0
 offset_left = 429.0
@@ -1165,3 +1180,4 @@ stretch_mode = 4
 [connection signal="editing_toggled" from="Control/LineEdit52" to="Control/LineEdit52" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit53" to="Control/LineEdit53" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit54" to="Control/LineEdit54" method="_on_editing_toggled"]
+[connection signal="editing_toggled" from="Control/LineEdit55" to="Control/LineEdit55" method="_on_editing_toggled"]

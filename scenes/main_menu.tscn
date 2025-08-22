@@ -43,6 +43,11 @@ layout_mode = 2
 text = "Delete a sheet
 "
 
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options
+"
+
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit
@@ -82,4 +87,5 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/DeleteASheet" to="." method="_on_delete_a_sheet_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
