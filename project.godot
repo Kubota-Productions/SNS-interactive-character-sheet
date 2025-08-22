@@ -22,7 +22,6 @@ GlobalFunctions="*res://code/singleton/global_functions.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="uid://dhj210o663nqh"
 mouse_cursor/custom_image_hotspot=Vector2(13, 4)
