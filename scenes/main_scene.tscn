@@ -926,7 +926,7 @@ theme_override_fonts/font = ExtResource("5_c16ls")
 theme_override_styles/normal = ExtResource("6_18nlu")
 placeholder_text = "insert"
 script = ExtResource("5_gubc5")
-index = 54
+index = 55
 
 [node name="TextureButton" type="TextureButton" parent="Control"]
 layout_mode = 0
