@@ -114,29 +114,13 @@ text = "Graphics"
 
 [node name="Graphics" type="OptionButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-item_count = 11
-popup/item_0/text = "2560x1440"
+item_count = 3
+popup/item_0/text = "High"
 popup/item_0/id = 0
-popup/item_1/text = "1920x1080"
+popup/item_1/text = "Medium"
 popup/item_1/id = 1
-popup/item_2/text = "1366x768"
+popup/item_2/text = "Low"
 popup/item_2/id = 2
-popup/item_3/text = "1280x720"
-popup/item_3/id = 3
-popup/item_4/text = "1920x1200"
-popup/item_4/id = 4
-popup/item_5/text = "1680x1050"
-popup/item_5/id = 5
-popup/item_6/text = "1440x900"
-popup/item_6/id = 6
-popup/item_7/text = "1280x800"
-popup/item_7/id = 7
-popup/item_8/text = "1024x768"
-popup/item_8/id = 8
-popup/item_9/text = "800x600"
-popup/item_9/id = 9
-popup/item_10/text = "640x480"
-popup/item_10/id = 10
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
