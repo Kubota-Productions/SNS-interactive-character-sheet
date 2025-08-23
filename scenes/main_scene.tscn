@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cp13el0w7wefl"]
+[gd_scene load_steps=12 format=3 uid="uid://cp13el0w7wefl"]
 
 [ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/mainscene.gd" id="1_yn51d"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_6wevv"]
@@ -10,6 +10,7 @@
 [ext_resource type="StyleBox" uid="uid://c3aprgnpedo2g" path="res://fonts/LineEditbackgroundcolour.tres" id="6_18nlu"]
 [ext_resource type="Script" uid="uid://cdyitwb357sub" path="res://code/line_edit_scripts/line_editname.gd" id="6_rt2n2"]
 [ext_resource type="Texture2D" uid="uid://dhxnf4htg3ba5" path="res://Imagefiles/dot.png" id="9_c1pb6"]
+[ext_resource type="Script" uid="uid://dgaqaokifjpfj" path="res://code/line_edit_scripts/text_edit1.gd" id="10_e1cbu"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_yn51d")
@@ -913,20 +914,17 @@ placeholder_text = "insert"
 script = ExtResource("5_gubc5")
 index = 54
 
-[node name="LineEdit55" type="LineEdit" parent="Control"]
+[node name="TextEdit" type="TextEdit" parent="Control"]
 layout_mode = 0
-offset_left = 1557.0
-offset_top = 89.0
+offset_left = 1549.0
+offset_top = 103.0
 offset_right = 2285.0
-offset_bottom = 1068.0
+offset_bottom = 1069.0
 theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
-theme_override_constants/minimum_character_width = 0
-theme_override_fonts/font = ExtResource("5_c16ls")
 theme_override_styles/normal = ExtResource("6_18nlu")
 placeholder_text = "insert"
-script = ExtResource("5_gubc5")
-index = 55
+script = ExtResource("10_e1cbu")
 
 [node name="TextureButton" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1181,4 +1179,3 @@ stretch_mode = 4
 [connection signal="editing_toggled" from="Control/LineEdit52" to="Control/LineEdit52" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit53" to="Control/LineEdit53" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit54" to="Control/LineEdit54" method="_on_editing_toggled"]
-[connection signal="editing_toggled" from="Control/LineEdit55" to="Control/LineEdit55" method="_on_editing_toggled"]
