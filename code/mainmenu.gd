@@ -75,8 +75,9 @@ func show_save_files(save_files: Array) -> void:
 		# Connect to select this file when pressed
 		button.pressed.connect(func():
 			selected_save_file = save_file
-			print("Selected file:", selected_save_file)
-		)
+			GlobalFunctions.set_player_name(selected_save_file.replace("user://","").replace("0savedata.json","")))
+		print("Selected file:", selected_save_file)
+	
 
 
 func delete_save_file(file_name: String) -> void:
@@ -96,10 +97,11 @@ func delete_save_file(file_name: String) -> void:
 	else:
 		print("Failed to open user folder.")
 
+func _on_website_pressed() -> void:
+	OS.shell_open("https://synesthesiasynthetica.com/")
 
 func _on_socials_pressed() -> void:
 	OS.shell_open("https://bsky.app/profile/kubotaproductions.bsky.social")
-
 
 func _on_join_the_discord_pressed() -> void:
 	OS.shell_open("https://discord.gg/4Mmxzm8sGX")

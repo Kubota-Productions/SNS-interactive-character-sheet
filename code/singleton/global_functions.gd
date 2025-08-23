@@ -35,9 +35,10 @@ func store_data(index : int, string : String):
 				file.close()
 				print("just_finished_editing")
 
-func set_player_name(name : String):
+func set_player_name(name : String, update_data : bool = false):
 	player_name = name
-	_update_data()
+	if update_data == true:
+		_update_data()
 
 func return_player_name():
 	return player_name
