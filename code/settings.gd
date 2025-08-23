@@ -41,8 +41,6 @@ func _on_resolutions_item_selected(index: int) -> void:
 		10:
 			DisplayServer.window_set_size(Vector2i(640, 480))
 
-
-
 func _on_exit_button_pressed() -> void:
 	queue_free()
 
@@ -55,3 +53,6 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 		# switch back to windowed and restore size
 		DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED)
 		DisplayServer.window_set_size(previous_window_size)
+
+func _on_graphics_item_selected(index: int) -> void:
+	pass # Replace with function body.
