@@ -977,6 +977,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 60
 
 [node name="TextureButton6" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -988,6 +990,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 61
 
 [node name="TextureButton7" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -999,6 +1003,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 62
 
 [node name="TextureButton8" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1010,6 +1016,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 63
 
 [node name="TextureButton9" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1021,6 +1029,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 64
 
 [node name="TextureButton10" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1032,6 +1042,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 65
 
 [node name="TextureButton11" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1043,6 +1055,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 66
 
 [node name="TextureButton12" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1054,6 +1068,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 67
 
 [node name="TextureButton13" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1065,6 +1081,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 68
 
 [node name="TextureButton14" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1076,6 +1094,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 69
 
 [node name="TextureButton15" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1087,6 +1107,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 70
 
 [node name="TextureButton16" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1098,6 +1120,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 71
 
 [node name="TextureButton17" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1109,6 +1133,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 72
 
 [node name="TextureButton18" type="TextureButton" parent="Control"]
 layout_mode = 0
@@ -1120,6 +1146,8 @@ toggle_mode = true
 texture_pressed = ExtResource("9_c1pb6")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("12_4w45t")
+index = 73
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
@@ -1198,3 +1226,17 @@ stretch_mode = 5
 [connection signal="toggled" from="Control/TextureButtonLeverage2" to="Control/TextureButtonLeverage2" method="_on_toggled"]
 [connection signal="toggled" from="Control/TextureButtonLeverage3" to="Control/TextureButtonLeverage3" method="_on_toggled"]
 [connection signal="toggled" from="Control/TextureButtonLeverage4" to="Control/TextureButtonLeverage4" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton5" to="Control/TextureButton5" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton6" to="Control/TextureButton6" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton7" to="Control/TextureButton7" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton8" to="Control/TextureButton8" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton9" to="Control/TextureButton9" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton10" to="Control/TextureButton10" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton11" to="Control/TextureButton11" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton12" to="Control/TextureButton12" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton13" to="Control/TextureButton13" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton14" to="Control/TextureButton14" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton15" to="Control/TextureButton15" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton16" to="Control/TextureButton16" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton17" to="Control/TextureButton17" method="_on_toggled"]
+[connection signal="toggled" from="Control/TextureButton18" to="Control/TextureButton18" method="_on_toggled"]

@@ -86,13 +86,14 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1913.0
-offset_top = -54.0
+offset_top = -76.0
 offset_right = -1599.0
-offset_bottom = 60.0
+offset_bottom = 38.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "concepted by Kubota productions
-code by Matt"
+text = "Concepted by Kubota productions
+Code by Matt
+Bugfixing by IngoPlane"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1

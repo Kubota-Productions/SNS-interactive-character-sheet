@@ -7,19 +7,15 @@ var selected_save_file: String = ""
 # Keep a reference to the settings scene instance if added
 var settings_instance: Node = null
 
-
 func _enter_tree() -> void:
 	list_save_files()
-
 
 func _on_load_a_sheet_pressed() -> void:
 	get_parent()._switch_to(preload("res://scenes/main_scene.tscn"))
 
-
 func _on_add_a_sheet_pressed() -> void:
 	await GlobalFunctions.new_player()
 	get_parent()._switch_to(preload("res://scenes/main_scene.tscn"))
-
 
 func _on_delete_a_sheet_pressed() -> void:
 	if selected_save_file != "":
@@ -27,7 +23,6 @@ func _on_delete_a_sheet_pressed() -> void:
 		selected_save_file = ""  # reset selection
 	else:
 		print("No file selected to delete.")
-
 
 func _on_options_pressed() -> void:
 	var game_root = get_tree().root # adjust if nested deeper

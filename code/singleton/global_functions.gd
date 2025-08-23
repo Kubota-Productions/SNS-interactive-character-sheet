@@ -8,6 +8,7 @@ func _ready() -> void:
 	var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.READ)
 	if file:
 		var all_data :Array[String]
+		print("LOAD DATA -> " + str(all_data));
 		all_data = file.get_var()
 		data = all_data
 
@@ -16,11 +17,15 @@ func _update_data() -> void:
 	if file:
 		var all_data :Array[String]
 		all_data = file.get_var()
+		print("UPDATE DATA -> " + str(all_data));
 		data = all_data
 		store_data_all()
+	else:
+		print("FILE INVALID");
 
 func store_data_all():
 			data.resize(100)
+			print("STORE ALL DATA -> " + str(data));
 			var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.WRITE)
 			if file:
 				file.store_var(data)
@@ -30,6 +35,7 @@ func store_data_all():
 func store_data(index : int, string : String):
 			data.resize(100)
 			data[index] = string
+			print("STORE DATA -> " + str(data));
 			var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.WRITE)
 			if file:
 				file.store_var(data)
