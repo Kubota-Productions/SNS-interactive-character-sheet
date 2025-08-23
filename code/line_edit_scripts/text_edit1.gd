@@ -10,10 +10,5 @@ func _enter_tree() -> void:
 		all_data = file.get_var()
 		self.text = all_data[index]
 
-func _on_editing_toggled(toggled_on: bool) -> void:
-	if toggled_on == true:
-		was_just_editing = true
-	if toggled_on == false:
-		if was_just_editing == true:
+func _on_text_changed() -> void:
 			GlobalFunctions.store_data(index,(self.text))
-			was_just_editing = false
