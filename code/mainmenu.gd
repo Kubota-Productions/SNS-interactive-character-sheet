@@ -95,3 +95,11 @@ func delete_save_file(file_name: String) -> void:
 			print("File does not exist:", file_name)
 	else:
 		print("Failed to open user folder.")
+
+
+func _on_socials_pressed() -> void:
+	OS.shell_open("https://bsky.app/profile/kubotaproductions.bsky.social")
+
+
+func _on_join_the_discord_pressed() -> void:
+	OS.shell_open("https://discord.gg/4Mmxzm8sGX")
