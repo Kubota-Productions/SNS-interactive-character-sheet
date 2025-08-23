@@ -17,7 +17,8 @@ func _on_load_a_sheet_pressed() -> void:
 
 
 func _on_add_a_sheet_pressed() -> void:
-	pass # Replace with function body.
+	await GlobalFunctions.new_player()
+	get_parent()._switch_to(preload("res://scenes/main_scene.tscn"))
 
 
 func _on_delete_a_sheet_pressed() -> void:
@@ -105,3 +106,10 @@ func _on_socials_pressed() -> void:
 
 func _on_join_the_discord_pressed() -> void:
 	OS.shell_open("https://discord.gg/4Mmxzm8sGX")
+
+func _on_itch_io_pressed() -> void:
+	OS.shell_open("https://kubota-productions.itch.io/sns")
+
+func _on_drivethrurpg_pressed() -> void:
+	OS.shell_open("https://www.drivethrurpg.com/en/product/504031/sns-1-7-synesthesia-synthetica.")
+	

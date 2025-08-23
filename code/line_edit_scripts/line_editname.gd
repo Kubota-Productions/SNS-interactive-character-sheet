@@ -12,4 +12,5 @@ func _on_editing_toggled(toggled_on: bool) -> void:
 	if toggled_on == false:
 		if was_just_editing == true:
 			GlobalFunctions.player_name = self.text
+			GlobalFunctions.store_data_all()
 			was_just_editing = false

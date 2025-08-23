@@ -1,7 +1,8 @@
 extends Node
 
 var data : Array[String]
-var player_name : String = "charactersheet"
+var player_name : String = ""
+var names_index = 0
 
 func _ready() -> void:
 	var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.READ)
@@ -42,5 +43,21 @@ func set_player_name(name : String, update_data : bool = false):
 
 func return_player_name():
 	return player_name
+
+func new_player():
+	data = []
+	var dir = DirAccess.open("user://")
+	var new_player_prefix :String = "new_player"
+	if dir:
+		var file_names = dir.get_files()
+		var found_matching_name = true
+		while found_matching_name == true:
+			found_matching_name = false
+			for file_name in file_names:
+				if file_name.replace("user://","").replace("0savedata.json","") == str(new_player_prefix+str(names_index)):
+					names_index +=1
+					print(names_index)
+					found_matching_name = true
+	player_name = str(new_player_prefix+str(names_index))
 	
 	
