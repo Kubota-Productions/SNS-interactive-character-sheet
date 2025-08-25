@@ -8,7 +8,7 @@ func _on_pressed() -> void:
 	# Only start new audio if nothing is currently playing
 	if audio_stream_player_2d.playing:
 		return
-	
+	$"../audiopausebutton".button_pressed = false
 	var dir := DirAccess.open("res://assets/audiofiles/")
 	if dir == null:
 		push_warning("Could not open audiofiles directory")
