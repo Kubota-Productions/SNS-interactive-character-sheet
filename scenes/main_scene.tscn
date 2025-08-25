@@ -26,10 +26,11 @@
 script = ExtResource("1_yn51d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 540)
+position = Vector2(500, 540)
 script = ExtResource("2_6wevv")
-left_limit = 960.0
-right_limit = 1443.0
+left_limit = -100.0
+right_limit = 2000.0
+down_limit = 1000.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
