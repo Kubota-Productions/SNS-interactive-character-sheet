@@ -55,7 +55,7 @@ func list_save_files() -> void:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			if file_name != "." and file_name != ".." and !dir.current_is_dir():
+			if file_name != "." and file_name != ".." and !dir.current_is_dir() and file_name.rfind("0savedata.json") > 0:
 				save_files.append(file_name)
 				print("Found file:", file_name)
 			file_name = dir.get_next()
@@ -69,7 +69,7 @@ func list_save_files() -> void:
 func show_save_files(save_files: Array) -> void:
 	for save_file in save_files:
 		var button = Button.new()
-		button.text = save_file
+		button.text = save_file.replace("user://","").replace("0savedata.json","")
 		$ScrollContainer/VBoxContainer.add_child(button)
 
 		# Connect to select this file when pressed
