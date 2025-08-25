@@ -11,7 +11,10 @@ func _enter_tree() -> void:
 	list_save_files()
 
 func _on_load_a_sheet_pressed() -> void:
-	get_parent()._switch_to(preload("res://scenes/main_scene.tscn"))
+	if selected_save_file != "":
+		get_parent()._switch_to(preload("res://scenes/main_scene.tscn"))
+	else:
+		print("No save file selected to load.")
 
 func _on_add_a_sheet_pressed() -> void:
 	await GlobalFunctions.new_player()
