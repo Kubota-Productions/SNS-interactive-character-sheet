@@ -72,20 +72,20 @@ stretch_mode = 5
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/BoxContainer/VBoxContainer"]
+[node name="Audioplayermenu" type="VBoxContainer" parent="Control/BoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+script = ExtResource("7_xdqt8")
 
-[node name="audioplaybutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="audioplaybutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_si52b")
 texture_pressed = ExtResource("4_k6f3i")
 ignore_texture_size = true
 stretch_mode = 4
-script = ExtResource("7_xdqt8")
 
-[node name="audiopausebutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="audiopausebutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 toggle_mode = true
@@ -93,18 +93,16 @@ texture_normal = ExtResource("5_xdqt8")
 texture_pressed = ExtResource("6_adb74")
 ignore_texture_size = true
 stretch_mode = 4
-script = ExtResource("7_xdqt8")
 
-[node name="audioskipbutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="audioskipbutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("7_58gk3")
 texture_pressed = ExtResource("8_to7gp")
 ignore_texture_size = true
 stretch_mode = 4
-script = ExtResource("7_xdqt8")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/BoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu"]
 
 [node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer"]
 layout_mode = 2
@@ -1711,7 +1709,9 @@ stretch_mode = 5
 
 [node name="FileDialog" type="FileDialog" parent="Control"]
 
-[connection signal="toggled" from="Control/BoxContainer/VBoxContainer/VBoxContainer2/audiopausebutton" to="Control/BoxContainer/VBoxContainer/VBoxContainer2/audiopausebutton" method="_on_toggled"]
+[connection signal="pressed" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audioplaybutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audioplaybutton_pressed"]
+[connection signal="toggled" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audiopausebutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audiopausebutton_toggled"]
+[connection signal="pressed" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audioskipbutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audioskipbutton_pressed"]
 [connection signal="editing_toggled" from="Control/LineEditname" to="Control/LineEditname" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit" to="Control/LineEdit" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit2" to="Control/LineEdit2" method="_on_editing_toggled"]
