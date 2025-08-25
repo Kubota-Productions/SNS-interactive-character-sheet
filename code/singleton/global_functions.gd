@@ -33,7 +33,7 @@ func store_data_all():
 				print("just_finished_editing")
 
 func store_data(index : int, string : String):
-			data.resize(100)
+			data.resize(200)
 			data[index] = string
 			print("STORE DATA -> " + str(data));
 			var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.WRITE)

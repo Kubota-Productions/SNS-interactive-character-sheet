@@ -112,3 +112,9 @@ func _on_open_folder_pressed() -> void:
 	var folder_path = OS.get_user_data_dir()
 	print("Opening save folder:", folder_path)
 	OS.shell_open(folder_path)
+	
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_IN:
+		# Reload save files when the player returns to the game
+		print("Game regained focus, refreshing save files...")
+		list_save_files()
