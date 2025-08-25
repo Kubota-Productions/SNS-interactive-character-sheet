@@ -72,11 +72,6 @@ func _change_zoom(amount: float) -> void:
 	camera_pos_x += ooffset.x
 	camera_pos_y += ooffset.y
 
-
-
-
-
-
 func _in_text_field() -> bool:
 	var focus_owner = get_viewport().gui_get_focus_owner()
-	return focus_owner is LineEdit or focus_owner is TextEdit
+	return focus_owner is LineEdit or focus_owner is TextEdit or focus_owner is OptionButton or focus_owner is HSlider 

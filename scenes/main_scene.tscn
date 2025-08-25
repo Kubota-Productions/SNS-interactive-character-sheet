@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dsohun8d1epmx" path="res://assets/imagefiles/audiopausebuttonpressed.png" id="6_adb74"]
 [ext_resource type="Script" uid="uid://cdyitwb357sub" path="res://code/line_edit_scripts/line_editname.gd" id="6_rt2n2"]
 [ext_resource type="Texture2D" uid="uid://dxj623lukgr34" path="res://assets/imagefiles/audioskipbutton.png" id="7_58gk3"]
-[ext_resource type="Script" uid="uid://bmtvrcrig155x" path="res://scenes/audioplaybutton.gd" id="7_xdqt8"]
+[ext_resource type="Script" uid="uid://bmtvrcrig155x" path="res://code/audioplayerscript.gd" id="7_xdqt8"]
 [ext_resource type="Texture2D" uid="uid://bn4vjajwfg856" path="res://assets/imagefiles/audioskipbuttonpressed.png" id="8_to7gp"]
 [ext_resource type="Texture2D" uid="uid://dhxnf4htg3ba5" path="res://assets/imagefiles/dot.png" id="9_c1pb6"]
 [ext_resource type="Script" uid="uid://dgaqaokifjpfj" path="res://code/line_edit_scripts/text_edit1.gd" id="10_e1cbu"]
@@ -93,6 +93,7 @@ texture_normal = ExtResource("5_xdqt8")
 texture_pressed = ExtResource("6_adb74")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("7_xdqt8")
 
 [node name="audioskipbutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(100, 100)
@@ -1710,6 +1711,7 @@ stretch_mode = 5
 [node name="FileDialog" type="FileDialog" parent="Control"]
 
 [connection signal="pressed" from="Control/BoxContainer/VBoxContainer/VBoxContainer2/audioplaybutton" to="Control/BoxContainer/VBoxContainer/VBoxContainer2/audioplaybutton" method="_on_pressed"]
+[connection signal="toggled" from="Control/BoxContainer/VBoxContainer/VBoxContainer2/audiopausebutton" to="Control/BoxContainer/VBoxContainer/VBoxContainer2/audiopausebutton" method="_on_toggled"]
 [connection signal="editing_toggled" from="Control/LineEditname" to="Control/LineEditname" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit" to="Control/LineEdit" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit2" to="Control/LineEdit2" method="_on_editing_toggled"]
