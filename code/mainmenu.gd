@@ -2,6 +2,7 @@ extends Control
 
 @onready var scroll_container: ScrollContainer = $ScrollContainer
 @onready var v_box_container: VBoxContainer = $ScrollContainer/VBoxContainer
+@onready var warning_dialog: AcceptDialog = $VBoxContainer/LoadASheet/AcceptDialog
 var selected_save_file: String = ""
 
 # Keep a reference to the settings scene instance if added
@@ -14,7 +15,7 @@ func _on_load_a_sheet_pressed() -> void:
 	if selected_save_file != "":
 		get_parent()._switch_to(preload("res://scenes/main_scene.tscn"))
 	else:
-		print("No save file selected to load.")
+		warning_dialog.popup_centered()
 
 func _on_add_a_sheet_pressed() -> void:
 	await GlobalFunctions.new_player()
