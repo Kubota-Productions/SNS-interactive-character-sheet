@@ -108,3 +108,7 @@ func _on_itch_io_pressed() -> void:
 func _on_drivethrurpg_pressed() -> void:
 	OS.shell_open("https://www.drivethrurpg.com/en/product/504031/sns-1-7-synesthesia-synthetica.")
 	
+func _on_open_folder_pressed() -> void:
+	var folder_path = OS.get_user_data_dir()
+	print("Opening save folder:", folder_path)
+	OS.shell_open(folder_path)

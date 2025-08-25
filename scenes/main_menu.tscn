@@ -38,6 +38,11 @@ layout_mode = 2
 text = "Add a sheet
 "
 
+[node name="Open folder" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Open folder
+"
+
 [node name="DeleteASheet" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Delete a sheet
@@ -119,6 +124,7 @@ texture = ExtResource("2_ekxnf")
 
 [connection signal="pressed" from="VBoxContainer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
+[connection signal="pressed" from="VBoxContainer/Open folder" to="." method="_on_open_folder_pressed"]
 [connection signal="pressed" from="VBoxContainer/DeleteASheet" to="." method="_on_delete_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/Socials" to="." method="_on_socials_pressed"]
