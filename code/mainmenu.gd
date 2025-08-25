@@ -94,6 +94,17 @@ func delete_save_file(file_name: String) -> void:
 				print("Failed to delete file:", file_name, "Error code:", error)
 		else:
 			print("File does not exist:", file_name)
+		var file_path_png = str(file_path.replace("user://","").replace("0savedata.json","")+"_appearance.png")
+		if dir.file_exists(file_path_png):
+			var error = dir.remove(file_path_png)
+			if error == OK:
+				print("Deleted file:", file_name)
+				# Refresh the buttons after deletion
+				list_save_files()
+			else:
+				print("Failed to delete file:", file_name, "Error code:", error)
+		else:
+			print("File does not exist:", file_name)
 	else:
 		print("Failed to open user folder.")
 

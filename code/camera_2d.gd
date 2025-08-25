@@ -5,6 +5,7 @@ extends Camera2D
 @export var right_limit: float = 1000.0
 @export var mouse_sensitivity: float = 1.0
 
+@onready var box_container: BoxContainer = $"../Control/BoxContainer"
 # Zoom settings
 @export var zoom_step: float = 0.1
 @export var min_zoom: float = 1
@@ -52,7 +53,7 @@ func _change_zoom(amount: float) -> void:
 	zoom = Vector2(new_zoom, new_zoom)
 
 func _clamp_to_limits() -> void:
-	position.x = clamp(position.x, left_limit, right_limit)
+	position.x = clamp(position.x * zoom.x, left_limit, right_limit)
 
 func _in_text_field() -> bool:
 	var focus_owner = get_viewport().gui_get_focus_owner()
