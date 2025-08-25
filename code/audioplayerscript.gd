@@ -2,15 +2,10 @@ extends TextureButton
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
 
-var paused: bool = false
-
-func _ready() -> void:
-	self.toggle_mode = true
-	toggled.connect(_on_toggled)
-
+var paused_position: float = 0.0
 
 func _on_pressed() -> void:
-	# Do nothing if audio is already playing
+	# Only start new audio if nothing is currently playing
 	if audio_stream_player_2d.playing:
 		return
 	
@@ -27,26 +22,18 @@ func _on_pressed() -> void:
 			var stream := load(audio_path)
 			if stream is AudioStream:
 				audio_stream_player_2d.stream = stream
-				audio_stream_player_2d.play()
+				audio_stream_player_2d.play()  # start from beginning
+				self.set_pressed(false)  # make sure toggle is off
 				return # only play the first audio file found
 		file_name = dir.get_next()
 	
 	push_warning("No audio files found in audiofiles folder")
 
 func _on_toggled(toggled_on: bool) -> void:
-	var playback := audio_stream_player_2d.get_stream_playback()
-	if playback == null:
-		# No audio loaded, revert button
-		self.set_pressed(false)
-		return
-	
-	if playback.is_playing():
-		if toggled_on:
-			# Pause: stop playback without resetting position
-			playback.stop()
-		else:
-			# Resume playback from the paused position
-			playback.play()
+	if audio_stream_player_2d.playing:
+		paused_position = audio_stream_player_2d.get_playback_position()
+		audio_stream_player_2d.stop()
 	else:
-		# Audio isn't playing at all, revert button
-		self.set_pressed(false)
+		audio_stream_player_2d.play()  
+		audio_stream_player_2d.call_deferred("seek", paused_position)
+		
