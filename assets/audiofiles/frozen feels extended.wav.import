@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c2qo2j2c3i0f"
+path="res://.godot/imported/frozen feels extended.wav-45b534af10d21532552f228108240e69.sample"
+
+[deps]
+
+source_file="res://assets/audiofiles/frozen feels extended.wav"
+dest_files=["res://.godot/imported/frozen feels extended.wav-45b534af10d21532552f228108240e69.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

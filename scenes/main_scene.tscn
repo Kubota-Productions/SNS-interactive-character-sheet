@@ -1,25 +1,26 @@
-[gd_scene load_steps=21 format=3 uid="uid://cp13el0w7wefl"]
+[gd_scene load_steps=22 format=3 uid="uid://cp13el0w7wefl"]
 
 [ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/mainscene.gd" id="1_yn51d"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_6wevv"]
-[ext_resource type="Texture2D" uid="uid://ibsyrtwtq0ei" path="res://Imagefiles/page1.jpg" id="3_6wevv"]
-[ext_resource type="Texture2D" uid="uid://brutxj24rvw46" path="res://Imagefiles/audioplaybuttonpressed.png" id="4_k6f3i"]
-[ext_resource type="Texture2D" uid="uid://cuk7tf45j66w" path="res://Imagefiles/page2.png" id="4_r6p65"]
-[ext_resource type="FontFile" uid="uid://c5vb0i0l4vcxj" path="res://fonts/MuseoModerno-Medium.ttf" id="5_c16ls"]
+[ext_resource type="Texture2D" uid="uid://ibsyrtwtq0ei" path="res://assets/imagefiles/page1.jpg" id="3_6wevv"]
+[ext_resource type="Texture2D" uid="uid://brutxj24rvw46" path="res://assets/imagefiles/audioplaybuttonpressed.png" id="4_k6f3i"]
+[ext_resource type="Texture2D" uid="uid://cuk7tf45j66w" path="res://assets/imagefiles/page2.png" id="4_r6p65"]
+[ext_resource type="FontFile" uid="uid://c5vb0i0l4vcxj" path="res://assets/fonts/MuseoModerno-Medium.ttf" id="5_c16ls"]
 [ext_resource type="Script" uid="uid://cwt052el4oey4" path="res://code/line_edit_scripts/line_edit1.gd" id="5_gubc5"]
-[ext_resource type="Texture2D" uid="uid://beeiraejh3xy6" path="res://Imagefiles/page3.jpg" id="5_mngbo"]
-[ext_resource type="Texture2D" uid="uid://wgf1u0mwu17x" path="res://Imagefiles/audioplaybutton.png" id="5_si52b"]
-[ext_resource type="Texture2D" uid="uid://dxwp5cqv3q1uv" path="res://Imagefiles/audiopausebutton.png" id="5_xdqt8"]
-[ext_resource type="StyleBox" uid="uid://c3aprgnpedo2g" path="res://fonts/LineEditbackgroundcolour.tres" id="6_18nlu"]
-[ext_resource type="Texture2D" uid="uid://dsohun8d1epmx" path="res://Imagefiles/audiopausebuttonpressed.png" id="6_adb74"]
+[ext_resource type="Texture2D" uid="uid://beeiraejh3xy6" path="res://assets/imagefiles/page3.jpg" id="5_mngbo"]
+[ext_resource type="Texture2D" uid="uid://wgf1u0mwu17x" path="res://assets/imagefiles/audioplaybutton.png" id="5_si52b"]
+[ext_resource type="Texture2D" uid="uid://dxwp5cqv3q1uv" path="res://assets/imagefiles/audiopausebutton.png" id="5_xdqt8"]
+[ext_resource type="StyleBox" uid="uid://c3aprgnpedo2g" path="res://assets/fonts/LineEditbackgroundcolour.tres" id="6_18nlu"]
+[ext_resource type="Texture2D" uid="uid://dsohun8d1epmx" path="res://assets/imagefiles/audiopausebuttonpressed.png" id="6_adb74"]
 [ext_resource type="Script" uid="uid://cdyitwb357sub" path="res://code/line_edit_scripts/line_editname.gd" id="6_rt2n2"]
-[ext_resource type="Texture2D" uid="uid://dxj623lukgr34" path="res://Imagefiles/audioskipbutton.png" id="7_58gk3"]
-[ext_resource type="Texture2D" uid="uid://bn4vjajwfg856" path="res://Imagefiles/audioskipbuttonpressed.png" id="8_to7gp"]
-[ext_resource type="Texture2D" uid="uid://dhxnf4htg3ba5" path="res://Imagefiles/dot.png" id="9_c1pb6"]
+[ext_resource type="Texture2D" uid="uid://dxj623lukgr34" path="res://assets/imagefiles/audioskipbutton.png" id="7_58gk3"]
+[ext_resource type="Script" uid="uid://bmtvrcrig155x" path="res://scenes/audioplaybutton.gd" id="7_xdqt8"]
+[ext_resource type="Texture2D" uid="uid://bn4vjajwfg856" path="res://assets/imagefiles/audioskipbuttonpressed.png" id="8_to7gp"]
+[ext_resource type="Texture2D" uid="uid://dhxnf4htg3ba5" path="res://assets/imagefiles/dot.png" id="9_c1pb6"]
 [ext_resource type="Script" uid="uid://dgaqaokifjpfj" path="res://code/line_edit_scripts/text_edit1.gd" id="10_e1cbu"]
 [ext_resource type="Script" uid="uid://b1w3un47lwgyc" path="res://code/texture_button_leverage.gd" id="12_4w45t"]
 [ext_resource type="Script" uid="uid://3jpwgrofsnql" path="res://code/add_image.gd" id="12_mngbo"]
-[ext_resource type="Texture2D" uid="uid://bm37hyw5q703g" path="res://Imagefiles/inventorysquare.png" id="13_r6p65"]
+[ext_resource type="Texture2D" uid="uid://bm37hyw5q703g" path="res://assets/imagefiles/inventorysquare.png" id="13_r6p65"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_yn51d")
@@ -81,6 +82,7 @@ texture_normal = ExtResource("5_si52b")
 texture_pressed = ExtResource("4_k6f3i")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("7_xdqt8")
 
 [node name="audiopausebutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(100, 100)
@@ -98,6 +100,8 @@ texture_normal = ExtResource("7_58gk3")
 texture_pressed = ExtResource("8_to7gp")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/BoxContainer/VBoxContainer/VBoxContainer2"]
 
 [node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer"]
 layout_mode = 2
@@ -1704,6 +1708,7 @@ stretch_mode = 5
 
 [node name="FileDialog" type="FileDialog" parent="Control"]
 
+[connection signal="pressed" from="Control/BoxContainer/VBoxContainer/VBoxContainer2/audioplaybutton" to="Control/BoxContainer/VBoxContainer/VBoxContainer2/audioplaybutton" method="_on_pressed"]
 [connection signal="editing_toggled" from="Control/LineEditname" to="Control/LineEditname" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit" to="Control/LineEdit" method="_on_editing_toggled"]
 [connection signal="editing_toggled" from="Control/LineEdit2" to="Control/LineEdit2" method="_on_editing_toggled"]
