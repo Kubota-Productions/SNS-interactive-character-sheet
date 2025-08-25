@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_6wevv"]
 [ext_resource type="Texture2D" uid="uid://ibsyrtwtq0ei" path="res://assets/imagefiles/page1.jpg" id="3_6wevv"]
 [ext_resource type="Texture2D" uid="uid://brutxj24rvw46" path="res://assets/imagefiles/audioplaybuttonpressed.png" id="4_k6f3i"]
-[ext_resource type="Texture2D" uid="uid://cuk7tf45j66w" path="res://assets/imagefiles/page2.png" id="4_r6p65"]
+[ext_resource type="Texture2D" uid="uid://b7nwnqt7fk13m" path="res://assets/imagefiles/page2.jpg" id="4_xdqt8"]
 [ext_resource type="FontFile" uid="uid://c5vb0i0l4vcxj" path="res://assets/fonts/MuseoModerno-Medium.ttf" id="5_c16ls"]
 [ext_resource type="Script" uid="uid://cwt052el4oey4" path="res://code/line_edit_scripts/line_edit1.gd" id="5_gubc5"]
 [ext_resource type="Texture2D" uid="uid://beeiraejh3xy6" path="res://assets/imagefiles/page3.jpg" id="5_mngbo"]
@@ -64,7 +64,7 @@ stretch_mode = 5
 [node name="TextureRect2" type="TextureRect" parent="Control/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("4_r6p65")
+texture = ExtResource("4_xdqt8")
 expand_mode = 3
 stretch_mode = 5
 
