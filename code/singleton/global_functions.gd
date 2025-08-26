@@ -2,6 +2,7 @@ extends Node
 
 var data : Array[String]
 var player_name : String = ""
+var screen_name : String = ""
 var names_index = 0
 
 func _ready() -> void:
@@ -66,4 +67,19 @@ func new_player():
 					found_matching_name = true
 	player_name = str(new_player_prefix+str(names_index))
 	
+func new_storyteller():
+	data = []
+	var dir = DirAccess.open("user://")
+	var new_story_prefix :String = "new_story"
+	if dir:
+		var file_names = dir.get_files()
+		var found_matching_name = true
+		while found_matching_name == true:
+			found_matching_name = false
+			for file_name in file_names:
+				if file_name.replace("user://","").replace("0savedata.json","") == str(new_story_prefix+str(names_index)):
+					names_index +=1
+					print(names_index)
+					found_matching_name = true
+	screen_name = str(new_story_prefix+str(names_index))
 	

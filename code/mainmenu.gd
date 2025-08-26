@@ -2,10 +2,11 @@ extends Control
 
 @onready var scroll_container: ScrollContainer = $ScrollContainer
 @onready var v_box_container: VBoxContainer = $ScrollContainer/VBoxContainer
-@onready var warning_dialog: AcceptDialog = $VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet/AcceptDialog
+@onready var warning_dialog_character: AcceptDialog = $VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet/AcceptDialog
+@onready var warning_dialog_storyteller: AcceptDialog = $VBoxContainer/HBoxContainer/VBoxContainerstoryteller/LoadAScreen/AcceptDialog
 
 var selected_save_file: String = ""
-
+var selected_save_file_storyteller: String = ""
 # Keep a reference to the settings scene instance if added
 var settings_instance: Node = null
 
@@ -16,7 +17,7 @@ func _on_load_a_sheet_pressed() -> void:
 	if selected_save_file != "":
 		get_parent()._switch_to(preload("res://scenes/player_character_creator_scene.tscn"))
 	else:
-		warning_dialog.popup_centered()
+		warning_dialog_character.popup_centered()
 
 func _on_add_a_sheet_pressed() -> void:
 	await GlobalFunctions.new_player()
@@ -132,3 +133,15 @@ func _notification(what: int) -> void:
 		# Reload save files when the player returns to the game
 		print("Game regained focus, refreshing save files...")
 		list_save_files()
+
+
+func _on_load_a_screen_pressed() -> void:
+	if selected_save_file_storyteller != "":
+		get_parent()._switch_to(preload("res://scenes/Storyteller_scene.tscn"))
+	else:
+		warning_dialog_storyteller.popup_centered()
+
+
+func _on_add_a_screen_pressed() -> void:
+	await GlobalFunctions.new_player()
+	get_parent()._switch_to(preload("res://scenes/Storyteller_scene.tscn"))

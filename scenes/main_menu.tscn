@@ -70,6 +70,10 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Load a Screen"
 
+[node name="AcceptDialog" type="AcceptDialog" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/LoadAScreen"]
+auto_translate_mode = 1
+dialog_text = "Please select a screen first, or create one."
+
 [node name="AddAScreen" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller"]
 layout_mode = 2
 text = "Add a Screen"
@@ -196,6 +200,8 @@ texture = ExtResource("2_ekxnf")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/DeleteASheet" to="." method="_on_delete_a_sheet_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/LoadAScreen" to="." method="_on_load_a_screen_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/AddAScreen" to="." method="_on_add_a_screen_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Join the Discord!" to="." method="_on_join_the_discord_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Socials" to="." method="_on_socials_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Itch_io" to="." method="_on_itch_io_pressed"]
