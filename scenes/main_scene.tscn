@@ -1701,9 +1701,9 @@ script = ExtResource("12_mngbo")
 [node name="TextureRect" type="TextureRect" parent="Control/Appearancebutton"]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 39.0
+offset_top = 24.0
 offset_right = 308.0
-offset_bottom = 262.0
+offset_bottom = 269.0
 expand_mode = 2
 stretch_mode = 5
 
