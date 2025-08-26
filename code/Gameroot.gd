@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var menu_scene: PackedScene = preload("res://scenes/main_menu.tscn")
-@onready var main_scene: PackedScene = preload("res://scenes/main_scene.tscn")
+@onready var main_scene: PackedScene = preload("res://scenes/player_character_creator_scene.tscn")
 
 var current_scene: Node = null
 

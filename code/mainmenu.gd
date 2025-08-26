@@ -13,13 +13,13 @@ func _enter_tree() -> void:
 
 func _on_load_a_sheet_pressed() -> void:
 	if selected_save_file != "":
-		get_parent()._switch_to(preload("res://scenes/main_scene.tscn"))
+		get_parent()._switch_to(preload("res://scenes/player_character_creator_scene.tscn"))
 	else:
 		warning_dialog.popup_centered()
 
 func _on_add_a_sheet_pressed() -> void:
 	await GlobalFunctions.new_player()
-	get_parent()._switch_to(preload("res://scenes/main_scene.tscn"))
+	get_parent()._switch_to(preload("res://scenes/player_character_creator_scene.tscn"))
 
 func _on_delete_a_sheet_pressed() -> void:
 	if selected_save_file != "":
