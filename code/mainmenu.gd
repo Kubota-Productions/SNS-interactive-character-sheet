@@ -78,8 +78,6 @@ func show_save_files(save_files: Array) -> void:
 			GlobalFunctions.set_player_name(selected_save_file.replace("user://","").replace("0savedata.json","")))
 		print("Selected file:", selected_save_file)
 	
-
-
 func delete_save_file(file_name: String) -> void:
 	var dir = DirAccess.open("user://")
 	if dir:

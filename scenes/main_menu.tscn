@@ -28,67 +28,94 @@ offset_right = 268.0
 offset_bottom = 74.5
 grow_vertical = 2
 
-[node name="LoadASheet" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainerplayer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerplayer"]
+layout_mode = 2
+text = "Player"
+horizontal_alignment = 1
+
+[node name="LoadASheet" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerplayer"]
 layout_mode = 2
 text = "Load a sheet
 "
 
-[node name="AcceptDialog" type="AcceptDialog" parent="VBoxContainer/LoadASheet"]
+[node name="AcceptDialog" type="AcceptDialog" parent="VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet"]
+auto_translate_mode = 1
 dialog_text = "Please select a sheet first, or create one."
 
-[node name="AddASheet" type="Button" parent="VBoxContainer"]
+[node name="AddASheet" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerplayer"]
 layout_mode = 2
 text = "Add a sheet
 "
 
-[node name="Open folder" type="Button" parent="VBoxContainer"]
+[node name="Open folder" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerplayer"]
 layout_mode = 2
 text = "Open folder
 "
 
-[node name="DeleteASheet" type="Button" parent="VBoxContainer"]
+[node name="DeleteASheet" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerplayer"]
 layout_mode = 2
 text = "Delete a sheet
 "
 
-[node name="empty_Label3" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainerstoryteller" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller"]
+layout_mode = 2
+text = "Storyteller"
+horizontal_alignment = 1
+
+[node name="LoadAScreen" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller"]
+layout_mode = 2
+text = "Load a Screen"
+
+[node name="DeleteAScreen" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller"]
+layout_mode = 2
+text = "Load a Screen"
+
+[node name="VBoxContainerresources" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerresources"]
+layout_mode = 2
+text = "resources"
+horizontal_alignment = 1
+
+[node name="Socials" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerresources"]
+layout_mode = 2
+text = "Socials
+"
+
+[node name="Website" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerresources"]
+layout_mode = 2
+text = "Website
+"
+
+[node name="Itch_io" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerresources"]
+layout_mode = 2
+text = "Itch.io
+"
+
+[node name="Drivethrurpg" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerresources"]
+layout_mode = 2
+text = "Drivethrurpg
+"
+
+[node name="Join the Discord!" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerresources"]
+layout_mode = 2
+text = "Join the Discord!
+"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Options
 "
-
-[node name="empty_Label2" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Socials" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Socials
-"
-
-[node name="Website" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Website
-"
-
-[node name="Itch_io" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Itch.io
-"
-
-[node name="Drivethrurpg" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Drivethrurpg
-"
-
-[node name="Join the Discord!" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Join the Discord!
-"
-
-[node name="empty_Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -112,6 +139,15 @@ text = "Concepted by Kubota productions
 Code by Matt
 Bugfixing by IngoPlane"
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 487.0
+offset_top = 265.0
+offset_right = 531.0
+offset_bottom = 288.0
+text = "Saves"
+horizontal_alignment = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -119,9 +155,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -628.0
+offset_left = -473.0
 offset_top = -250.0
-offset_right = -291.0
+offset_right = -149.0
 offset_bottom = 279.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -134,14 +170,14 @@ position = Vector2(1532, 539.756)
 scale = Vector2(0.299194, 0.299194)
 texture = ExtResource("2_ekxnf")
 
-[connection signal="pressed" from="VBoxContainer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
-[connection signal="pressed" from="VBoxContainer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
-[connection signal="pressed" from="VBoxContainer/Open folder" to="." method="_on_open_folder_pressed"]
-[connection signal="pressed" from="VBoxContainer/DeleteASheet" to="." method="_on_delete_a_sheet_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/Open folder" to="." method="_on_open_folder_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/DeleteASheet" to="." method="_on_delete_a_sheet_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerresources/Socials" to="." method="_on_socials_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerresources/Website" to="." method="_on_website_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerresources/Itch_io" to="." method="_on_itch_io_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerresources/Drivethrurpg" to="." method="_on_drivethrurpg_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerresources/Join the Discord!" to="." method="_on_join_the_discord_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Socials" to="." method="_on_socials_pressed"]
-[connection signal="pressed" from="VBoxContainer/Website" to="." method="_on_website_pressed"]
-[connection signal="pressed" from="VBoxContainer/Itch_io" to="." method="_on_itch_io_pressed"]
-[connection signal="pressed" from="VBoxContainer/Drivethrurpg" to="." method="_on_drivethrurpg_pressed"]
-[connection signal="pressed" from="VBoxContainer/Join the Discord!" to="." method="_on_join_the_discord_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
