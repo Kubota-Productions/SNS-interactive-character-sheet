@@ -40,15 +40,16 @@ func _ready() -> void:
 			_add_symbol_column(symbolslist3)
 			_add_symbol_column(symbolslist4)
 
-		# Symbol label overlay
+		# Add the label and stretch it to button size
 		add_child(symbol_label)
 		symbol_label.text = ""
 		symbol_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		symbol_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		symbol_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		symbol_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		symbol_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		symbol_label.add_theme_font_size_override("font_size", 32)
+
+		# Make label always match button size
+		symbol_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	# Initialize toggle state
 	if GlobalFunctions.data != null and GlobalFunctions.data.size() > index:
