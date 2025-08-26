@@ -2,7 +2,8 @@ extends Control
 
 @onready var scroll_container: ScrollContainer = $ScrollContainer
 @onready var v_box_container: VBoxContainer = $ScrollContainer/VBoxContainer
-@onready var warning_dialog: AcceptDialog = $VBoxContainer/LoadASheet/AcceptDialog
+@onready var warning_dialog: AcceptDialog = $VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet/AcceptDialog
+
 var selected_save_file: String = ""
 
 # Keep a reference to the settings scene instance if added
@@ -28,7 +29,7 @@ func _on_delete_a_sheet_pressed() -> void:
 	else:
 		print("No file selected to delete.")
 
-func _on_options_pressed() -> void:
+func _on_settings_pressed() -> void:
 	var game_root = get_tree().root # adjust if nested deeper
 	if settings_instance == null:
 			var settings_scene = preload("res://scenes/settings.tscn")
