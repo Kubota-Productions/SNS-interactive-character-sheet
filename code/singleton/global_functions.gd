@@ -12,6 +12,7 @@ func _ready() -> void:
 		all_data = file.get_var()
 		data = all_data
 
+
 func _update_data() -> void:
 	var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.READ)
 	if file:
@@ -24,7 +25,7 @@ func _update_data() -> void:
 		print("FILE INVALID");
 
 func store_data_all():
-			data.resize(100)
+			data.resize(300)
 			print("STORE ALL DATA -> " + str(data));
 			var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.WRITE)
 			if file:
@@ -33,14 +34,13 @@ func store_data_all():
 				print("just_finished_editing")
 
 func store_data(index : int, string : String):
-			data.resize(200)
-			data[index] = string
-			print("STORE DATA -> " + str(data));
-			var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.WRITE)
-			if file:
-				file.store_var(data)
-				file.close()
-				print("just_finished_editing")
+	data.resize(max(300, index + 1))  # ensure array is big enough
+	data[index] = string
+	var file = FileAccess.open("user://"+player_name+"0savedata.json", FileAccess.WRITE)
+	if file:
+		file.store_var(data)
+		file.close()
+		print("just_finished_editing")
 
 func set_player_name(name : String, update_data : bool = false):
 	player_name = name

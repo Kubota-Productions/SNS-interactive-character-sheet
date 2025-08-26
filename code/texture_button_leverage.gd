@@ -8,6 +8,7 @@ var player_name = GlobalFunctions.return_player_name()
 static var canvas_layer: CanvasLayer
 static var popup: PopupPanel
 static var hbox: HBoxContainer
+static var current_button: TextureButton  # track which button triggered the popup
 
 @onready var symbol_label: Label = Label.new()
 
@@ -54,6 +55,12 @@ func _ready() -> void:
 		if GlobalFunctions.data[index] == "true":
 			button_pressed = true
 
+	# Initialize symbol from saved data (offset +111)
+	if GlobalFunctions.data != null and GlobalFunctions.data.size() > index + 111:
+		var saved_symbol = GlobalFunctions.data[index + 111]
+		if saved_symbol != "" and saved_symbol != "true" and saved_symbol != "false":
+			symbol_label.text = saved_symbol
+
 
 func _add_symbol_column(symbols: Array) -> void:
 	var vbox := VBoxContainer.new()
@@ -76,11 +83,14 @@ func _on_toggled(toggled_on: bool) -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if index >= 75 and index <= 110 and popup:
+			current_button = self  # track which button was clicked
 			popup.position = get_global_mouse_position()
 			popup.popup()
 
 
 func _on_symbol_selected(symbol: String) -> void:
-	symbol_label.text = symbol
-	if popup:
-		popup.hide()
+	if current_button:
+		current_button.symbol_label.text = symbol
+		# store symbol starting from index 111 to avoid overwriting toggles
+		GlobalFunctions.store_data(current_button.index + 111, symbol)
+	popup.hide()
