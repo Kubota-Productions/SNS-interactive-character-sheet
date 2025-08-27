@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://by70ogup2484l"]
+
+[ext_resource type="ArrayMesh" uid="uid://b00cp06rs1nod" path="res://assets/dice/d10.res" id="1_i3hw6"]
+[ext_resource type="Script" uid="uid://ca1xh7uxfj4s5" path="res://code/dicenormalcalucscripts/d_10_rigid.gd" id="1_prsjt"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_prsjt"]
+points = PackedVector3Array(0.684761, -0.068502, 0.222428, -0.000134051, 0.651601, -0.000140905, 0.423082, 0.0683749, 0.582428, -0.000134051, -0.6516, -0.000140905, 0.684761, 0.0683749, -0.222568, -0.684761, -0.068502, 0.222428, -0.423216, 0.0683749, 0.582428, -0.000134051, -0.068502, 0.72, 0.423082, -0.068502, -0.582568, -0.000134051, 0.0683749, -0.72, -0.423216, -0.068502, -0.582568, -0.684761, 0.0683749, -0.222568)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+gravity_scale = 5.0
+script = ExtResource("1_prsjt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_i3hw6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_prsjt")
+
+[node name="Label3D" type="Label3D" parent="."]
+visible = false
+billboard = 1
+no_depth_test = true
+text = "1"
+font_size = 182
+outline_size = 22

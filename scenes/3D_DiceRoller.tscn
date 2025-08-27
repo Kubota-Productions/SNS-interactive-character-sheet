@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmyf7lq7gwdva"]
+
+[ext_resource type="Script" uid="uid://b4uivwpaqgeb6" path="res://code/dice_roller.gd" id="1_x06xs"]
+[ext_resource type="PackedScene" uid="uid://dey1qfrvi3oxw" path="res://assets/dice/dicerigidbodyscene/d2rigid.tscn" id="2_hwxkx"]
+[ext_resource type="PackedScene" uid="uid://chgn4ubsdjkgs" path="res://assets/dice/dicerigidbodyscene/d4rigid.tscn" id="3_oxkh2"]
+[ext_resource type="PackedScene" uid="uid://dvwlvk3n3bsfa" path="res://assets/dice/dicerigidbodyscene/d6rigid.tscn" id="4_42xte"]
+[ext_resource type="PackedScene" uid="uid://cve77px54y4e3" path="res://assets/dice/dicerigidbodyscene/d8rigid.tscn" id="5_y00ry"]
+[ext_resource type="PackedScene" uid="uid://by70ogup2484l" path="res://assets/dice/dicerigidbodyscene/d10rigid.tscn" id="6_6xrbl"]
+[ext_resource type="PackedScene" uid="uid://cw30rvc3yhfkx" path="res://assets/dice/dicerigidbodyscene/d12rigid.tscn" id="7_qcfb6"]
+[ext_resource type="PackedScene" uid="uid://dybmutnmuuiwl" path="res://assets/dice/dicerigidbodyscene/d20rigid.tscn" id="8_g74v5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxkh2"]
+size = Vector3(20, 1, 20)
+
+[node name="DiceRoller" type="Node3D"]
+script = ExtResource("1_x06xs")
+d2_scene = ExtResource("2_hwxkx")
+d4_scene = ExtResource("3_oxkh2")
+d6_scene = ExtResource("4_42xte")
+d8_scene = ExtResource("5_y00ry")
+d10_scene = ExtResource("6_6xrbl")
+d12_scene = ExtResource("7_qcfb6")
+d20_scene = ExtResource("8_g74v5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_oxkh2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 10, 9.5, 0)
+shape = SubResource("BoxShape3D_oxkh2")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -10, 9.5, 0)
+shape = SubResource("BoxShape3D_oxkh2")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 9.5, -10)
+shape = SubResource("BoxShape3D_oxkh2")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 9.5, 10)
+shape = SubResource("BoxShape3D_oxkh2")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20.5446, 0)
+
+[node name="SpawnPoint" type="Node3D" parent="SubViewportContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+
+[node name="DiceContainer" type="Node3D" parent="SubViewportContainer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -134.0
+offset_bottom = 134.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "roll a dice"
+
+[node name="D2Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "D2"
+
+[node name="D4Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "D4
+"
+
+[node name="D6Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "D6
+"
+
+[node name="D8Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "D8"
+
+[node name="D10Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "D10"
+
+[node name="D12Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "D12"
+
+[node name="D20Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "D20"
+
+[connection signal="pressed" from="VBoxContainer/D2Button" to="." method="_on_d_2_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/D4Button" to="." method="_on_d_4_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/D6Button" to="." method="_on_d_6_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/D8Button" to="." method="_on_d_8_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/D10Button" to="." method="_on_d_10_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/D12Button" to="." method="_on_d_12_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/D20Button" to="." method="_on_d_20_button_pressed"]

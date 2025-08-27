@@ -163,14 +163,15 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1913.0
-offset_top = -76.0
+offset_top = -98.0
 offset_right = -1599.0
-offset_bottom = 38.0
+offset_bottom = 16.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Concepted by Kubota productions
 Code by Matt
-Bugfixing by IngoPlane"
+Bugfixing by IngoPlane
+Consulting by ScaleShift"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

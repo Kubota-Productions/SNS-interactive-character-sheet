@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://j88f3wg1gpeu"]
+[gd_scene load_steps=5 format=3 uid="uid://j88f3wg1gpeu"]
 
 [ext_resource type="Script" uid="uid://oxpdcsaki3wv" path="res://code/storyteller_scene.gd" id="1_fvrw6"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_4mdlk"]
 [ext_resource type="Texture2D" uid="uid://bgxvt8qvywhjx" path="res://assets/imagefiles/STscreen@201x.png" id="3_dts2q"]
-[ext_resource type="Script" uid="uid://b4uivwpaqgeb6" path="res://scenes/dice_roller.gd" id="4_q1fsm"]
-[ext_resource type="Texture2D" uid="uid://c3h7rhs13e13f" path="res://assets/imagefiles/dice/d2/d2-1.png" id="5_fbui4"]
+[ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="4_q1fsm"]
 
 [node name="StorytellerSceneMain" type="Node2D"]
 script = ExtResource("1_fvrw6")
@@ -45,72 +44,5 @@ texture = ExtResource("3_dts2q")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="DiceRoller" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 8
-script = ExtResource("4_q1fsm")
-
-[node name="DiceResult" type="TextureRect" parent="DiceRoller"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -540.0
-offset_right = 1920.0
-offset_bottom = 540.0
-grow_vertical = 2
-texture = ExtResource("5_fbui4")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DiceRoller"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -4.0
-offset_bottom = 4.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="DiceRoller/VBoxContainer"]
-layout_mode = 2
-text = "roll a dice"
-
-[node name="D2Button" type="Button" parent="DiceRoller/VBoxContainer"]
-layout_mode = 2
-text = "D2"
-
-[node name="D4Button" type="Button" parent="DiceRoller/VBoxContainer"]
-layout_mode = 2
-text = "D4
-"
-
-[node name="D6Button" type="Button" parent="DiceRoller/VBoxContainer"]
-layout_mode = 2
-text = "D6
-"
-
-[node name="D8Button" type="Button" parent="DiceRoller/VBoxContainer"]
-layout_mode = 2
-text = "D8"
-
-[node name="D10Button" type="Button" parent="DiceRoller/VBoxContainer"]
-layout_mode = 2
-text = "D10"
-
-[node name="D12Button" type="Button" parent="DiceRoller/VBoxContainer"]
-layout_mode = 2
-text = "D12"
-
-[node name="D20Button" type="Button" parent="DiceRoller/VBoxContainer"]
-layout_mode = 2
-text = "D20"
+[node name="Node3D" parent="." node_paths=PackedStringArray("camera_2d") instance=ExtResource("4_q1fsm")]
+camera_2d = NodePath("../Camera2D")

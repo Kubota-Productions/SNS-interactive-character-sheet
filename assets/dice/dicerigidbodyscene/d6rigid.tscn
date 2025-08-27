@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvwlvk3n3bsfa"]
+
+[ext_resource type="ArrayMesh" uid="uid://dnyxkqh3p0a8v" path="res://assets/dice/d6.res" id="1_1c22v"]
+[ext_resource type="Script" uid="uid://cbfg2kvdt414f" path="res://code/dicenormalcalucscripts/d_6_rigid.gd" id="1_itoes"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_itoes"]
+points = PackedVector3Array(0.513032, 0.512932, 0.512932, -0.513032, 0.512932, 0.512932, 0.513032, -0.513032, 0.512932, 0.513032, 0.512932, -0.513032, -0.513032, 0.512932, -0.513032, -0.513032, -0.513032, 0.512932, 0.513032, -0.513032, -0.513032, -0.513032, -0.513032, -0.513032)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+gravity_scale = 5.0
+script = ExtResource("1_itoes")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1c22v")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_itoes")
+
+[node name="Label3D" type="Label3D" parent="."]
+visible = false
+billboard = 1
+no_depth_test = true
+text = "1"
+font_size = 182
+outline_size = 22
