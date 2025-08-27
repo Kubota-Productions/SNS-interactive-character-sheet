@@ -61,6 +61,12 @@ text = "Delete a sheet
 [node name="VBoxContainerstoryteller" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
+[node name="still in development" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller"]
+layout_mode = 2
+text = "in development
+↓"
+horizontal_alignment = 1
+
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller"]
 layout_mode = 2
 text = "Storyteller"
