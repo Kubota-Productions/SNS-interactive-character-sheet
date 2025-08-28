@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cndg20mup1at6"]
 
-[ext_resource type="Theme" uid="uid://cdppuyid21ckd" path="res://assets/imagefiles/UI/Maintheme.tres" id="1_7biet"]
+[ext_resource type="Theme" uid="uid://c3a1j7188kbm2" path="res://assets/imagefiles/UI/main_menu.tres" id="1_7biet"]
 [ext_resource type="Script" uid="uid://ulv65tikfxor" path="res://code/settings.gd" id="1_36axr"]
 
 [node name="Settings" type="Control"]

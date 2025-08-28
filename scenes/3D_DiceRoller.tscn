@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://by70ogup2484l" path="res://assets/dice/dicerigidbodyscene/d10rigid.tscn" id="6_6xrbl"]
 [ext_resource type="PackedScene" uid="uid://cw30rvc3yhfkx" path="res://assets/dice/dicerigidbodyscene/d12rigid.tscn" id="7_qcfb6"]
 [ext_resource type="PackedScene" uid="uid://dybmutnmuuiwl" path="res://assets/dice/dicerigidbodyscene/d20rigid.tscn" id="8_g74v5"]
-[ext_resource type="Theme" uid="uid://cdppuyid21ckd" path="res://assets/imagefiles/UI/Maintheme.tres" id="9_42xte"]
+[ext_resource type="Theme" uid="uid://c3a1j7188kbm2" path="res://assets/imagefiles/UI/main_menu.tres" id="9_42xte"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxkh2"]
 size = Vector3(82.4297, 1, 56.8643)
