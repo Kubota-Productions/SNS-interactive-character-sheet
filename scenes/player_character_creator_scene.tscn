@@ -33,8 +33,6 @@ left_limit = -100.0
 right_limit = 2000.0
 down_limit = 1000.0
 
-[node name="Node3D" parent="." instance=ExtResource("22_hwnst")]
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -1711,6 +1709,8 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="FileDialog" type="FileDialog" parent="Control"]
+
+[node name="DiceRoller" parent="." instance=ExtResource("22_hwnst")]
 
 [connection signal="pressed" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audioplaybutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audioplaybutton_pressed"]
 [connection signal="toggled" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audiopausebutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audiopausebutton_toggled"]

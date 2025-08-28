@@ -44,5 +44,5 @@ texture = ExtResource("3_dts2q")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Node3D" parent="." node_paths=PackedStringArray("camera_2d") instance=ExtResource("4_q1fsm")]
-camera_2d = NodePath("../Camera2D")
+[node name="Node3D" parent="Control" instance=ExtResource("4_q1fsm")]
+layout_mode = 1

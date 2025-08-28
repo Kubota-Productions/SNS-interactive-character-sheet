@@ -11,6 +11,7 @@ extends Node3D
 @onready var spawn_point: Node3D = $SubViewportContainer/SpawnPoint
 @onready var dice_container: Node3D = $SubViewportContainer/DiceContainer
 
+
 @export var camera_2d: Camera2D = null
 
 func _ready() -> void:
@@ -25,7 +26,7 @@ func roll_dice(die_packed_scene: PackedScene) -> void:
 
 	# Apply random impulse and torque
 	
-	var direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1)).normalized()
+	var direction = Vector3(randf_range(-1,1), 0, randf_range(-1,-1)).normalized()
 	var magnitude = randf_range(5,15) 
 	#var push = Vector3(randf_range(-10,10), randf_range(-0.1,0.1), randf_range(-10,10))
 	die_instance.linear_velocity = direction * magnitude

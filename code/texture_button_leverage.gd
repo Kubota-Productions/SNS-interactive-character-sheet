@@ -25,7 +25,7 @@ func _ready() -> void:
 		# Setup shared popup once
 		if not canvas_layer:
 			canvas_layer = CanvasLayer.new()
-			get_tree().current_scene.add_child(canvas_layer)
+			get_tree().current_scene.add_child.call_deferred(canvas_layer)
 
 			popup = PopupPanel.new()
 			canvas_layer.add_child(popup)
