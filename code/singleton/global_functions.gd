@@ -33,6 +33,7 @@ func _ready() -> void:
 		st_all_data = st_file.get_var()
 		st_data = st_all_data
 
+
 func _update_data() -> void:
 	var file = FileAccess.open(str("user://"+player_name+"0savedata.json"),FileAccess.READ)
 	if file:
@@ -123,7 +124,7 @@ func st_store_data(index : int, string : String):
 func set_st_name(name_ : String, update_data : bool = false):
 	st_name = name_
 	if update_data == true:
-		_update_data()
+		st_update_data()
 
 func return_st_name():
 	return st_name

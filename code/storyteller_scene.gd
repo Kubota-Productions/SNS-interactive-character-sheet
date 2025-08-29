@@ -2,6 +2,10 @@ extends Node2D
 
 var settings_instance: Node = null
 
+func _enter_tree() -> void:
+	print("LOADING SAVE DATA to -> GlobalFunctions.data");
+	GlobalFunctions.st_update_data(); #Load data to global array to be used by the components
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		GlobalFunctions.st_update_data()
