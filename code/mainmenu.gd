@@ -1,15 +1,15 @@
 extends Control
 #region character sheet variables
-@onready var scroll_container: ScrollContainer = $ScrollContainer
-@onready var v_box_container: VBoxContainer = $ScrollContainer/VBoxContainer
+@onready var scroll_container: ScrollContainer = $ScrollContainerplayer
+@onready var v_box_container: VBoxContainer = $ScrollContainerplayer/HBoxContainer
 @onready var warning_dialog_character: AcceptDialog = $VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet/AcceptDialog
 var selected_save_file: String = ""
 var selected_save_file_storyteller: String = ""
 #endregion
 
 #region st sheet variables
-@onready var st_scroll_container: ScrollContainer = $ScrollContainer2
-@onready var st_v_box_container: VBoxContainer = $ScrollContainer2/HBoxContainer
+@onready var st_scroll_container: ScrollContainer = $ScrollContainerstoryteller
+@onready var st_v_box_container: VBoxContainer = $ScrollContainerstoryteller/HBoxContainer
 @onready var warning_dialog_storyteller: AcceptDialog = $VBoxContainer/HBoxContainer/VBoxContainerstoryteller/LoadAScreen/AcceptDialog
 var st_selected_save_file: String = ""
 var st_selected_save_file_storyteller: String = ""
