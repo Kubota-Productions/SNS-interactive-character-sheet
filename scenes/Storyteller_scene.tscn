@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://oxpdcsaki3wv" path="res://code/storyteller_scene.gd" id="1_fvrw6"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_4mdlk"]
-[ext_resource type="Texture2D" uid="uid://bgxvt8qvywhjx" path="res://assets/imagefiles/STscreen@201x.png" id="3_dts2q"]
+[ext_resource type="Texture2D" uid="uid://b30tq4hlbweta" path="res://assets/imagefiles/STscreen@201x.jpg" id="3_q1fsm"]
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="4_q1fsm"]
 
 [node name="StorytellerSceneMain" type="Node2D"]
@@ -40,7 +40,7 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="Control/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("3_dts2q")
+texture = ExtResource("3_q1fsm")
 expand_mode = 3
 stretch_mode = 5
 
