@@ -91,7 +91,6 @@ func new_player():
 
 
 #region storyscreen
-\
 func st_update_data() -> void:
 	var file = FileAccess.open(str("user://"+st_name+"1savedata.json"),FileAccess.READ)
 	if file:
