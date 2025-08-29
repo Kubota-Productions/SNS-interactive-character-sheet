@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbgar0lsar2q6"]
+[gd_scene load_steps=11 format=3 uid="uid://sohh2dbu2ew1"]
 
 [ext_resource type="Theme" uid="uid://c3a1j7188kbm2" path="res://assets/imagefiles/UI/main_menu.tres" id="1_bqqt6"]
 [ext_resource type="Script" uid="uid://ow4x0pu8h8nn" path="res://code/mainmenu.gd" id="1_gmv32"]
@@ -42,7 +42,7 @@ shader_parameter/mouse_strength = 2.0
 shader_parameter/mouse_growth = 1.0
 shader_parameter/mouse_radius = 0.2
 
-[node name="MainMenu" type="Control"]
+[node name="mainmenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -1.0
