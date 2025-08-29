@@ -4,7 +4,7 @@ var settings_instance: Node = null
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		GlobalFunctions._update_data()
+		GlobalFunctions.st_update_data()
 		
 		var game_root = get_tree().root  # Adjust if you want it under a specific node
 		

@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://j88f3wg1gpeu"]
+[gd_scene load_steps=8 format=3 uid="uid://j88f3wg1gpeu"]
 
 [ext_resource type="Script" uid="uid://oxpdcsaki3wv" path="res://code/storyteller_scene.gd" id="1_fvrw6"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_4mdlk"]
-[ext_resource type="Texture2D" uid="uid://bgxvt8qvywhjx" path="res://assets/imagefiles/STscreen@201x.png" id="3_dts2q"]
+[ext_resource type="Script" uid="uid://c82qnv7f7o1d1" path="res://code/storyteller/text_edit.gd" id="4_353v8"]
 [ext_resource type="Script" uid="uid://b4uivwpaqgeb6" path="res://scenes/dice_roller.gd" id="4_q1fsm"]
 [ext_resource type="Texture2D" uid="uid://c3h7rhs13e13f" path="res://assets/imagefiles/dice/d2/d2-1.png" id="5_fbui4"]
+[ext_resource type="Script" uid="uid://bx4pc2vord1iq" path="res://code/storyteller/save_st_screen.gd" id="6_353v8"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fbui4"]
 
 [node name="StorytellerSceneMain" type="Node2D"]
 script = ExtResource("1_fvrw6")
@@ -41,7 +44,7 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="Control/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("3_dts2q")
+texture = SubResource("CompressedTexture2D_fbui4")
 expand_mode = 3
 stretch_mode = 5
 
@@ -114,3 +117,19 @@ text = "D12"
 [node name="D20Button" type="Button" parent="DiceRoller/VBoxContainer"]
 layout_mode = 2
 text = "D20"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_right = 238.0
+offset_bottom = 47.0
+script = ExtResource("6_353v8")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 78.0
+offset_top = 267.0
+offset_right = 826.0
+offset_bottom = 569.0
+script = ExtResource("4_353v8")
+index = 2
+
+[connection signal="editing_toggled" from="LineEdit" to="LineEdit" method="_on_editing_toggled"]
+[connection signal="text_changed" from="TextEdit" to="TextEdit" method="_on_text_changed"]

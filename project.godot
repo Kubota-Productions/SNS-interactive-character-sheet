@@ -14,8 +14,8 @@ config/name="SNSinteractivecharactersheet"
 run/main_scene="uid://dbgar0lsar2q6"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0.839216, 0.121569, 0.14902, 1)
-boot_splash/image="uid://d2alfbutwehdx"
 boot_splash/fullsize=false
+boot_splash/image="uid://d2alfbutwehdx"
 config/icon="uid://d2alfbutwehdx"
 
 [autoload]

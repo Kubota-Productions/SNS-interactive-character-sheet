@@ -203,11 +203,22 @@ position = Vector2(1532, 539.756)
 scale = Vector2(0.299194, 0.299194)
 texture = ExtResource("2_ekxnf")
 
+[node name="ScrollContainer2" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 765.0
+offset_top = 279.0
+offset_right = 1102.0
+offset_bottom = 833.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainer2"]
+layout_mode = 2
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/DeleteASheet" to="." method="_on_delete_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/LoadAScreen" to="." method="_on_load_a_screen_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/AddAScreen" to="." method="_on_add_a_screen_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/DeleteAScreen2" to="." method="_on_delete_a_screen_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Join the Discord!" to="." method="_on_join_the_discord_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Socials" to="." method="_on_socials_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Itch_io" to="." method="_on_itch_io_pressed"]
