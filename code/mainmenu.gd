@@ -45,7 +45,7 @@ func _on_delete_a_sheet_pressed() -> void:
 
 func list_save_files() -> void:
 	# Clear existing buttons
-	for child in $ScrollContainer/VBoxContainer.get_children():
+	for child in $ScrollContainerplayer/HBoxContainer.get_children():
 		child.queue_free()
 
 	var save_files: Array = []
@@ -69,7 +69,7 @@ func show_save_files(save_files: Array) -> void:
 	for save_file in save_files:
 		var button = Button.new()
 		button.text = save_file.replace("user://","").replace("0savedata.json","")
-		$ScrollContainer/VBoxContainer.add_child(button)
+		$ScrollContainerplayer/HBoxContainer.add_child(button)
 
 		# Connect to select this file when pressed
 		button.pressed.connect(func():
@@ -167,7 +167,7 @@ func _on_delete_a_stscreen_pressed() -> void:
 
 func st_list_save_files() -> void:
 	# Clear existing buttons
-	for child in $ScrollContainer2/HBoxContainer.get_children():
+	for child in $ScrollContainerstoryteller/HBoxContainer.get_children():
 		child.queue_free()
 
 	var save_files: Array = []
@@ -191,7 +191,7 @@ func st_show_save_files(save_files: Array) -> void:
 	for save_file in save_files:
 		var button = Button.new()
 		button.text = save_file.replace("user://","").replace("1savedata.json","")
-		$ScrollContainer2/HBoxContainer.add_child(button)
+		$ScrollContainerstoryteller/HBoxContainer.add_child(button)
 
 		# Connect to select this file when pressed
 		button.pressed.connect(func():

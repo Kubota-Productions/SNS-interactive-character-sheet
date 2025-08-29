@@ -89,6 +89,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerplayer"]
 layout_mode = 2
+theme = ExtResource("1_bqqt6")
 text = "Player"
 horizontal_alignment = 1
 
@@ -113,12 +114,6 @@ text = "Delete a sheet
 
 [node name="VBoxContainerstoryteller" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-
-[node name="still in development" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller"]
-layout_mode = 2
-text = "in development
-↓"
-horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller"]
 layout_mode = 2
@@ -226,16 +221,7 @@ Code by Matt
 Bugfixing by IngoPlane
 Consulting by ScaleShift"
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-offset_left = 487.0
-offset_top = 265.0
-offset_right = 531.0
-offset_bottom = 288.0
-text = "Saves"
-horizontal_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainerplayer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -243,32 +229,33 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -473.0
-offset_top = -250.0
-offset_right = -149.0
-offset_bottom = 279.0
+offset_top = -509.0
+offset_right = -323.0
+offset_bottom = 491.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainerplayer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="SnSa4Cover" type="Sprite2D" parent="."]
 position = Vector2(1532, 539.756)
 scale = Vector2(0.299194, 0.299194)
 texture = ExtResource("2_ekxnf")
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="."]
+[node name="ScrollContainerstoryteller" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 765.0
-offset_top = 279.0
-offset_right = 1102.0
-offset_bottom = 833.0
+offset_left = 647.0
+offset_top = 31.0
+offset_right = 797.0
+offset_bottom = 1031.0
 
-[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainer2"]
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainerstoryteller"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
