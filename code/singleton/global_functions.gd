@@ -43,8 +43,8 @@ func store_data(index : int, string : String):
 		file.close()
 		print("just_finished_editing")
 
-func set_player_name(name : String, update_data : bool = false):
-	player_name = name
+func set_player_name(nname : String, update_data : bool = false):
+	player_name = nname
 	if update_data == true:
 		_update_data()
 

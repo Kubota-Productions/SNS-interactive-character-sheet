@@ -12,7 +12,7 @@ var face_normals: Array = [
 ]
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not has_stopped_rolling and linear_velocity.length() < 0.2: 
 		get_up_face()
 		dice_number_label.global_position.y = global_position.y + 0.5
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 
 func get_up_face() -> int:
 	var best_dot = 1
-	var best_normal: Vector3
+	var _best_normal: Vector3
 	for local_normal in face_normals:
 		#print("localnormal:" + str(local_normal))
 		var world_normal = global_transform.basis * local_normal
@@ -34,6 +34,6 @@ func get_up_face() -> int:
 		if dot < best_dot:
 			best_dot = dot
 			
-			best_normal = world_normal
+			_best_normal = world_normal
 		
 	return best_dot

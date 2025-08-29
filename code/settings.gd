@@ -54,7 +54,7 @@ func _on_fullscreen_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED)
 		DisplayServer.window_set_size(previous_window_size)
 
-func _on_graphics_item_selected(index: int) -> void:
+func _on_graphics_item_selected(_index: int) -> void:
 	pass # Replace with function body.
 
 func _on_back_to_menu_button_pressed() -> void:
