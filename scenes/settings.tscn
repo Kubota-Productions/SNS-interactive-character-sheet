@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy8inl036ic3v"]
+[gd_scene load_steps=3 format=3 uid="uid://cy8inl036ic3v"]
 
 [ext_resource type="Script" uid="uid://ulv65tikfxor" path="res://code/settings.gd" id="1_5p8wc"]
+[ext_resource type="Theme" uid="uid://c3a1j7188kbm2" path="res://assets/imagefiles/UI/main_menu.tres" id="1_r6d6q"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -11,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme = ExtResource("1_r6d6q")
 script = ExtResource("1_5p8wc")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -20,12 +22,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -96.0
+offset_top = -225.0
+offset_right = 96.0
+offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+
+[node name="background" type="Button" parent="MarginContainer2"]
+layout_mode = 2
+mouse_force_pass_scroll_events = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -55,9 +63,11 @@ text = "Exit"
 [node name="Exit_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "     "
+text = "Exit"
 
 [node name="Volume_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Volume"
 
@@ -65,20 +75,29 @@ text = "Volume"
 layout_mode = 2
 
 [node name="Mute_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Mute toggle"
 
 [node name="Mute" type="CheckBox" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="Fullscreen_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Fullscreen toggle"
 
 [node name="Fullscreen" type="CheckBox" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Resolution_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Resolution"
 
@@ -109,6 +128,8 @@ popup/item_10/text = "640x480"
 popup/item_10/id = 10
 
 [node name="Graphics_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Graphics"
 
@@ -122,9 +143,20 @@ popup/item_1/id = 1
 popup/item_2/text = "Low"
 popup/item_2/id = 2
 
+[node name="Empty_Label" type="Label" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+
+[node name="Back_to_menu_button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to menu"
+
+[connection signal="pressed" from="MarginContainer2/background" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/Graphics" to="." method="_on_graphics_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]

@@ -1,0 +1,159 @@
+[gd_scene load_steps=11 format=3 uid="uid://cmyf7lq7gwdva"]
+
+[ext_resource type="Script" uid="uid://b4uivwpaqgeb6" path="res://code/dice_roller.gd" id="1_x06xs"]
+[ext_resource type="PackedScene" uid="uid://dey1qfrvi3oxw" path="res://assets/dice/dicerigidbodyscene/d2rigid.tscn" id="2_hwxkx"]
+[ext_resource type="PackedScene" uid="uid://chgn4ubsdjkgs" path="res://assets/dice/dicerigidbodyscene/d4rigid.tscn" id="3_oxkh2"]
+[ext_resource type="PackedScene" uid="uid://dvwlvk3n3bsfa" path="res://assets/dice/dicerigidbodyscene/d6rigid.tscn" id="4_42xte"]
+[ext_resource type="PackedScene" uid="uid://cve77px54y4e3" path="res://assets/dice/dicerigidbodyscene/d8rigid.tscn" id="5_y00ry"]
+[ext_resource type="PackedScene" uid="uid://by70ogup2484l" path="res://assets/dice/dicerigidbodyscene/d10rigid.tscn" id="6_6xrbl"]
+[ext_resource type="PackedScene" uid="uid://cw30rvc3yhfkx" path="res://assets/dice/dicerigidbodyscene/d12rigid.tscn" id="7_qcfb6"]
+[ext_resource type="PackedScene" uid="uid://dybmutnmuuiwl" path="res://assets/dice/dicerigidbodyscene/d20rigid.tscn" id="8_g74v5"]
+[ext_resource type="Theme" uid="uid://c3a1j7188kbm2" path="res://assets/imagefiles/UI/main_menu.tres" id="9_42xte"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxkh2"]
+size = Vector3(82.4297, 1, 56.8643)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DiceRoller" type="Node3D" parent="."]
+script = ExtResource("1_x06xs")
+d2_scene = ExtResource("2_hwxkx")
+d4_scene = ExtResource("3_oxkh2")
+d6_scene = ExtResource("4_42xte")
+d8_scene = ExtResource("5_y00ry")
+d10_scene = ExtResource("6_6xrbl")
+d12_scene = ExtResource("7_qcfb6")
+d20_scene = ExtResource("8_g74v5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DiceRoller"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DiceRoller/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceRoller/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_oxkh2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DiceRoller/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.5, -10.4325)
+shape = SubResource("BoxShape3D_oxkh2")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="DiceRoller"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="DiceRoller/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="DiceRoller/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 14.63, 0)
+
+[node name="SpawnPoint" type="Node3D" parent="DiceRoller/SubViewportContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.64458, 9.43824)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceRoller/SubViewportContainer/SpawnPoint"]
+
+[node name="DiceContainer" type="Node3D" parent="DiceRoller/SubViewportContainer"]
+transform = Transform3D(1.43165, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Window" type="Window" parent="DiceRoller"]
+mode = 3
+position = Vector2i(1805, 405)
+size = Vector2i(100, 270)
+unresizable = true
+theme = ExtResource("9_42xte")
+
+[node name="MarginContainer" type="MarginContainer" parent="DiceRoller/Window"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -150.5
+offset_right = 59.0
+offset_bottom = 150.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_42xte")
+
+[node name="Background" type="Button" parent="DiceRoller/Window/MarginContainer"]
+layout_mode = 2
+text = "
+ Roll A Dice  
+
+
+
+
+
+
+
+
+
+
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DiceRoller/Window"]
+offset_top = -1.0
+offset_right = 100.0
+offset_bottom = 267.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_42xte")
+
+[node name="Label" type="Label" parent="DiceRoller/Window/VBoxContainer"]
+layout_mode = 2
+
+[node name="D2Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+layout_mode = 2
+text = "D2"
+
+[node name="D4Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+layout_mode = 2
+text = "D4
+"
+
+[node name="D6Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+layout_mode = 2
+text = "D6
+"
+
+[node name="D8Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+layout_mode = 2
+text = "D8"
+
+[node name="D10Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+layout_mode = 2
+text = "D10"
+
+[node name="D12Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+layout_mode = 2
+text = "D12"
+
+[node name="D20Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+layout_mode = 2
+text = "D20"
+
+[connection signal="pressed" from="DiceRoller/Window/VBoxContainer/D2Button" to="DiceRoller" method="_on_d_2_button_pressed"]
+[connection signal="pressed" from="DiceRoller/Window/VBoxContainer/D4Button" to="DiceRoller" method="_on_d_4_button_pressed"]
+[connection signal="pressed" from="DiceRoller/Window/VBoxContainer/D6Button" to="DiceRoller" method="_on_d_6_button_pressed"]
+[connection signal="pressed" from="DiceRoller/Window/VBoxContainer/D8Button" to="DiceRoller" method="_on_d_8_button_pressed"]
+[connection signal="pressed" from="DiceRoller/Window/VBoxContainer/D10Button" to="DiceRoller" method="_on_d_10_button_pressed"]
+[connection signal="pressed" from="DiceRoller/Window/VBoxContainer/D12Button" to="DiceRoller" method="_on_d_12_button_pressed"]
+[connection signal="pressed" from="DiceRoller/Window/VBoxContainer/D20Button" to="DiceRoller" method="_on_d_20_button_pressed"]
