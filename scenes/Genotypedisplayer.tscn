@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://s1vxqn38w167"]
+[gd_scene load_steps=10 format=3 uid="uid://s1vxqn38w167"]
 
 [ext_resource type="PackedScene" uid="uid://bchclg8ujw01t" path="res://assets/3Dcharacters/malesyllabub.glb" id="1_gukpc"]
 [ext_resource type="Script" uid="uid://cpyu5kslqfxim" path="res://scenes/genotypedisplayer.gd" id="1_x6005"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://o3a4hmxlyq8v" path="res://assets/imagefiles/UI/switch_right.png" id="3_tfo67"]
 [ext_resource type="PackedScene" uid="uid://ddfyna0e78un1" path="res://assets/3Dcharacters/Datadoll.glb" id="4_87yrl"]
 [ext_resource type="Texture2D" uid="uid://bon76vyqs6kuu" path="res://assets/imagefiles/UI/switch_right_outline.png" id="5_x6005"]
+[ext_resource type="PackedScene" uid="uid://dws0cxqot2pum" path="res://assets/3Dcharacters/Cognitive.glb" id="9_g8k4i"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -55,11 +56,12 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0
 
 [node name="femalesyllabub" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_7q6yg")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
-visible = false
 
 [node name="Datadoll" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_87yrl")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
-visible = false
+
+[node name="Cognitive" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_g8k4i")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1

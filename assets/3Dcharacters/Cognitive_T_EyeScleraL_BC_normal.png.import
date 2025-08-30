@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b02sprrdx50wl"
+path.s3tc="res://.godot/imported/Cognitive_T_EyeScleraL_BC_normal.png-205507f82a285e7a2815e6c00ad360ba.s3tc.ctex"
+path.etc2="res://.godot/imported/Cognitive_T_EyeScleraL_BC_normal.png-205507f82a285e7a2815e6c00ad360ba.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "1675dd115d5ea50aa92280f25f485fdc"
+}
+
+[deps]
+
+source_file="res://assets/3Dcharacters/Cognitive_T_EyeScleraL_BC_normal.png"
+dest_files=["res://.godot/imported/Cognitive_T_EyeScleraL_BC_normal.png-205507f82a285e7a2815e6c00ad360ba.s3tc.ctex", "res://.godot/imported/Cognitive_T_EyeScleraL_BC_normal.png-205507f82a285e7a2815e6c00ad360ba.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://assets/3Dcharacters/Cognitive_T_EyeScleraL_BC_normal.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
