@@ -1,8 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://cp13el0w7wefl"]
+[gd_scene load_steps=31 format=3 uid="uid://cp13el0w7wefl"]
 
 [ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/player_character_creator_scene.gd" id="1_miv1v"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_hwnst"]
+[ext_resource type="Shader" uid="uid://2qcjhmiysyba" path="res://assets/imagefiles/UI/wobblygrid.gdshader" id="3_htdrn"]
 [ext_resource type="Texture2D" uid="uid://ibsyrtwtq0ei" path="res://assets/imagefiles/page1.jpg" id="3_rf8d0"]
+[ext_resource type="Script" uid="uid://b203m6ynquqgb" path="res://assets/imagefiles/UI/mousefollowmenuui.gd" id="4_a0p86"]
 [ext_resource type="Texture2D" uid="uid://b7nwnqt7fk13m" path="res://assets/imagefiles/page2.jpg" id="4_htdrn"]
 [ext_resource type="Script" uid="uid://bmtvrcrig155x" path="res://code/audioplayerscript.gd" id="5_a0p86"]
 [ext_resource type="Texture2D" uid="uid://wgf1u0mwu17x" path="res://assets/imagefiles/audioplaybutton.png" id="6_jmwwa"]
@@ -22,6 +24,43 @@
 [ext_resource type="Texture2D" uid="uid://bm37hyw5q703g" path="res://assets/imagefiles/inventorysquare.png" id="20_ieuud"]
 [ext_resource type="Script" uid="uid://3jpwgrofsnql" path="res://code/add_image.gd" id="21_u3h14"]
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="22_hwnst"]
+[ext_resource type="PackedScene" uid="uid://s1vxqn38w167" path="res://scenes/Genotypedisplayer.tscn" id="25_a0p86"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jmwwa"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_htdrn"]
+width = 1600
+height = 1600
+invert = true
+seamless = true
+noise = SubResource("FastNoiseLite_jmwwa")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l13rv"]
+offset = Vector3(1000, 100, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a0p86"]
+width = 1600
+height = 1600
+noise = SubResource("FastNoiseLite_l13rv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_htdrn"]
+shader = ExtResource("3_htdrn")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/base_point_size = 0.7
+shader_parameter/size = Vector2(160, 80)
+shader_parameter/noise = SubResource("NoiseTexture2D_htdrn")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_a0p86")
+shader_parameter/edge_fade = null
+shader_parameter/wave_speed = 0.3
+shader_parameter/softness = 0.008
+shader_parameter/growth_strength = 0.0
+shader_parameter/clump_strength = 8.86
+shader_parameter/sway_strength = 0.12
+shader_parameter/sway_speed = 1.4
+shader_parameter/mouse_pos = Vector2(1, 1)
+shader_parameter/mouse_strength = 8.0
+shader_parameter/mouse_growth = 1.0
+shader_parameter/mouse_radius = 0.1
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_miv1v")
@@ -32,6 +71,31 @@ script = ExtResource("2_hwnst")
 left_limit = -100.0
 right_limit = 2000.0
 down_limit = 1000.0
+
+[node name="backgrounddots" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2440.0
+offset_top = -1600.0
+offset_right = 5240.0
+offset_bottom = 2720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="backgrounddots"]
+material = SubResource("ShaderMaterial_htdrn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("4_a0p86")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -1711,6 +1775,13 @@ stretch_mode = 5
 [node name="FileDialog" type="FileDialog" parent="Control"]
 
 [node name="DiceRoller" parent="." instance=ExtResource("22_hwnst")]
+
+[node name="Genotypedisplayer" parent="." instance=ExtResource("25_a0p86")]
+offset_left = -420.0
+offset_right = -20.0
+offset_bottom = 1080.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [connection signal="pressed" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audioplaybutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audioplaybutton_pressed"]
 [connection signal="toggled" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audiopausebutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audiopausebutton_toggled"]

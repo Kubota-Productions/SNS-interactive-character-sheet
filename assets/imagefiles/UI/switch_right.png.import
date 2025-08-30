@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://civyicxkv26ie"
-path="res://.godot/imported/STscreen@201x.jpg-209a7eab4044994d387f0f6f2ae4e75f.ctex"
+uid="uid://o3a4hmxlyq8v"
+path="res://.godot/imported/switch_right.png-954bbdd7ddc5c335ed1c29912223f6f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/imagefiles/STscreen@201x.jpg"
-dest_files=["res://.godot/imported/STscreen@201x.jpg-209a7eab4044994d387f0f6f2ae4e75f.ctex"]
+source_file="res://assets/imagefiles/UI/switch_right.png"
+dest_files=["res://.godot/imported/switch_right.png-954bbdd7ddc5c335ed1c29912223f6f4.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

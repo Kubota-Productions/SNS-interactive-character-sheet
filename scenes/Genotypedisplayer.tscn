@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://s1vxqn38w167"]
+
+[ext_resource type="PackedScene" uid="uid://bchclg8ujw01t" path="res://assets/3Dcharacters/malesyllabub.glb" id="1_gukpc"]
+[ext_resource type="Script" uid="uid://cpyu5kslqfxim" path="res://scenes/genotypedisplayer.gd" id="1_x6005"]
+[ext_resource type="Texture2D" uid="uid://b6kpxv6nje44i" path="res://assets/imagefiles/UI/switch_left.png" id="2_ifu1j"]
+[ext_resource type="PackedScene" uid="uid://cwd4hiy2u0kr2" path="res://assets/3Dcharacters/femalesyllabub.glb" id="3_7q6yg"]
+[ext_resource type="Texture2D" uid="uid://fhf7p4pljh1g" path="res://assets/imagefiles/UI/switch_left_outline.png" id="3_oysic"]
+[ext_resource type="Texture2D" uid="uid://o3a4hmxlyq8v" path="res://assets/imagefiles/UI/switch_right.png" id="3_tfo67"]
+[ext_resource type="PackedScene" uid="uid://ddfyna0e78un1" path="res://assets/3Dcharacters/Datadoll.glb" id="4_87yrl"]
+[ext_resource type="Texture2D" uid="uid://bon76vyqs6kuu" path="res://assets/imagefiles/UI/switch_right_outline.png" id="5_x6005"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1520.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x6005")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.4
+anchor_top = 0.5
+anchor_right = 2.4
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 580.0
+offset_bottom = 3780.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1540, 4320)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 14.63, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-1.3411e-07, 0.707107, -0.707107, 1, 7.34161e-08, -7.55956e-08, -1.77636e-15, -0.707107, -0.707107, 0, 0, 0)
+layers = 16
+
+[node name="malesyllabub" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_gukpc")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
+visible = false
+
+[node name="femalesyllabub" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_7q6yg")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
+visible = false
+
+[node name="Datadoll" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_87yrl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -64.0
+offset_right = 66.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Leftbutton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_ifu1j")
+texture_pressed = ExtResource("2_ifu1j")
+texture_hover = ExtResource("3_oysic")
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "                                                                  "
+
+[node name="Rightbutton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_tfo67")
+texture_pressed = ExtResource("3_tfo67")
+texture_hover = ExtResource("5_x6005")
+
+[connection signal="button_down" from="HBoxContainer/Leftbutton" to="." method="_on_leftbutton_button_down"]
+[connection signal="button_up" from="HBoxContainer/Leftbutton" to="." method="_on_leftbutton_button_up"]
+[connection signal="button_down" from="HBoxContainer/Rightbutton" to="." method="_on_rightbutton_button_down"]
+[connection signal="button_up" from="HBoxContainer/Rightbutton" to="." method="_on_rightbutton_button_up"]
+[connection signal="pressed" from="HBoxContainer/Rightbutton" to="." method="_on_rightbutton_pressed"]

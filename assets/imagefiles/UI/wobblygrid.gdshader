@@ -15,7 +15,7 @@ uniform float sway_speed : hint_range(0.1, 5.0, 0.1) = 1.0;
 
 // Mouse interaction
 uniform vec2 mouse_pos = vec2(0.5, 0.5); 
-uniform float mouse_strength : hint_range(0.0, 2.0, 0.01) = 0.5; 
+uniform float mouse_strength : hint_range(0.0, 8.0, 0.01) = 0.5; 
 uniform float mouse_growth : hint_range(0.0, 10.0, 0.01) = 0.5;  
 uniform float mouse_radius : hint_range(0.0, 1.0, 0.01) = 0.2; // range of effect
 

@@ -7,6 +7,7 @@ var current_scene: Node = null
 
 func _ready() -> void:
 	_switch_to(menu_scene)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func _switch_to(scene: PackedScene) -> void:
 	if current_scene:

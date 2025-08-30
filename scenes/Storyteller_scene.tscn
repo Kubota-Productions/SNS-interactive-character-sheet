@@ -1,11 +1,49 @@
-[gd_scene load_steps=7 format=3 uid="uid://j88f3wg1gpeu"]
+[gd_scene load_steps=14 format=3 uid="uid://j88f3wg1gpeu"]
 
 [ext_resource type="Script" uid="uid://oxpdcsaki3wv" path="res://code/storyteller_scene.gd" id="1_fvrw6"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_4mdlk"]
-[ext_resource type="Texture2D" uid="uid://b30tq4hlbweta" path="res://assets/imagefiles/STscreen@201x.jpg" id="3_q1fsm"]
+[ext_resource type="Texture2D" uid="uid://civyicxkv26ie" path="res://assets/imagefiles/STscreen@201x.jpg" id="3_353v8"]
+[ext_resource type="Shader" uid="uid://2qcjhmiysyba" path="res://assets/imagefiles/UI/wobblygrid.gdshader" id="3_a4rfs"]
 [ext_resource type="Script" uid="uid://c82qnv7f7o1d1" path="res://code/storyteller/text_edit.gd" id="4_353v8"]
+[ext_resource type="Script" uid="uid://b203m6ynquqgb" path="res://assets/imagefiles/UI/mousefollowmenuui.gd" id="4_qyp6a"]
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="5_fbui4"]
 [ext_resource type="Script" uid="uid://bx4pc2vord1iq" path="res://code/storyteller/save_st_screen.gd" id="6_353v8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a4rfs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_htdrn"]
+width = 1600
+height = 1600
+invert = true
+seamless = true
+noise = SubResource("FastNoiseLite_a4rfs")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qyp6a"]
+offset = Vector3(1000, 100, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a0p86"]
+width = 1600
+height = 1600
+noise = SubResource("FastNoiseLite_qyp6a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8awhc"]
+shader = ExtResource("3_a4rfs")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/base_point_size = 0.7
+shader_parameter/size = Vector2(160, 80)
+shader_parameter/noise = SubResource("NoiseTexture2D_htdrn")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_a0p86")
+shader_parameter/edge_fade = null
+shader_parameter/wave_speed = 0.3
+shader_parameter/softness = 0.008
+shader_parameter/growth_strength = 0.0
+shader_parameter/clump_strength = 8.86
+shader_parameter/sway_strength = 0.12
+shader_parameter/sway_speed = 1.4
+shader_parameter/mouse_pos = Vector2(1, 1)
+shader_parameter/mouse_strength = 8.0
+shader_parameter/mouse_growth = 1.0
+shader_parameter/mouse_radius = 0.1
 
 [node name="StorytellerSceneMain" type="Node2D"]
 script = ExtResource("1_fvrw6")
@@ -16,6 +54,31 @@ script = ExtResource("2_4mdlk")
 left_limit = -100.0
 right_limit = 2000.0
 down_limit = 1000.0
+
+[node name="backgrounddots" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2440.0
+offset_top = -1600.0
+offset_right = 5240.0
+offset_bottom = 2720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="backgrounddots"]
+material = SubResource("ShaderMaterial_8awhc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("4_qyp6a")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -42,7 +105,7 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="Control/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("3_q1fsm")
+texture = ExtResource("3_353v8")
 expand_mode = 3
 stretch_mode = 5
 
@@ -52,10 +115,17 @@ offset_bottom = 47.0
 script = ExtResource("6_353v8")
 
 [node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 78.0
-offset_top = 267.0
-offset_right = 826.0
-offset_bottom = 569.0
+offset_left = 14.0
+offset_top = 67.0
+offset_right = 546.0
+offset_bottom = 1059.0
+script = ExtResource("4_353v8")
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+offset_left = 569.0
+offset_top = 67.0
+offset_right = 1101.0
+offset_bottom = 1059.0
 script = ExtResource("4_353v8")
 index = 2
 
@@ -63,3 +133,4 @@ index = 2
 
 [connection signal="editing_toggled" from="LineEdit" to="LineEdit" method="_on_editing_toggled"]
 [connection signal="text_changed" from="TextEdit" to="TextEdit" method="_on_text_changed"]
+[connection signal="text_changed" from="TextEdit2" to="TextEdit2" method="_on_text_changed"]
