@@ -52,7 +52,6 @@ layers = 16
 
 [node name="malesyllabub" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_gukpc")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
-visible = false
 
 [node name="femalesyllabub" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_7q6yg")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
