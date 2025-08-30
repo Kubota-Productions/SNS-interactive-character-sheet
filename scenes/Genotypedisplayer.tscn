@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://s1vxqn38w167"]
+[gd_scene load_steps=12 format=3 uid="uid://s1vxqn38w167"]
 
 [ext_resource type="PackedScene" uid="uid://bchclg8ujw01t" path="res://assets/3Dcharacters/malesyllabub.glb" id="1_gukpc"]
 [ext_resource type="Script" uid="uid://cpyu5kslqfxim" path="res://scenes/genotypedisplayer.gd" id="1_x6005"]
 [ext_resource type="Texture2D" uid="uid://b6kpxv6nje44i" path="res://assets/imagefiles/UI/switch_left.png" id="2_ifu1j"]
+[ext_resource type="PackedScene" uid="uid://dwohfqly6kr63" path="res://assets/3Dcharacters/malesyllabubextras.glb" id="3_5yd31"]
 [ext_resource type="PackedScene" uid="uid://cwd4hiy2u0kr2" path="res://assets/3Dcharacters/femalesyllabub.glb" id="3_7q6yg"]
 [ext_resource type="Texture2D" uid="uid://fhf7p4pljh1g" path="res://assets/imagefiles/UI/switch_left_outline.png" id="3_oysic"]
 [ext_resource type="Texture2D" uid="uid://o3a4hmxlyq8v" path="res://assets/imagefiles/UI/switch_right.png" id="3_tfo67"]
 [ext_resource type="PackedScene" uid="uid://ddfyna0e78un1" path="res://assets/3Dcharacters/Datadoll.glb" id="4_87yrl"]
 [ext_resource type="Texture2D" uid="uid://bon76vyqs6kuu" path="res://assets/imagefiles/UI/switch_right_outline.png" id="5_x6005"]
+[ext_resource type="PackedScene" uid="uid://dr0531irak02g" path="res://assets/3Dcharacters/Cognitiveextras.glb" id="7_e5joy"]
 [ext_resource type="PackedScene" uid="uid://dws0cxqot2pum" path="res://assets/3Dcharacters/Cognitive.glb" id="9_g8k4i"]
 
 [node name="Control" type="Control"]
@@ -54,14 +56,23 @@ layers = 16
 [node name="malesyllabub" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_gukpc")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
 
+[node name="malesyllabubextras" parent="SubViewportContainer/SubViewport/malesyllabub" instance=ExtResource("3_5yd31")]
+transform = Transform3D(1, 0, 0, 0, 1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0, 0)
+
 [node name="femalesyllabub" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_7q6yg")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
+visible = false
 
 [node name="Datadoll" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_87yrl")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
+visible = false
 
 [node name="Cognitive" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_g8k4i")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
+visible = false
+
+[node name="Cognitiveextras" parent="SubViewportContainer/SubViewport/Cognitive" instance=ExtResource("7_e5joy")]
+transform = Transform3D(1, 0, 0, 0, 1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
