@@ -1,0 +1,39 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cvdvhwo7si4wd"
+path.s3tc="res://.godot/imported/Hellion_T_Eyeball_Generator_A_IrisRoughness.png-c486661a3f1bcc48ada0dd2370eead85.s3tc.ctex"
+path.etc2="res://.godot/imported/Hellion_T_Eyeball_Generator_A_IrisRoughness.png-c486661a3f1bcc48ada0dd2370eead85.etc2.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "1e60c33dae2ee0a9ca5be665c0bce1d9"
+}
+
+[deps]
+
+source_file="res://assets/3Dcharacters/Hellion_T_Eyeball_Generator_A_IrisRoughness.png"
+dest_files=["res://.godot/imported/Hellion_T_Eyeball_Generator_A_IrisRoughness.png-c486661a3f1bcc48ada0dd2370eead85.s3tc.ctex", "res://.godot/imported/Hellion_T_Eyeball_Generator_A_IrisRoughness.png-c486661a3f1bcc48ada0dd2370eead85.etc2.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
