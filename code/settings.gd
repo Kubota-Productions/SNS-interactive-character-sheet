@@ -2,13 +2,34 @@ extends Control
 
 var previous_window_size: Vector2i = Vector2i(1152, 648) # default fallback
 
-func _ready() -> void:
-	# store the current window size at start
-	previous_window_size = DisplayServer.window_get_size()
-	
+@onready var ui_volume_slider: HSlider = %UIVolume
 
-func _on_volume_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(0,value)
+func _ready() -> void:
+	previous_window_size = DisplayServer.window_get_size()
+
+	ui_volume_slider.min_value = 0.0
+	ui_volume_slider.max_value = 1.0
+	ui_volume_slider.step = 0.01
+
+	# This scene is re-created every time the menu opens, so start from the bus's real volume.
+	var bus := AudioServer.get_bus_index(UISounds.BUS)
+	if bus != -1:
+		ui_volume_slider.set_value_no_signal(db_to_linear(AudioServer.get_bus_volume_db(bus)))
+	else:
+		push_warning("No '%s' audio bus found. Add it in the Audio tab." % UISounds.BUS)
+
+	ui_volume_slider.value_changed.connect(_on_ui_volume_changed)
+	ui_volume_slider.drag_ended.connect(_on_ui_volume_drag_ended)
+
+
+func _on_ui_volume_changed(value: float) -> void:
+	var bus := AudioServer.get_bus_index(UISounds.BUS)
+	if bus != -1:
+		AudioServer.set_bus_volume_db(bus, linear_to_db(value))
+
+
+func _on_ui_volume_drag_ended(_value_changed: bool) -> void:
+	UISounds.play_click()  # lets the player hear the new level when they let go
 
 
 func _on_mute_toggled(toggled_on: bool) -> void:
@@ -65,3 +86,7 @@ func _on_back_to_menu_button_pressed() -> void:
 	
 	
 	
+
+
+func _on_volume_value_changed(value: float) -> void:
+	pass # Replace with function body.

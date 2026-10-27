@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bcqeeoy3e7pcp"]
+
+[ext_resource type="Script" uid="uid://bi60kychwkr0f" path="res://code/singleton/ui_sounds.gd" id="1_yi0lg"]
+[ext_resource type="AudioStream" uid="uid://dtx2lk34q4u0e" path="res://assets/uisounds/buttonclick1.ogg" id="2_x2fuu"]
+[ext_resource type="AudioStream" uid="uid://c4s6vkuipqxlj" path="res://assets/uisounds/hover.ogg" id="3_c0r5r"]
+
+[node name="UISounds" type="Node" unique_id=2020766415]
+script = ExtResource("1_yi0lg")
+click_sound = ExtResource("2_x2fuu")
+hover_sound = ExtResource("3_c0r5r")

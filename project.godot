@@ -22,9 +22,14 @@ boot_splash/stretch_mode=0
 boot_splash/image="uid://d2alfbutwehdx"
 config/icon="uid://d2alfbutwehdx"
 
+[audio]
+
+buses/default_bus_layout="uid://bkf30gsw3gqgr"
+
 [autoload]
 
 GlobalFunctions="*res://code/singleton/global_functions.gd"
+UISounds="*uid://bcqeeoy3e7pcp"
 
 [display]
 
@@ -37,10 +42,12 @@ mouse_cursor/custom_image_hotspot=Vector2(13, 4)
 [file_customization]
 
 folder_colors={
+"res://Audio/": "blue",
 "res://Resources/": "orange",
 "res://assets/audiofiles/": "red",
 "res://assets/fonts/": "orange",
 "res://assets/imagefiles/": "yellow",
+"res://assets/uisounds/": "red",
 "res://code/": "green",
 "res://scenes/": "pink"
 }
