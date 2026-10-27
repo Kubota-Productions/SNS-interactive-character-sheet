@@ -306,7 +306,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 12
+index = 8
 
 [node name="LineEdit9" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -322,7 +322,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 13
+index = 9
 
 [node name="LineEdit10" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -338,7 +338,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 14
+index = 10
 
 [node name="LineEdit11" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -354,7 +354,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 15
+index = 11
 
 [node name="LineEdit12" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -370,7 +370,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 16
+index = 12
 
 [node name="LineEdit13" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -386,7 +386,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 17
+index = 13
 
 [node name="LineEdit14" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -402,7 +402,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 18
+index = 14
 
 [node name="LineEdit15" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -418,7 +418,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 19
+index = 15
 
 [node name="LineEdit16" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -434,7 +434,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 20
+index = 16
 
 [node name="LineEdit17" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -450,7 +450,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 21
+index = 17
 
 [node name="LineEdit18" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -466,7 +466,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 22
+index = 18
 
 [node name="LineEdit19" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -482,7 +482,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 23
+index = 19
 
 [node name="LineEdit20" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -498,7 +498,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 24
+index = 20
 
 [node name="LineEdit21" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -514,7 +514,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 25
+index = 21
 
 [node name="LineEdit22" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -530,7 +530,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 26
+index = 22
 
 [node name="LineEdit23" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -546,7 +546,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 27
+index = 23
 
 [node name="LineEdit24" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -562,7 +562,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 28
+index = 24
 
 [node name="LineEdit25" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -578,7 +578,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 29
+index = 25
 
 [node name="LineEdit26" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -594,7 +594,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 30
+index = 26
 
 [node name="LineEdit27" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -610,7 +610,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 31
+index = 27
 
 [node name="LineEdit28" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -626,7 +626,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 32
+index = 28
 
 [node name="LineEdit29" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -642,7 +642,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 33
+index = 29
 
 [node name="LineEdit30" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -658,7 +658,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 34
+index = 30
 
 [node name="LineEdit31" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -674,7 +674,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 35
+index = 31
 
 [node name="LineEdit32" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -690,7 +690,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 36
+index = 32
 
 [node name="LineEdit33" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -706,7 +706,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 37
+index = 33
 
 [node name="LineEdit34" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -722,7 +722,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 38
+index = 34
 
 [node name="LineEdit35" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -738,7 +738,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 39
+index = 35
 
 [node name="LineEdit36" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -754,7 +754,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 40
+index = 36
 
 [node name="LineEdit37" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -770,7 +770,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 41
+index = 37
 
 [node name="LineEdit38" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -786,7 +786,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 42
+index = 38
 
 [node name="LineEdit39" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -802,7 +802,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 43
+index = 39
 
 [node name="LineEdit40" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -818,7 +818,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 44
+index = 40
 
 [node name="LineEdit41" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -834,7 +834,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 45
+index = 41
 
 [node name="LineEdit42" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -850,7 +850,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 46
+index = 42
 
 [node name="LineEdit43" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -866,7 +866,7 @@ theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "0"
 alignment = 1
 script = ExtResource("16_am4h6")
-index = 47
+index = 43
 
 [node name="LineEdit44" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -881,7 +881,7 @@ theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "00"
 script = ExtResource("16_am4h6")
-index = 49
+index = 44
 
 [node name="LineEdit45" type="LineEdit" parent="Control"]
 layout_mode = 0
@@ -896,7 +896,7 @@ theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "00"
 script = ExtResource("16_am4h6")
-index = 49
+index = 45
 
 [node name="TextEdit46" type="TextEdit" parent="Control"]
 layout_mode = 0
