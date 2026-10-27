@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://j88f3wg1gpeu"]
+[gd_scene format=3 uid="uid://j88f3wg1gpeu"]
 
 [ext_resource type="Script" uid="uid://oxpdcsaki3wv" path="res://code/storyteller_scene.gd" id="1_fvrw6"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_4mdlk"]
@@ -18,9 +18,9 @@
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_htdrn"]
 width = 1600
 height = 1600
-invert = true
-seamless = true
 noise = SubResource("FastNoiseLite_a4rfs")
+seamless = true
+invert = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qyp6a"]
 offset = Vector3(1000, 100, 0)
@@ -37,7 +37,7 @@ shader_parameter/base_point_size = 0.7
 shader_parameter/size = Vector2(160, 80)
 shader_parameter/noise = SubResource("NoiseTexture2D_htdrn")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_a0p86")
-shader_parameter/edge_fade = null
+shader_parameter/edge_fade = 0.0
 shader_parameter/wave_speed = 0.3
 shader_parameter/softness = 0.008
 shader_parameter/growth_strength = 0.0
@@ -49,17 +49,17 @@ shader_parameter/mouse_strength = 8.0
 shader_parameter/mouse_growth = 1.0
 shader_parameter/mouse_radius = 0.1
 
-[node name="StorytellerSceneMain" type="Node2D"]
+[node name="StorytellerSceneMain" type="Node2D" unique_id=1783231299]
 script = ExtResource("1_fvrw6")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1642251992]
 position = Vector2(500, 540)
 script = ExtResource("2_4mdlk")
 left_limit = -100.0
 right_limit = 9500.0
 down_limit = 1000.0
 
-[node name="backgrounddots" type="Control" parent="."]
+[node name="backgrounddots" type="Control" parent="." unique_id=1102672173]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -74,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.96, 1)
 
-[node name="ColorRect" type="ColorRect" parent="backgrounddots"]
+[node name="ColorRect" type="ColorRect" parent="backgrounddots" unique_id=1567242507]
 material = SubResource("ShaderMaterial_8awhc")
 layout_mode = 1
 anchors_preset = 15
@@ -85,7 +85,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("4_qyp6a")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1443279703]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,7 +97,7 @@ grow_vertical = 2
 focus_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="BoxContainer" type="BoxContainer" parent="Control"]
+[node name="BoxContainer" type="BoxContainer" parent="Control" unique_id=730988622]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -107,54 +107,54 @@ offset_right = 3430.0
 offset_bottom = 540.0
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/BoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Control/BoxContainer" unique_id=270523913]
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("3_353v8")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="Control/BoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="Control/BoxContainer" unique_id=1262944019]
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("6_gocmh")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer" unique_id=1639519036]
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("8_nqyor")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect4" type="TextureRect" parent="Control/BoxContainer"]
+[node name="TextureRect4" type="TextureRect" parent="Control/BoxContainer" unique_id=1419837190]
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("7_fhtor")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect5" type="TextureRect" parent="Control/BoxContainer"]
+[node name="TextureRect5" type="TextureRect" parent="Control/BoxContainer" unique_id=2099287037]
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("9_fhtor")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1746158194]
 offset_right = 238.0
 offset_bottom = 47.0
 script = ExtResource("6_353v8")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1919824693]
 offset_left = 14.0
 offset_top = 67.0
 offset_right = 546.0
 offset_bottom = 1059.0
 script = ExtResource("4_353v8")
 
-[node name="TextEdit2" type="TextEdit" parent="."]
+[node name="TextEdit2" type="TextEdit" parent="." unique_id=1109106795]
 offset_left = 569.0
 offset_top = 67.0
 offset_right = 1101.0
@@ -162,7 +162,7 @@ offset_bottom = 1059.0
 script = ExtResource("4_353v8")
 index = 2
 
-[node name="DiceRoller" parent="." instance=ExtResource("5_fbui4")]
+[node name="DiceRoller" parent="." unique_id=2015380439 instance=ExtResource("5_fbui4")]
 
 [connection signal="editing_toggled" from="LineEdit" to="LineEdit" method="_on_editing_toggled"]
 [connection signal="text_changed" from="TextEdit" to="TextEdit" method="_on_text_changed"]

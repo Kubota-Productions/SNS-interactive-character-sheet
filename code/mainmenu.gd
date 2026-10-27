@@ -16,10 +16,6 @@ var st_selected_save_file_storyteller: String = ""
 
 #endregion
 
-
-var settings_instance: Node = null
-
-
 func _enter_tree() -> void:
 	list_save_files()
 	st_list_save_files()
@@ -119,15 +115,7 @@ func st_list_save_files() -> void:
 #region auxilery 
 
 func _on_settings_pressed() -> void:
-	var game_root = get_tree().root # adjust if nested deeper
-	if settings_instance == null:
-			var settings_scene = preload("res://scenes/settings.tscn")
-			settings_instance = settings_scene.instantiate()
-			game_root.add_child(settings_instance)
-	else:
-		if settings_instance and settings_instance.is_inside_tree():
-			settings_instance.queue_free()
-			settings_instance = null
+	SettingsMenu.toggle(get_tree(), false)  
 			
 func _on_exit_pressed() -> void:
 	get_tree().quit()

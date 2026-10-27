@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cp13el0w7wefl"]
+[gd_scene format=3 uid="uid://cp13el0w7wefl"]
 
 [ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/player_character_creator_scene.gd" id="1_miv1v"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_hwnst"]
@@ -31,9 +31,9 @@
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_htdrn"]
 width = 1600
 height = 1600
-invert = true
-seamless = true
 noise = SubResource("FastNoiseLite_jmwwa")
+seamless = true
+invert = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_l13rv"]
 offset = Vector3(1000, 100, 0)
@@ -50,7 +50,7 @@ shader_parameter/base_point_size = 0.7
 shader_parameter/size = Vector2(160, 80)
 shader_parameter/noise = SubResource("NoiseTexture2D_htdrn")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_a0p86")
-shader_parameter/edge_fade = null
+shader_parameter/edge_fade = 0.0
 shader_parameter/wave_speed = 0.3
 shader_parameter/softness = 0.008
 shader_parameter/growth_strength = 0.0
@@ -62,17 +62,17 @@ shader_parameter/mouse_strength = 8.0
 shader_parameter/mouse_growth = 1.0
 shader_parameter/mouse_radius = 0.1
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1201309714]
 script = ExtResource("1_miv1v")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1942366885]
 position = Vector2(500, 540)
 script = ExtResource("2_hwnst")
 left_limit = -100.0
 right_limit = 2000.0
 down_limit = 1000.0
 
-[node name="backgrounddots" type="Control" parent="."]
+[node name="backgrounddots" type="Control" parent="." unique_id=893409376]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,7 +86,7 @@ offset_bottom = 2720.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="backgrounddots"]
+[node name="ColorRect" type="ColorRect" parent="backgrounddots" unique_id=369491689]
 material = SubResource("ShaderMaterial_htdrn")
 layout_mode = 1
 anchors_preset = 15
@@ -97,7 +97,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("4_a0p86")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=2007799734]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,7 +109,7 @@ grow_vertical = 2
 focus_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="BoxContainer" type="BoxContainer" parent="Control"]
+[node name="BoxContainer" type="BoxContainer" parent="Control" unique_id=141431171]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -119,30 +119,30 @@ offset_right = 3430.0
 offset_bottom = 540.0
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/BoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Control/BoxContainer" unique_id=552691952]
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("3_rf8d0")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="Control/BoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="Control/BoxContainer" unique_id=505214792]
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("4_htdrn")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/BoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/BoxContainer" unique_id=1010109693]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Audioplayermenu" type="VBoxContainer" parent="Control/BoxContainer/VBoxContainer"]
+[node name="Audioplayermenu" type="VBoxContainer" parent="Control/BoxContainer/VBoxContainer" unique_id=992054003]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 script = ExtResource("5_a0p86")
 
-[node name="audioplaybutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu"]
+[node name="audioplaybutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu" unique_id=541599261]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("6_jmwwa")
@@ -150,7 +150,7 @@ texture_pressed = ExtResource("7_l13rv")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="audiopausebutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu"]
+[node name="audiopausebutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu" unique_id=869904558]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 toggle_mode = true
@@ -159,7 +159,7 @@ texture_pressed = ExtResource("9_fv7pl")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="audioskipbutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu"]
+[node name="audioskipbutton" type="TextureButton" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu" unique_id=530960591]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("10_6edvf")
@@ -167,51 +167,51 @@ texture_pressed = ExtResource("11_2wtvd")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu" unique_id=793473789]
 
-[node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer" unique_id=1894865502]
 layout_mode = 2
 texture = ExtResource("12_hdcbn")
 expand_mode = 3
 
-[node name="Page2" type="Sprite2D" parent="Control/BoxContainer"]
+[node name="Page2" type="Sprite2D" parent="Control/BoxContainer" unique_id=1688860601]
 position = Vector2(3039, 469)
 
-[node name="LineEditname" type="LineEdit" parent="Control"]
+[node name="LineEditname" type="LineEdit" parent="Control" unique_id=1943634484]
 layout_mode = 0
 offset_left = 1172.0
 offset_top = 97.0
 offset_right = 1522.0
 offset_bottom = 135.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("15_amb5h")
 
-[node name="LineEdit" type="LineEdit" parent="Control"]
+[node name="LineEdit" type="LineEdit" parent="Control" unique_id=1217203331]
 layout_mode = 0
 offset_left = 222.0
 offset_top = 101.0
 offset_right = 322.0
 offset_bottom = 218.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "00"
 alignment = 1
 script = ExtResource("16_am4h6")
 
-[node name="LineEdit2" type="LineEdit" parent="Control"]
+[node name="LineEdit2" type="LineEdit" parent="Control" unique_id=702937692]
 layout_mode = 0
 offset_left = 222.0
 offset_top = 226.0
 offset_right = 322.0
 offset_bottom = 344.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "00"
@@ -219,42 +219,42 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 2
 
-[node name="LineEdit3" type="LineEdit" parent="Control"]
+[node name="LineEdit3" type="LineEdit" parent="Control" unique_id=201594669]
 layout_mode = 0
 offset_left = 342.0
 offset_top = 111.0
 offset_right = 555.0
 offset_bottom = 168.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("16_am4h6")
 index = 3
 
-[node name="LineEdit4" type="LineEdit" parent="Control"]
+[node name="LineEdit4" type="LineEdit" parent="Control" unique_id=1874335246]
 layout_mode = 0
 offset_left = 574.0
 offset_top = 111.0
 offset_right = 756.0
 offset_bottom = 168.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("16_am4h6")
 index = 4
 
-[node name="LineEdit5" type="LineEdit" parent="Control"]
+[node name="LineEdit5" type="LineEdit" parent="Control" unique_id=1521599486]
 layout_mode = 0
 offset_left = 343.0
 offset_top = 188.0
 offset_right = 522.0
 offset_bottom = 271.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "000"
@@ -262,14 +262,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 5
 
-[node name="LineEdit6" type="LineEdit" parent="Control"]
+[node name="LineEdit6" type="LineEdit" parent="Control" unique_id=1965070101]
 layout_mode = 0
 offset_left = 542.0
 offset_top = 189.0
 offset_right = 637.0
 offset_bottom = 272.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "00"
@@ -277,14 +277,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 6
 
-[node name="LineEdit7" type="LineEdit" parent="Control"]
+[node name="LineEdit7" type="LineEdit" parent="Control" unique_id=597537055]
 layout_mode = 0
 offset_left = 655.0
 offset_top = 188.0
 offset_right = 756.0
 offset_bottom = 271.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "00"
@@ -292,14 +292,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 7
 
-[node name="LineEdit8" type="LineEdit" parent="Control"]
+[node name="LineEdit8" type="LineEdit" parent="Control" unique_id=241534038]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 98.0
 offset_right = 45.0
 offset_bottom = 154.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -308,14 +308,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 8
 
-[node name="LineEdit9" type="LineEdit" parent="Control"]
+[node name="LineEdit9" type="LineEdit" parent="Control" unique_id=256077054]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 98.0
 offset_right = 87.0
 offset_bottom = 154.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -324,14 +324,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 9
 
-[node name="LineEdit10" type="LineEdit" parent="Control"]
+[node name="LineEdit10" type="LineEdit" parent="Control" unique_id=1114305809]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 98.0
 offset_right = 130.0
 offset_bottom = 154.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -340,14 +340,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 10
 
-[node name="LineEdit11" type="LineEdit" parent="Control"]
+[node name="LineEdit11" type="LineEdit" parent="Control" unique_id=75805262]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 165.0
 offset_right = 45.0
 offset_bottom = 221.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -356,14 +356,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 11
 
-[node name="LineEdit12" type="LineEdit" parent="Control"]
+[node name="LineEdit12" type="LineEdit" parent="Control" unique_id=275292700]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 165.0
 offset_right = 87.0
 offset_bottom = 221.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -372,14 +372,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 12
 
-[node name="LineEdit13" type="LineEdit" parent="Control"]
+[node name="LineEdit13" type="LineEdit" parent="Control" unique_id=92776283]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 165.0
 offset_right = 130.0
 offset_bottom = 221.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -388,14 +388,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 13
 
-[node name="LineEdit14" type="LineEdit" parent="Control"]
+[node name="LineEdit14" type="LineEdit" parent="Control" unique_id=1115944536]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 240.0
 offset_right = 45.0
 offset_bottom = 296.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -404,14 +404,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 14
 
-[node name="LineEdit15" type="LineEdit" parent="Control"]
+[node name="LineEdit15" type="LineEdit" parent="Control" unique_id=2125786311]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 240.0
 offset_right = 87.0
 offset_bottom = 296.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -420,14 +420,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 15
 
-[node name="LineEdit16" type="LineEdit" parent="Control"]
+[node name="LineEdit16" type="LineEdit" parent="Control" unique_id=740761882]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 240.0
 offset_right = 130.0
 offset_bottom = 296.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -436,14 +436,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 16
 
-[node name="LineEdit17" type="LineEdit" parent="Control"]
+[node name="LineEdit17" type="LineEdit" parent="Control" unique_id=1430912658]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 315.0
 offset_right = 45.0
 offset_bottom = 371.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -452,14 +452,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 17
 
-[node name="LineEdit18" type="LineEdit" parent="Control"]
+[node name="LineEdit18" type="LineEdit" parent="Control" unique_id=1690976236]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 315.0
 offset_right = 87.0
 offset_bottom = 371.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -468,14 +468,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 18
 
-[node name="LineEdit19" type="LineEdit" parent="Control"]
+[node name="LineEdit19" type="LineEdit" parent="Control" unique_id=1790254081]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 315.0
 offset_right = 130.0
 offset_bottom = 371.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -484,14 +484,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 19
 
-[node name="LineEdit20" type="LineEdit" parent="Control"]
+[node name="LineEdit20" type="LineEdit" parent="Control" unique_id=1516807351]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 390.0
 offset_right = 45.0
 offset_bottom = 446.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -500,14 +500,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 20
 
-[node name="LineEdit21" type="LineEdit" parent="Control"]
+[node name="LineEdit21" type="LineEdit" parent="Control" unique_id=999754498]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 390.0
 offset_right = 87.0
 offset_bottom = 446.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -516,14 +516,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 21
 
-[node name="LineEdit22" type="LineEdit" parent="Control"]
+[node name="LineEdit22" type="LineEdit" parent="Control" unique_id=1827932453]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 390.0
 offset_right = 130.0
 offset_bottom = 446.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -532,14 +532,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 22
 
-[node name="LineEdit23" type="LineEdit" parent="Control"]
+[node name="LineEdit23" type="LineEdit" parent="Control" unique_id=1245689857]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 465.0
 offset_right = 45.0
 offset_bottom = 521.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -548,14 +548,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 23
 
-[node name="LineEdit24" type="LineEdit" parent="Control"]
+[node name="LineEdit24" type="LineEdit" parent="Control" unique_id=1055585249]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 465.0
 offset_right = 87.0
 offset_bottom = 521.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -564,14 +564,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 24
 
-[node name="LineEdit25" type="LineEdit" parent="Control"]
+[node name="LineEdit25" type="LineEdit" parent="Control" unique_id=193462770]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 465.0
 offset_right = 130.0
 offset_bottom = 521.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -580,14 +580,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 25
 
-[node name="LineEdit26" type="LineEdit" parent="Control"]
+[node name="LineEdit26" type="LineEdit" parent="Control" unique_id=1208943699]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 540.0
 offset_right = 45.0
 offset_bottom = 596.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -596,14 +596,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 26
 
-[node name="LineEdit27" type="LineEdit" parent="Control"]
+[node name="LineEdit27" type="LineEdit" parent="Control" unique_id=729086691]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 540.0
 offset_right = 87.0
 offset_bottom = 596.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -612,14 +612,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 27
 
-[node name="LineEdit28" type="LineEdit" parent="Control"]
+[node name="LineEdit28" type="LineEdit" parent="Control" unique_id=2010698216]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 540.0
 offset_right = 130.0
 offset_bottom = 596.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -628,14 +628,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 28
 
-[node name="LineEdit29" type="LineEdit" parent="Control"]
+[node name="LineEdit29" type="LineEdit" parent="Control" unique_id=1073669629]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 615.0
 offset_right = 45.0
 offset_bottom = 671.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -644,14 +644,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 29
 
-[node name="LineEdit30" type="LineEdit" parent="Control"]
+[node name="LineEdit30" type="LineEdit" parent="Control" unique_id=612881763]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 615.0
 offset_right = 87.0
 offset_bottom = 671.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -660,14 +660,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 30
 
-[node name="LineEdit31" type="LineEdit" parent="Control"]
+[node name="LineEdit31" type="LineEdit" parent="Control" unique_id=692576312]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 615.0
 offset_right = 130.0
 offset_bottom = 671.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -676,14 +676,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 31
 
-[node name="LineEdit32" type="LineEdit" parent="Control"]
+[node name="LineEdit32" type="LineEdit" parent="Control" unique_id=1358819273]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 689.0
 offset_right = 45.0
 offset_bottom = 745.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -692,14 +692,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 32
 
-[node name="LineEdit33" type="LineEdit" parent="Control"]
+[node name="LineEdit33" type="LineEdit" parent="Control" unique_id=368155099]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 689.0
 offset_right = 87.0
 offset_bottom = 745.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -708,14 +708,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 33
 
-[node name="LineEdit34" type="LineEdit" parent="Control"]
+[node name="LineEdit34" type="LineEdit" parent="Control" unique_id=884068261]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 689.0
 offset_right = 130.0
 offset_bottom = 745.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -724,14 +724,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 34
 
-[node name="LineEdit35" type="LineEdit" parent="Control"]
+[node name="LineEdit35" type="LineEdit" parent="Control" unique_id=1611458724]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 763.0
 offset_right = 45.0
 offset_bottom = 819.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -740,14 +740,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 35
 
-[node name="LineEdit36" type="LineEdit" parent="Control"]
+[node name="LineEdit36" type="LineEdit" parent="Control" unique_id=783357698]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 763.0
 offset_right = 87.0
 offset_bottom = 819.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -756,14 +756,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 36
 
-[node name="LineEdit37" type="LineEdit" parent="Control"]
+[node name="LineEdit37" type="LineEdit" parent="Control" unique_id=813391935]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 763.0
 offset_right = 130.0
 offset_bottom = 819.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -772,14 +772,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 37
 
-[node name="LineEdit38" type="LineEdit" parent="Control"]
+[node name="LineEdit38" type="LineEdit" parent="Control" unique_id=1170209342]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 837.0
 offset_right = 45.0
 offset_bottom = 893.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -788,14 +788,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 38
 
-[node name="LineEdit39" type="LineEdit" parent="Control"]
+[node name="LineEdit39" type="LineEdit" parent="Control" unique_id=1975671536]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 837.0
 offset_right = 87.0
 offset_bottom = 893.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -804,14 +804,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 39
 
-[node name="LineEdit40" type="LineEdit" parent="Control"]
+[node name="LineEdit40" type="LineEdit" parent="Control" unique_id=983051086]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 837.0
 offset_right = 130.0
 offset_bottom = 893.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -820,14 +820,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 40
 
-[node name="LineEdit41" type="LineEdit" parent="Control"]
+[node name="LineEdit41" type="LineEdit" parent="Control" unique_id=1172435221]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 909.0
 offset_right = 45.0
 offset_bottom = 965.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -836,14 +836,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 41
 
-[node name="LineEdit42" type="LineEdit" parent="Control"]
+[node name="LineEdit42" type="LineEdit" parent="Control" unique_id=1080220002]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 909.0
 offset_right = 87.0
 offset_bottom = 965.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -852,14 +852,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 42
 
-[node name="LineEdit43" type="LineEdit" parent="Control"]
+[node name="LineEdit43" type="LineEdit" parent="Control" unique_id=1579986548]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 909.0
 offset_right = 130.0
 offset_bottom = 965.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -868,14 +868,14 @@ alignment = 1
 script = ExtResource("16_am4h6")
 index = 43
 
-[node name="LineEdit44" type="LineEdit" parent="Control"]
+[node name="LineEdit44" type="LineEdit" parent="Control" unique_id=353507731]
 layout_mode = 0
 offset_left = 623.0
 offset_top = 851.0
 offset_right = 758.0
 offset_bottom = 945.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -883,14 +883,14 @@ placeholder_text = "00"
 script = ExtResource("16_am4h6")
 index = 44
 
-[node name="LineEdit45" type="LineEdit" parent="Control"]
+[node name="LineEdit45" type="LineEdit" parent="Control" unique_id=1412269685]
 layout_mode = 0
 offset_left = 656.0
 offset_top = 955.0
 offset_right = 756.0
 offset_bottom = 1066.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_constants/minimum_character_width = 0
 theme_override_fonts/font = ExtResource("13_or8ya")
 theme_override_styles/normal = ExtResource("14_8cyuk")
@@ -898,144 +898,144 @@ placeholder_text = "00"
 script = ExtResource("16_am4h6")
 index = 45
 
-[node name="TextEdit46" type="TextEdit" parent="Control"]
+[node name="TextEdit46" type="TextEdit" parent="Control" unique_id=401460072]
 layout_mode = 0
 offset_left = 229.0
 offset_top = 873.0
 offset_right = 414.0
 offset_bottom = 1013.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 46
 
-[node name="TextEdit47" type="TextEdit" parent="Control"]
+[node name="TextEdit47" type="TextEdit" parent="Control" unique_id=853649533]
 layout_mode = 0
 offset_left = 544.0
 offset_top = 301.0
 offset_right = 756.0
 offset_bottom = 416.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 47
 
-[node name="TextEdit48" type="TextEdit" parent="Control"]
+[node name="TextEdit48" type="TextEdit" parent="Control" unique_id=1144083033]
 layout_mode = 0
 offset_left = 544.0
 offset_top = 441.0
 offset_right = 756.0
 offset_bottom = 561.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 48
 
-[node name="TextEdit49" type="TextEdit" parent="Control"]
+[node name="TextEdit49" type="TextEdit" parent="Control" unique_id=2090537786]
 layout_mode = 0
 offset_left = 550.0
 offset_top = 588.0
 offset_right = 757.0
 offset_bottom = 700.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 49
 
-[node name="TextEdit50" type="TextEdit" parent="Control"]
+[node name="TextEdit50" type="TextEdit" parent="Control" unique_id=1018659018]
 layout_mode = 0
 offset_left = 547.0
 offset_top = 729.0
 offset_right = 757.0
 offset_bottom = 843.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 50
 
-[node name="TextEdit51" type="TextEdit" parent="Control"]
+[node name="TextEdit51" type="TextEdit" parent="Control" unique_id=2117548620]
 layout_mode = 0
 offset_left = 782.0
 offset_top = 112.0
 offset_right = 1100.0
 offset_bottom = 297.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 51
 
-[node name="TextEdit52" type="TextEdit" parent="Control"]
+[node name="TextEdit52" type="TextEdit" parent="Control" unique_id=1699615338]
 layout_mode = 0
 offset_left = 787.0
 offset_top = 320.0
 offset_right = 1102.0
 offset_bottom = 396.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 52
 
-[node name="TextEdit53" type="TextEdit" parent="Control"]
+[node name="TextEdit53" type="TextEdit" parent="Control" unique_id=1744906901]
 layout_mode = 0
 offset_left = 788.0
 offset_top = 415.0
 offset_right = 1102.0
 offset_bottom = 752.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 53
 
-[node name="TextEdit54" type="TextEdit" parent="Control"]
+[node name="TextEdit54" type="TextEdit" parent="Control" unique_id=1051698759]
 layout_mode = 0
 offset_left = 1115.0
 offset_top = 160.0
 offset_right = 1523.0
 offset_bottom = 751.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 54
 
-[node name="TextEdit55" type="TextEdit" parent="Control"]
+[node name="TextEdit55" type="TextEdit" parent="Control" unique_id=1966530893]
 layout_mode = 0
 offset_left = 1663.0
 offset_top = 102.0
 offset_right = 2389.0
 offset_bottom = 1068.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 55
 
-[node name="TextEdit56" type="TextEdit" parent="Control"]
+[node name="TextEdit56" type="TextEdit" parent="Control" unique_id=21220822]
 layout_mode = 0
 offset_left = 784.0
 offset_top = 778.0
 offset_right = 885.0
 offset_bottom = 1071.0
-theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_colors/font_color = Color(0.839216, 0.121569, 0.14902, 1)
+theme_override_colors/font_placeholder_color = Color(0.839216, 0.121569, 0.14902, 1)
 theme_override_styles/normal = ExtResource("14_8cyuk")
 text = "★
 ^ration
@@ -1050,7 +1050,7 @@ placeholder_text = "insert"
 script = ExtResource("17_5ctmv")
 index = 56
 
-[node name="LeverageButton57" type="TextureButton" parent="Control"]
+[node name="LeverageButton57" type="TextureButton" parent="Control" unique_id=1399333213]
 layout_mode = 0
 offset_left = 429.0
 offset_top = 746.0
@@ -1063,7 +1063,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 57
 
-[node name="LeverageButton58" type="TextureButton" parent="Control"]
+[node name="LeverageButton58" type="TextureButton" parent="Control" unique_id=733289668]
 layout_mode = 0
 offset_left = 478.0
 offset_top = 746.0
@@ -1076,7 +1076,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 58
 
-[node name="LeverageButton59" type="TextureButton" parent="Control"]
+[node name="LeverageButton59" type="TextureButton" parent="Control" unique_id=1700663484]
 layout_mode = 0
 offset_left = 478.0
 offset_top = 799.0
@@ -1089,7 +1089,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 59
 
-[node name="LeverageButton60" type="TextureButton" parent="Control"]
+[node name="LeverageButton60" type="TextureButton" parent="Control" unique_id=2119987634]
 layout_mode = 0
 offset_left = 429.0
 offset_top = 799.0
@@ -1102,7 +1102,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 60
 
-[node name="TorporButton61" type="TextureButton" parent="Control"]
+[node name="TorporButton61" type="TextureButton" parent="Control" unique_id=2090282132]
 layout_mode = 0
 offset_left = 566.0
 offset_top = 925.0
@@ -1115,7 +1115,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 61
 
-[node name="TorporButton62" type="TextureButton" parent="Control"]
+[node name="TorporButton62" type="TextureButton" parent="Control" unique_id=1402315105]
 layout_mode = 0
 offset_left = 520.0
 offset_top = 925.0
@@ -1128,7 +1128,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 62
 
-[node name="TorporButton63" type="TextureButton" parent="Control"]
+[node name="TorporButton63" type="TextureButton" parent="Control" unique_id=1913933867]
 layout_mode = 0
 offset_left = 475.0
 offset_top = 925.0
@@ -1141,7 +1141,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 63
 
-[node name="TorporButton64" type="TextureButton" parent="Control"]
+[node name="TorporButton64" type="TextureButton" parent="Control" unique_id=2141211036]
 layout_mode = 0
 offset_left = 429.0
 offset_top = 925.0
@@ -1154,7 +1154,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 64
 
-[node name="TorporButton65" type="TextureButton" parent="Control"]
+[node name="TorporButton65" type="TextureButton" parent="Control" unique_id=1472703652]
 layout_mode = 0
 offset_left = 566.0
 offset_top = 975.0
@@ -1167,7 +1167,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 65
 
-[node name="TorporButton66" type="TextureButton" parent="Control"]
+[node name="TorporButton66" type="TextureButton" parent="Control" unique_id=1197843673]
 layout_mode = 0
 offset_left = 520.0
 offset_top = 975.0
@@ -1180,7 +1180,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 66
 
-[node name="TorporButton67" type="TextureButton" parent="Control"]
+[node name="TorporButton67" type="TextureButton" parent="Control" unique_id=1206267281]
 layout_mode = 0
 offset_left = 475.0
 offset_top = 975.0
@@ -1193,7 +1193,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 67
 
-[node name="TorporButton68" type="TextureButton" parent="Control"]
+[node name="TorporButton68" type="TextureButton" parent="Control" unique_id=1357773747]
 layout_mode = 0
 offset_left = 429.0
 offset_top = 975.0
@@ -1206,7 +1206,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 68
 
-[node name="hypoButton69" type="TextureButton" parent="Control"]
+[node name="hypoButton69" type="TextureButton" parent="Control" unique_id=1473133570]
 layout_mode = 0
 offset_left = 67.0
 offset_top = 1026.0
@@ -1219,7 +1219,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 69
 
-[node name="hypoButton70" type="TextureButton" parent="Control"]
+[node name="hypoButton70" type="TextureButton" parent="Control" unique_id=1195650109]
 layout_mode = 0
 offset_left = 173.0
 offset_top = 1026.0
@@ -1232,7 +1232,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 70
 
-[node name="hypoButton71" type="TextureButton" parent="Control"]
+[node name="hypoButton71" type="TextureButton" parent="Control" unique_id=1020167877]
 layout_mode = 0
 offset_left = 284.0
 offset_top = 1026.0
@@ -1245,7 +1245,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 71
 
-[node name="hypoButton72" type="TextureButton" parent="Control"]
+[node name="hypoButton72" type="TextureButton" parent="Control" unique_id=1968282796]
 layout_mode = 0
 offset_left = 392.0
 offset_top = 1026.0
@@ -1258,7 +1258,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 72
 
-[node name="hypoButton73" type="TextureButton" parent="Control"]
+[node name="hypoButton73" type="TextureButton" parent="Control" unique_id=457784229]
 layout_mode = 0
 offset_left = 500.0
 offset_top = 1026.0
@@ -1271,7 +1271,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 73
 
-[node name="hypoButton74" type="TextureButton" parent="Control"]
+[node name="hypoButton74" type="TextureButton" parent="Control" unique_id=1940350824]
 layout_mode = 0
 offset_left = 602.0
 offset_top = 1026.0
@@ -1284,7 +1284,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 74
 
-[node name="InventoryButton75" type="TextureButton" parent="Control"]
+[node name="InventoryButton75" type="TextureButton" parent="Control" unique_id=1538374118]
 layout_mode = 0
 offset_left = 1211.17
 offset_top = 757.83
@@ -1297,7 +1297,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 75
 
-[node name="InventoryButton76" type="TextureButton" parent="Control"]
+[node name="InventoryButton76" type="TextureButton" parent="Control" unique_id=958742951]
 layout_mode = 0
 offset_left = 1263.23
 offset_top = 757.83
@@ -1310,7 +1310,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 76
 
-[node name="InventoryButton77" type="TextureButton" parent="Control"]
+[node name="InventoryButton77" type="TextureButton" parent="Control" unique_id=2094304706]
 layout_mode = 0
 offset_left = 1315.35
 offset_top = 757.83
@@ -1323,7 +1323,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 77
 
-[node name="InventoryButton78" type="TextureButton" parent="Control"]
+[node name="InventoryButton78" type="TextureButton" parent="Control" unique_id=1123323309]
 layout_mode = 0
 offset_left = 1367.57
 offset_top = 757.83
@@ -1336,7 +1336,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 78
 
-[node name="InventoryButton79" type="TextureButton" parent="Control"]
+[node name="InventoryButton79" type="TextureButton" parent="Control" unique_id=986827394]
 layout_mode = 0
 offset_left = 1419.66
 offset_top = 757.83
@@ -1349,7 +1349,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 79
 
-[node name="InventoryButton80" type="TextureButton" parent="Control"]
+[node name="InventoryButton80" type="TextureButton" parent="Control" unique_id=1146099232]
 layout_mode = 0
 offset_left = 1471.78
 offset_top = 757.83
@@ -1362,7 +1362,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 80
 
-[node name="InventoryButton81" type="TextureButton" parent="Control"]
+[node name="InventoryButton81" type="TextureButton" parent="Control" unique_id=1689324664]
 layout_mode = 0
 offset_left = 1211.17
 offset_top = 810.04
@@ -1375,7 +1375,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 81
 
-[node name="InventoryButton82" type="TextureButton" parent="Control"]
+[node name="InventoryButton82" type="TextureButton" parent="Control" unique_id=385325501]
 layout_mode = 0
 offset_left = 1263.23
 offset_top = 810.04
@@ -1388,7 +1388,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 82
 
-[node name="InventoryButton83" type="TextureButton" parent="Control"]
+[node name="InventoryButton83" type="TextureButton" parent="Control" unique_id=729379219]
 layout_mode = 0
 offset_left = 1315.35
 offset_top = 810.04
@@ -1401,7 +1401,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 83
 
-[node name="InventoryButton84" type="TextureButton" parent="Control"]
+[node name="InventoryButton84" type="TextureButton" parent="Control" unique_id=918115845]
 layout_mode = 0
 offset_left = 1367.57
 offset_top = 810.04
@@ -1414,7 +1414,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 84
 
-[node name="InventoryButton85" type="TextureButton" parent="Control"]
+[node name="InventoryButton85" type="TextureButton" parent="Control" unique_id=437329454]
 layout_mode = 0
 offset_left = 1419.66
 offset_top = 810.04
@@ -1427,7 +1427,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 85
 
-[node name="InventoryButton86" type="TextureButton" parent="Control"]
+[node name="InventoryButton86" type="TextureButton" parent="Control" unique_id=164595347]
 layout_mode = 0
 offset_left = 1471.78
 offset_top = 810.04
@@ -1440,7 +1440,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 86
 
-[node name="InventoryButton87" type="TextureButton" parent="Control"]
+[node name="InventoryButton87" type="TextureButton" parent="Control" unique_id=473280220]
 layout_mode = 0
 offset_left = 1211.17
 offset_top = 861.83
@@ -1453,7 +1453,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 87
 
-[node name="InventoryButton88" type="TextureButton" parent="Control"]
+[node name="InventoryButton88" type="TextureButton" parent="Control" unique_id=944083699]
 layout_mode = 0
 offset_left = 1263.23
 offset_top = 861.83
@@ -1466,7 +1466,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 88
 
-[node name="InventoryButton89" type="TextureButton" parent="Control"]
+[node name="InventoryButton89" type="TextureButton" parent="Control" unique_id=1047515209]
 layout_mode = 0
 offset_left = 1315.35
 offset_top = 861.83
@@ -1479,7 +1479,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 89
 
-[node name="InventoryButton90" type="TextureButton" parent="Control"]
+[node name="InventoryButton90" type="TextureButton" parent="Control" unique_id=579551216]
 layout_mode = 0
 offset_left = 1367.57
 offset_top = 861.83
@@ -1492,7 +1492,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 90
 
-[node name="InventoryButton91" type="TextureButton" parent="Control"]
+[node name="InventoryButton91" type="TextureButton" parent="Control" unique_id=382017090]
 layout_mode = 0
 offset_left = 1419.66
 offset_top = 861.83
@@ -1505,7 +1505,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 91
 
-[node name="InventoryButton92" type="TextureButton" parent="Control"]
+[node name="InventoryButton92" type="TextureButton" parent="Control" unique_id=893358479]
 layout_mode = 0
 offset_left = 1471.78
 offset_top = 861.83
@@ -1518,7 +1518,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 92
 
-[node name="InventoryButton93" type="TextureButton" parent="Control"]
+[node name="InventoryButton93" type="TextureButton" parent="Control" unique_id=694790180]
 layout_mode = 0
 offset_left = 1211.17
 offset_top = 914.04
@@ -1531,7 +1531,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 93
 
-[node name="InventoryButton94" type="TextureButton" parent="Control"]
+[node name="InventoryButton94" type="TextureButton" parent="Control" unique_id=2013707124]
 layout_mode = 0
 offset_left = 1263.23
 offset_top = 914.04
@@ -1544,7 +1544,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 94
 
-[node name="InventoryButton95" type="TextureButton" parent="Control"]
+[node name="InventoryButton95" type="TextureButton" parent="Control" unique_id=169215166]
 layout_mode = 0
 offset_left = 1315.35
 offset_top = 914.04
@@ -1557,7 +1557,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 95
 
-[node name="InventoryButton96" type="TextureButton" parent="Control"]
+[node name="InventoryButton96" type="TextureButton" parent="Control" unique_id=1287772892]
 layout_mode = 0
 offset_left = 1367.57
 offset_top = 914.04
@@ -1570,7 +1570,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 96
 
-[node name="InventoryButton97" type="TextureButton" parent="Control"]
+[node name="InventoryButton97" type="TextureButton" parent="Control" unique_id=153303593]
 layout_mode = 0
 offset_left = 1419.66
 offset_top = 914.04
@@ -1583,7 +1583,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 97
 
-[node name="InventoryButton98" type="TextureButton" parent="Control"]
+[node name="InventoryButton98" type="TextureButton" parent="Control" unique_id=1898742483]
 layout_mode = 0
 offset_left = 1471.78
 offset_top = 914.04
@@ -1596,7 +1596,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 98
 
-[node name="InventoryButton99" type="TextureButton" parent="Control"]
+[node name="InventoryButton99" type="TextureButton" parent="Control" unique_id=1272457783]
 layout_mode = 0
 offset_left = 1211.17
 offset_top = 966.37
@@ -1609,7 +1609,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 99
 
-[node name="InventoryButton100" type="TextureButton" parent="Control"]
+[node name="InventoryButton100" type="TextureButton" parent="Control" unique_id=187138465]
 layout_mode = 0
 offset_left = 1263.23
 offset_top = 966.37
@@ -1622,7 +1622,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 100
 
-[node name="InventoryButton101" type="TextureButton" parent="Control"]
+[node name="InventoryButton101" type="TextureButton" parent="Control" unique_id=51977189]
 layout_mode = 0
 offset_left = 1315.35
 offset_top = 966.37
@@ -1635,7 +1635,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 101
 
-[node name="InventoryButton102" type="TextureButton" parent="Control"]
+[node name="InventoryButton102" type="TextureButton" parent="Control" unique_id=2147460006]
 layout_mode = 0
 offset_left = 1367.57
 offset_top = 966.37
@@ -1648,7 +1648,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 102
 
-[node name="InventoryButton103" type="TextureButton" parent="Control"]
+[node name="InventoryButton103" type="TextureButton" parent="Control" unique_id=1632202299]
 layout_mode = 0
 offset_left = 1419.66
 offset_top = 966.37
@@ -1661,7 +1661,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 103
 
-[node name="InventoryButton104" type="TextureButton" parent="Control"]
+[node name="InventoryButton104" type="TextureButton" parent="Control" unique_id=1135670020]
 layout_mode = 0
 offset_left = 1471.78
 offset_top = 966.37
@@ -1674,7 +1674,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 104
 
-[node name="InventoryButton105" type="TextureButton" parent="Control"]
+[node name="InventoryButton105" type="TextureButton" parent="Control" unique_id=653692630]
 layout_mode = 0
 offset_left = 1211.17
 offset_top = 1018.61
@@ -1687,7 +1687,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 105
 
-[node name="InventoryButton106" type="TextureButton" parent="Control"]
+[node name="InventoryButton106" type="TextureButton" parent="Control" unique_id=686452150]
 layout_mode = 0
 offset_left = 1263.23
 offset_top = 1018.61
@@ -1700,7 +1700,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 106
 
-[node name="InventoryButton107" type="TextureButton" parent="Control"]
+[node name="InventoryButton107" type="TextureButton" parent="Control" unique_id=2054993177]
 layout_mode = 0
 offset_left = 1315.35
 offset_top = 1018.61
@@ -1713,7 +1713,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 107
 
-[node name="InventoryButton108" type="TextureButton" parent="Control"]
+[node name="InventoryButton108" type="TextureButton" parent="Control" unique_id=295443192]
 layout_mode = 0
 offset_left = 1367.57
 offset_top = 1018.61
@@ -1726,7 +1726,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 108
 
-[node name="InventoryButton109" type="TextureButton" parent="Control"]
+[node name="InventoryButton109" type="TextureButton" parent="Control" unique_id=1076899405]
 layout_mode = 0
 offset_left = 1419.66
 offset_top = 1018.61
@@ -1739,7 +1739,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 109
 
-[node name="InventoryButton110" type="TextureButton" parent="Control"]
+[node name="InventoryButton110" type="TextureButton" parent="Control" unique_id=1138343505]
 layout_mode = 0
 offset_left = 1471.78
 offset_top = 1018.61
@@ -1752,18 +1752,18 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 110
 
-[node name="Appearancebutton" type="Button" parent="Control"]
+[node name="Appearancebutton" type="Button" parent="Control" unique_id=1920719829]
 layout_mode = 0
 offset_left = 892.0
 offset_top = 796.0
 offset_right = 1205.0
 offset_bottom = 1071.0
-theme_override_styles/hover = ExtResource("14_8cyuk")
-theme_override_styles/pressed = ExtResource("14_8cyuk")
 theme_override_styles/normal = ExtResource("14_8cyuk")
+theme_override_styles/pressed = ExtResource("14_8cyuk")
+theme_override_styles/hover = ExtResource("14_8cyuk")
 script = ExtResource("21_u3h14")
 
-[node name="TextureRect" type="TextureRect" parent="Control/Appearancebutton"]
+[node name="TextureRect" type="TextureRect" parent="Control/Appearancebutton" unique_id=604299948]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 24.0
@@ -1772,11 +1772,11 @@ offset_bottom = 269.0
 expand_mode = 2
 stretch_mode = 5
 
-[node name="FileDialog" type="FileDialog" parent="Control"]
+[node name="FileDialog" type="FileDialog" parent="Control" unique_id=1791750834]
 
-[node name="DiceRoller" parent="." instance=ExtResource("22_hwnst")]
+[node name="DiceRoller" parent="." unique_id=1452560944 instance=ExtResource("22_hwnst")]
 
-[node name="Genotypedisplayer" parent="." instance=ExtResource("25_a0p86")]
+[node name="Genotypedisplayer" parent="." unique_id=1922566142 instance=ExtResource("25_a0p86")]
 offset_left = -420.0
 offset_right = -20.0
 offset_bottom = 1080.0

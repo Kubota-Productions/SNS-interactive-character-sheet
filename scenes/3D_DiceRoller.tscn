@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmyf7lq7gwdva"]
+[gd_scene format=3 uid="uid://cmyf7lq7gwdva"]
 
 [ext_resource type="Script" uid="uid://b4uivwpaqgeb6" path="res://code/dice_roller.gd" id="1_x06xs"]
 [ext_resource type="PackedScene" uid="uid://dey1qfrvi3oxw" path="res://assets/dice/dicerigidbodyscene/d2rigid.tscn" id="2_hwxkx"]
@@ -13,7 +13,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxkh2"]
 size = Vector3(82.4297, 1, 56.8643)
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=44342768]
 light_mask = 17
 layout_mode = 3
 anchors_preset = 15
@@ -24,7 +24,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="DiceRoller" type="Node3D" parent="."]
+[node name="DiceRoller" type="Node3D" parent="." unique_id=187181784]
 script = ExtResource("1_x06xs")
 d2_scene = ExtResource("2_hwxkx")
 d4_scene = ExtResource("3_oxkh2")
@@ -34,20 +34,20 @@ d10_scene = ExtResource("6_6xrbl")
 d12_scene = ExtResource("7_qcfb6")
 d20_scene = ExtResource("8_g74v5")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="DiceRoller"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DiceRoller" unique_id=338104588]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DiceRoller/StaticBody3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DiceRoller/StaticBody3D" unique_id=91611872]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceRoller/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DiceRoller/StaticBody3D" unique_id=450116577]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_oxkh2")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="DiceRoller/StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DiceRoller/StaticBody3D" unique_id=1085008981]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.5, -10.4325)
 shape = SubResource("BoxShape3D_oxkh2")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="DiceRoller"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="DiceRoller" unique_id=485898701]
 light_mask = 0
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,34 +56,35 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SubViewport" type="SubViewport" parent="DiceRoller/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="DiceRoller/SubViewportContainer" unique_id=573485441]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="DiceRoller/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="DiceRoller/SubViewportContainer/SubViewport" unique_id=30204789]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 14.63, 0)
 cull_mask = 1048559
 
-[node name="SpawnPoint" type="Node3D" parent="DiceRoller/SubViewportContainer"]
+[node name="SpawnPoint" type="Node3D" parent="DiceRoller/SubViewportContainer" unique_id=1329233524]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.64458, 9.43824)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceRoller/SubViewportContainer/SpawnPoint"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceRoller/SubViewportContainer/SpawnPoint" unique_id=1561717130]
 
-[node name="DiceContainer" type="Node3D" parent="DiceRoller/SubViewportContainer"]
+[node name="DiceContainer" type="Node3D" parent="DiceRoller/SubViewportContainer" unique_id=1538629366]
 transform = Transform3D(1.43165, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Window" type="Window" parent="DiceRoller"]
+[node name="Window" type="Window" parent="DiceRoller" unique_id=2101699859]
 canvas_cull_mask = 4294967279
+oversampling_override = 1.0
 mode = 3
-position = Vector2i(1805, 259)
+position = Vector2i(959, 259)
 size = Vector2i(100, 275)
 unresizable = true
 theme = ExtResource("9_42xte")
 
-[node name="MarginContainer" type="MarginContainer" parent="DiceRoller/Window"]
+[node name="MarginContainer" type="MarginContainer" parent="DiceRoller/Window" unique_id=1108993574]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -97,7 +98,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_42xte")
 
-[node name="Background" type="Button" parent="DiceRoller/Window/MarginContainer"]
+[node name="Background" type="Button" parent="DiceRoller/Window/MarginContainer" unique_id=641794770]
 layout_mode = 2
 text = "
  Roll A Dice  
@@ -113,7 +114,7 @@ text = "
 
 "
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DiceRoller/Window"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DiceRoller/Window" unique_id=427620836]
 offset_top = -1.0
 offset_right = 100.0
 offset_bottom = 267.0
@@ -121,36 +122,36 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_42xte")
 
-[node name="Label" type="Label" parent="DiceRoller/Window/VBoxContainer"]
+[node name="Label" type="Label" parent="DiceRoller/Window/VBoxContainer" unique_id=166652981]
 layout_mode = 2
 
-[node name="D2Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+[node name="D2Button" type="Button" parent="DiceRoller/Window/VBoxContainer" unique_id=1907092797]
 layout_mode = 2
 text = "D2"
 
-[node name="D4Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+[node name="D4Button" type="Button" parent="DiceRoller/Window/VBoxContainer" unique_id=673526629]
 layout_mode = 2
 text = "D4
 "
 
-[node name="D6Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+[node name="D6Button" type="Button" parent="DiceRoller/Window/VBoxContainer" unique_id=1725183938]
 layout_mode = 2
 text = "D6
 "
 
-[node name="D8Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+[node name="D8Button" type="Button" parent="DiceRoller/Window/VBoxContainer" unique_id=1790018514]
 layout_mode = 2
 text = "D8"
 
-[node name="D10Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+[node name="D10Button" type="Button" parent="DiceRoller/Window/VBoxContainer" unique_id=1138540249]
 layout_mode = 2
 text = "D10"
 
-[node name="D12Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+[node name="D12Button" type="Button" parent="DiceRoller/Window/VBoxContainer" unique_id=339622719]
 layout_mode = 2
 text = "D12"
 
-[node name="D20Button" type="Button" parent="DiceRoller/Window/VBoxContainer"]
+[node name="D20Button" type="Button" parent="DiceRoller/Window/VBoxContainer" unique_id=1844412061]
 layout_mode = 2
 text = "D20"
 

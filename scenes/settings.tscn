@@ -30,89 +30,85 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="background" type="Button" parent="MarginContainer2" unique_id=493719757]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2" unique_id=751304488]
 layout_mode = 2
-mouse_force_pass_scroll_events = false
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1986498768]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -57.0
-offset_top = -119.0
-offset_right = 57.0
-offset_bottom = 119.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1269326099]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/MarginContainer2" unique_id=1986498768]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1789919591]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer2/MarginContainer" unique_id=1269326099]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1789919591]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Exit_Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=287424861]
+[node name="Exit_Label" type="Label" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=287424861]
 layout_mode = 2
 text = "Exit"
 
-[node name="Exit_button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1056167821]
+[node name="Exit_button" type="Button" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1056167821]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Exit"
 
-[node name="Volume_Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1566070033]
+[node name="Volume_Label" type="Label" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1566070033]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Volume"
 
-[node name="volume" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=152031021]
+[node name="volume" type="HSlider" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=152031021]
 layout_mode = 2
 
-[node name="UIvolume" type="Label" parent="MarginContainer/VBoxContainer" unique_id=45029768]
+[node name="UIvolume" type="Label" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=45029768]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "UI Volume"
 
-[node name="UIVolume" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=2117318817]
+[node name="UIVolume" type="HSlider" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=2117318817]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Mute_Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=166093486]
+[node name="Mute_Label" type="Label" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=166093486]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Mute toggle"
 
-[node name="Mute" type="CheckBox" parent="MarginContainer/VBoxContainer" unique_id=1420594902]
+[node name="Mute" type="CheckBox" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1420594902]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Fullscreen_Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=723527626]
+[node name="Fullscreen_Label" type="Label" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=723527626]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Fullscreen toggle"
 
-[node name="Fullscreen" type="CheckBox" parent="MarginContainer/VBoxContainer" unique_id=249641326]
+[node name="Fullscreen" type="CheckBox" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=249641326]
 layout_mode = 2
 size_flags_horizontal = 0
 button_pressed = true
 
-[node name="Resolution_Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=131139309]
+[node name="Resolution_Label" type="Label" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=131139309]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Resolution"
 
-[node name="Resolutions" type="OptionButton" parent="MarginContainer/VBoxContainer" unique_id=1007481936]
+[node name="Resolutions" type="OptionButton" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1007481936]
 layout_mode = 2
 item_count = 11
 popup/item_0/text = "2560x1440"
@@ -138,13 +134,13 @@ popup/item_9/id = 9
 popup/item_10/text = "640x480"
 popup/item_10/id = 10
 
-[node name="Graphics_Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1171050953]
+[node name="Graphics_Label" type="Label" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1171050953]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Graphics"
 
-[node name="Graphics" type="OptionButton" parent="MarginContainer/VBoxContainer" unique_id=364847283]
+[node name="Graphics" type="OptionButton" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=364847283]
 layout_mode = 2
 item_count = 3
 popup/item_0/text = "High"
@@ -154,20 +150,28 @@ popup/item_1/id = 1
 popup/item_2/text = "Low"
 popup/item_2/id = 2
 
-[node name="Empty_Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1676301210]
+[node name="Empty_Label" type="Label" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1676301210]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 
-[node name="Back_to_menu_button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1175860686]
+[node name="Back_to_menu_button" type="Button" parent="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1175860686]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Back to menu"
 
+[node name="background" type="Button" parent="MarginContainer2" unique_id=493719757]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+button_mask = 0
+
+[connection signal="pressed" from="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/HBoxContainer/Exit_button" to="." method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="toggled" from="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="item_selected" from="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
+[connection signal="item_selected" from="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/Graphics" to="." method="_on_graphics_item_selected"]
+[connection signal="pressed" from="MarginContainer2/MarginContainer2/MarginContainer/VBoxContainer/Back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/background" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Exit_button" to="." method="_on_exit_button_pressed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/Graphics" to="." method="_on_graphics_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Back_to_menu_button" to="." method="_on_back_to_menu_button_pressed"]
