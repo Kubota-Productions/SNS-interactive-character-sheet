@@ -3,12 +3,14 @@ extends Node2D
 var settings_instance: Node = null
 # Enter Tree -> loads the save data BEFORE the rest of the elements seek the Global Data array.
 func _enter_tree() -> void:
-	print("LOADING SAVE DATA to -> GlobalFunctions.data");
-	GlobalFunctions._update_data(); #Load data to global array to be used by the components
+	# The menu normally loads/creates the sheet before switching here.
+	# This fallback lets you run the scene on its own with F6.
+	if GlobalFunctions.character == null:
+		GlobalFunctions.new_character()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		GlobalFunctions._update_data()
+		GlobalFunctions.flush()
 		
 		var game_root = get_tree().root  # Adjust if you want it under a specific node
 		

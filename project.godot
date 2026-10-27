@@ -37,6 +37,7 @@ mouse_cursor/custom_image_hotspot=Vector2(13, 4)
 [file_customization]
 
 folder_colors={
+"res://Resources/": "orange",
 "res://assets/audiofiles/": "red",
 "res://assets/fonts/": "orange",
 "res://assets/imagefiles/": "yellow",

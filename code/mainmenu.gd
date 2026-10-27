@@ -26,92 +26,36 @@ func _enter_tree() -> void:
 
 #region character sheet
 func _on_load_a_sheet_pressed() -> void:
-	if selected_save_file != "":
+	if selected_save_file != "" and GlobalFunctions.load_character(selected_save_file):
 		get_parent()._switch_to(preload("res://scenes/player_character_creator_scene.tscn"))
 	else:
 		warning_dialog_character.popup_centered()
 
 func _on_add_a_sheet_pressed() -> void:
-	await GlobalFunctions.new_player()
+	GlobalFunctions.new_character()
 	get_parent()._switch_to(preload("res://scenes/player_character_creator_scene.tscn"))
 
 func _on_delete_a_sheet_pressed() -> void:
 	if selected_save_file != "":
-		delete_save_file(selected_save_file)
-		selected_save_file = ""  # reset selection
+		GlobalFunctions.delete_character(selected_save_file)
+		selected_save_file = ""
+		list_save_files()
 	else:
 		print("No file selected to delete.")
 
-
 func list_save_files() -> void:
-	# Clear existing buttons
-	for child in $ScrollContainerplayer/HBoxContainer.get_children():
+	var container: Node = $ScrollContainerplayer/HBoxContainer
+	for child in container.get_children():
 		child.queue_free()
-
-	var save_files: Array = []
-	var dir = DirAccess.open("user://")
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name != "." and file_name != ".." and !dir.current_is_dir() and file_name.rfind("0savedata.json") > 0:
-				save_files.append(file_name)
-				print("Found file:", file_name)
-			file_name = dir.get_next()
-		dir.list_dir_end()
-	else:
-		print("Failed to open user folder.")
-
-	show_save_files(save_files)
-
-
-func show_save_files(save_files: Array) -> void:
-	for save_file in save_files:
-		var button = Button.new()
-		button.text = save_file.replace("user://","").replace("0savedata.json","")
-		$ScrollContainerplayer/HBoxContainer.add_child(button)
-
-		# Connect to select this file when pressed
-		button.pressed.connect(func():
-			selected_save_file = save_file
-			GlobalFunctions.set_player_name(selected_save_file.replace("user://","").replace("0savedata.json","")))
-		print("Selected file:", selected_save_file)
-	
-	
-	
-func delete_save_file(file_name: String) -> void:
-	var dir = DirAccess.open("user://")
-	if dir:
-		var file_path = "user://" + file_name
-		if dir.file_exists(file_path):
-			var error = dir.remove(file_path)
-			if error == OK:
-				print("Deleted file:", file_name)
-				# Refresh the buttons after deletion
-				list_save_files()
-			else:
-				print("Failed to delete file:", file_name, "Error code:", error)
-		else:
-			print("File does not exist:", file_name)
-		var file_path_png = str(file_path.replace("user://","").replace("0savedata.json","")+"_appearance.png")
-		if dir.file_exists(file_path_png):
-			var error = dir.remove(file_path_png)
-			if error == OK:
-				print("Deleted file:", file_name)
-				# Refresh the buttons after deletion
-				list_save_files()
-			else:
-				print("Failed to delete file:", file_name, "Error code:", error)
-		else:
-			print("File does not exist:", file_name)
-	else:
-		print("Failed to open user folder.")
-
+	for character_name in GlobalFunctions.list_characters():
+		var button := Button.new()
+		button.text = character_name
+		button.pressed.connect(func(): selected_save_file = character_name)
+		container.add_child(button)
 #endregion
 
 
 #region promotional links
-
 func _on_website_pressed() -> void:
 	OS.shell_open("https://synesthesiasynthetica.com/")
 
@@ -143,93 +87,34 @@ func _notification(what: int) -> void:
 #endregion
 
 #region storyteller screen
-
-	
-
-
 func _on_load_a_stscreen_pressed() -> void:
-	if st_selected_save_file != "":
+	if st_selected_save_file != "" and GlobalFunctions.load_storyteller(st_selected_save_file):
 		get_parent()._switch_to(preload("res://scenes/Storyteller_scene.tscn"))
 	else:
-		warning_dialog_character.popup_centered()
+		warning_dialog_storyteller.popup_centered()
 
 func _on_add_a_stscreen_pressed() -> void:
-	await GlobalFunctions.new_st()
+	GlobalFunctions.new_storyteller()
 	get_parent()._switch_to(preload("res://scenes/Storyteller_scene.tscn"))
 
 func _on_delete_a_stscreen_pressed() -> void:
 	if st_selected_save_file != "":
-		st_delete_save_file(st_selected_save_file)
-		st_selected_save_file = ""  # reset selection
+		GlobalFunctions.delete_storyteller(st_selected_save_file)
+		st_selected_save_file = ""
+		st_list_save_files()
 	else:
 		print("No file selected to delete.")
 
-
 func st_list_save_files() -> void:
-	# Clear existing buttons
-	for child in $ScrollContainerstoryteller/HBoxContainer.get_children():
+	var container: Node = $ScrollContainerstoryteller/HBoxContainer
+	for child in container.get_children():
 		child.queue_free()
-
-	var save_files: Array = []
-	var dir = DirAccess.open("user://")
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name != "." and file_name != ".." and !dir.current_is_dir() and file_name.rfind("1savedata.json") > 0:
-				save_files.append(file_name)
-				print("Found file:", file_name)
-			file_name = dir.get_next()
-		dir.list_dir_end()
-	else:
-		print("Failed to open user folder.")
-
-	st_show_save_files(save_files)
-
-
-func st_show_save_files(save_files: Array) -> void:
-	for save_file in save_files:
-		var button = Button.new()
-		button.text = save_file.replace("user://","").replace("1savedata.json","")
-		$ScrollContainerstoryteller/HBoxContainer.add_child(button)
-
-		# Connect to select this file when pressed
-		button.pressed.connect(func():
-			st_selected_save_file = save_file
-			GlobalFunctions.set_st_name(st_selected_save_file.replace("user://","").replace("1savedata.json","")))
-		print("Selected file:", st_selected_save_file)
-	
-	
-	
-func st_delete_save_file(file_name: String) -> void:
-	var dir = DirAccess.open("user://")
-	if dir:
-		var file_path = "user://" + file_name
-		if dir.file_exists(file_path):
-			var error = dir.remove(file_path)
-			if error == OK:
-				print("Deleted file:", file_name)
-				# Refresh the buttons after deletion
-				st_list_save_files()
-			else:
-				print("Failed to delete file:", file_name, "Error code:", error)
-		else:
-			print("File does not exist:", file_name)
-		var file_path_png = str(file_path.replace("user://","").replace("1savedata.json","")+"_appearance.png")
-		if dir.file_exists(file_path_png):
-			var error = dir.remove(file_path_png)
-			if error == OK:
-				print("Deleted file:", file_name)
-				# Refresh the buttons after deletion
-				list_save_files()
-			else:
-				print("Failed to delete file:", file_name, "Error code:", error)
-		else:
-			print("File does not exist:", file_name)
-	else:
-		print("Failed to open user folder.")
-
-#endregion 
+	for storyteller_name in GlobalFunctions.list_storytellers():
+		var button := Button.new()
+		button.text = storyteller_name
+		button.pressed.connect(func(): st_selected_save_file = storyteller_name)
+		container.add_child(button)
+#endregion
 
 #region auxilery 
 

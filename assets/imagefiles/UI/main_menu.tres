@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://c3a1j7188kbm2"]
+[gd_resource type="Theme" format=3 uid="uid://c3a1j7188kbm2"]
 
 [ext_resource type="FontFile" uid="uid://3mht3tgsp6hk" path="res://assets/fonts/MuseoModerno-SemiBold.ttf" id="1_xg4vi"]
 [ext_resource type="StyleBox" uid="uid://l1h4o4n5e1ns" path="res://assets/imagefiles/UI/new_style_box_flat.tres" id="2_pwqrk"]
