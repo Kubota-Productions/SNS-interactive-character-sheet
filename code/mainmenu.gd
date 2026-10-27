@@ -40,16 +40,40 @@ func _on_delete_a_sheet_pressed() -> void:
 		print("No file selected to delete.")
 
 func list_save_files() -> void:
-	var container: Node = $ScrollContainerplayer/HBoxContainer
-	for child in container.get_children():
-		child.queue_free()
-	for character_name in GlobalFunctions.list_characters():
-		var button := Button.new()
-		button.text = character_name
-		button.pressed.connect(func(): selected_save_file = character_name)
-		container.add_child(button)
+	selected_save_file = _fill_list(
+		$ScrollContainerplayer/HBoxContainer,
+		GlobalFunctions.list_characters(),
+		selected_save_file,
+		func(save_name: String): selected_save_file = save_name
+	)
+
 #endregion
 
+func _fill_list(container: Node, names: PackedStringArray, selected: String, on_select: Callable) -> String:
+	for child in container.get_children():
+		child.queue_free()
+
+	var group := ButtonGroup.new()  # one group per list, so characters and storytellers don't interfere
+	var selection_found := false
+
+	for save_name in names:
+		var button := Button.new()
+		button.text = save_name
+		button.toggle_mode = true
+		button.button_group = group
+		button.toggled.connect(func(toggled_on: bool):
+			if toggled_on:
+				on_select.call(save_name)
+		)
+		container.add_child(button)
+
+		# The list is rebuilt whenever the window regains focus, so re-highlight the current pick.
+		# The no_signal version avoids firing `toggled` for something that isn't a new click.
+		if save_name == selected:
+			button.set_pressed_no_signal(true)
+			selection_found = true
+
+	return selected if selection_found else ""
 
 #region promotional links
 func _on_website_pressed() -> void:
@@ -102,14 +126,12 @@ func _on_delete_a_stscreen_pressed() -> void:
 		print("No file selected to delete.")
 
 func st_list_save_files() -> void:
-	var container: Node = $ScrollContainerstoryteller/HBoxContainer
-	for child in container.get_children():
-		child.queue_free()
-	for storyteller_name in GlobalFunctions.list_storytellers():
-		var button := Button.new()
-		button.text = storyteller_name
-		button.pressed.connect(func(): st_selected_save_file = storyteller_name)
-		container.add_child(button)
+	st_selected_save_file = _fill_list(
+		$ScrollContainerstoryteller/HBoxContainer,
+		GlobalFunctions.list_storytellers(),
+		st_selected_save_file,
+		func(save_name: String): st_selected_save_file = save_name
+	)
 #endregion
 
 #region auxilery 

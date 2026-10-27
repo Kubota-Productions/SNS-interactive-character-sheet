@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://dianaweeeexk7" path="res://assets/imagefiles/SNSa4cover.png" id="2_ekxnf"]
 [ext_resource type="Shader" uid="uid://2qcjhmiysyba" path="res://assets/imagefiles/UI/wobblygrid.gdshader" id="3_wu84c"]
 [ext_resource type="Script" uid="uid://b203m6ynquqgb" path="res://assets/imagefiles/UI/mousefollowmenuui.gd" id="4_8ln24"]
-[ext_resource type="Texture2D" uid="uid://cwju1gvehi6p" path="res://assets/imagefiles/keyboardnmouse.png" id="6_rtw2f"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wu84c"]
 
@@ -199,14 +198,16 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1913.0
-offset_top = -98.0
-offset_right = -1599.0
-offset_bottom = 16.0
+offset_left = -1914.0
+offset_top = -75.0
+offset_right = -1600.0
+offset_bottom = 39.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Concepted by Kubota productions
-Code by Matt
+theme_override_font_sizes/normal_font_size = 10
+text = "Credits
+Concepted by Kubota productions
+Code by Jade
 Bugfixing by IngoPlane
 Consulting by ScaleShift"
 
@@ -245,11 +246,6 @@ offset_bottom = 1031.0
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-
-[node name="Keyboardnmouse" type="Sprite2D" parent="." unique_id=1076087698]
-position = Vector2(993, 995)
-scale = Vector2(0.04, 0.04)
-texture = ExtResource("6_rtw2f")
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
