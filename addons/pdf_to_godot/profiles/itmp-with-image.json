@@ -1,0 +1,509 @@
+{
+  "fields": {
+    "Leverage153": {
+      "kind": "checkbox"
+    },
+    "Leverage154": {
+      "kind": "checkbox"
+    },
+    "Leverage155": {
+      "kind": "checkbox"
+    },
+    "Leverage173": {
+      "kind": "checkbox"
+    },
+    "Leverage174": {
+      "kind": "checkbox"
+    },
+    "Leverage175": {
+      "kind": "checkbox"
+    },
+    "Leverage162": {
+      "kind": "checkbox"
+    },
+    "Leverage163": {
+      "kind": "checkbox"
+    },
+    "Leverage164": {
+      "kind": "checkbox"
+    },
+    "Leverage165": {
+      "kind": "checkbox"
+    },
+    "Leverage166": {
+      "kind": "checkbox"
+    },
+    "Leverage167": {
+      "kind": "checkbox"
+    },
+    "Leverage168": {
+      "kind": "checkbox"
+    },
+    "Leverage169": {
+      "kind": "checkbox"
+    },
+    "Leverage170": {
+      "kind": "checkbox"
+    },
+    "Leverage176": {
+      "kind": "checkbox"
+    },
+    "Leverage177": {
+      "kind": "checkbox"
+    },
+    "Leverage171": {
+      "kind": "checkbox"
+    },
+    "Leverage172": {
+      "kind": "checkbox"
+    },
+    "Leverage178": {
+      "kind": "checkbox"
+    },
+    "Leverage179": {
+      "kind": "checkbox"
+    },
+    "Leverage180": {
+      "kind": "checkbox"
+    },
+    "Leverage181": {
+      "kind": "checkbox"
+    },
+    "Leverage268": {
+      "kind": "checkbox"
+    },
+    "Leverage269": {
+      "kind": "checkbox"
+    },
+    "Leverage270": {
+      "kind": "checkbox"
+    },
+    "Leverage271": {
+      "kind": "checkbox"
+    },
+    "Leverage272": {
+      "kind": "checkbox"
+    },
+    "Leverage273": {
+      "kind": "checkbox"
+    },
+    "Leverage274": {
+      "kind": "checkbox"
+    },
+    "Leverage275": {
+      "kind": "checkbox"
+    },
+    "Leverage276": {
+      "kind": "checkbox"
+    },
+    "Leverage277": {
+      "kind": "checkbox"
+    },
+    "Leverage278": {
+      "kind": "checkbox"
+    },
+    "Leverage279": {
+      "kind": "checkbox"
+    },
+    "Leverage280": {
+      "kind": "checkbox"
+    },
+    "Leverage281": {
+      "kind": "checkbox"
+    },
+    "Leverage282": {
+      "kind": "checkbox"
+    },
+    "Leverage283": {
+      "kind": "checkbox"
+    },
+    "Leverage284": {
+      "kind": "checkbox"
+    },
+    "Leverage285": {
+      "kind": "checkbox"
+    },
+    "Leverage2020": {
+      "kind": "checkbox"
+    },
+    "Leverage2021": {
+      "kind": "checkbox"
+    },
+    "Leverage2022": {
+      "kind": "checkbox"
+    },
+    "Leverage2023": {
+      "kind": "checkbox"
+    },
+    "Leverage2024": {
+      "kind": "checkbox"
+    },
+    "Leverage2025": {
+      "kind": "checkbox"
+    },
+    "Leverage2026": {
+      "kind": "checkbox"
+    },
+    "Leverage2027": {
+      "kind": "checkbox"
+    },
+    "Leverage2028": {
+      "kind": "checkbox"
+    },
+    "Leverage2029": {
+      "kind": "checkbox"
+    },
+    "Leverage286": {
+      "kind": "checkbox"
+    },
+    "Leverage287": {
+      "kind": "checkbox"
+    },
+    "Leverage288": {
+      "kind": "checkbox"
+    },
+    "Leverage289": {
+      "kind": "checkbox"
+    },
+    "Leverage290": {
+      "kind": "checkbox"
+    },
+    "Leverage291": {
+      "kind": "checkbox"
+    },
+    "Leverage292": {
+      "kind": "checkbox"
+    },
+    "Leverage293": {
+      "kind": "checkbox"
+    },
+    "Leverage294": {
+      "kind": "checkbox"
+    },
+    "Leverage295": {
+      "kind": "checkbox"
+    },
+    "Leverage296": {
+      "kind": "checkbox"
+    },
+    "Leverage297": {
+      "kind": "checkbox"
+    },
+    "Leverage298": {
+      "kind": "checkbox"
+    },
+    "Leverage299": {
+      "kind": "checkbox"
+    },
+    "Leverage300": {
+      "kind": "checkbox"
+    },
+    "Leverage301": {
+      "kind": "checkbox"
+    },
+    "Leverage302": {
+      "kind": "checkbox"
+    },
+    "Leverage303": {
+      "kind": "checkbox"
+    },
+    "Leverage304": {
+      "kind": "checkbox"
+    },
+    "Leverage305": {
+      "kind": "checkbox"
+    },
+    "Buttonunder2.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder3.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder4.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder5.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder6.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder7.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder8.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder9.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder10.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder11.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder12.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder13.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder15.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder16.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder17.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder18.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder19.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder20.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder21.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder22.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder23.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder24.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder25.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder26.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder27.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder28.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder29.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder31.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder32.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder33.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder34.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder35.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder36.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder37.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder38.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder39.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder41.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder42.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder43.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder44.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder45.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder46.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder47.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder48.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder1.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder2.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder4.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder5.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder6.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder7.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder8.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder9.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder10.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder11.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder12.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder13.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder14.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder15.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder16.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder17.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder18.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder19.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder20.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder21.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder22.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder23.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder24.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder25.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder26.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder27.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder28.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder29.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder30.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder31.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder32.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder33.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder34.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder35.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder37.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder38.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder39.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder40.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder41.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder42.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder43.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder44.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder45.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder46.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder47.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder48.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder1.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder14.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder30.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder40.0.0": {
+      "kind": "checkbox"
+    },
+    "Buttonunder36.0.1": {
+      "kind": "checkbox"
+    },
+    "Buttonunder3.0.1": {
+      "kind": "checkbox"
+    },
+    "Image1_af_image": {
+      "kind": "image",
+      "tag": "character.appearance"
+    }
+  }
+}

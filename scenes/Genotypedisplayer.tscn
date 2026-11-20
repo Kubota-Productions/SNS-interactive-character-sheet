@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://s1vxqn38w167"]
 
 [ext_resource type="PackedScene" uid="uid://bchclg8ujw01t" path="res://assets/3Dcharacters/malesyllabub.glb" id="1_gukpc"]
-[ext_resource type="Script" uid="uid://cpyu5kslqfxim" path="res://scenes/genotypedisplayer.gd" id="1_x6005"]
+[ext_resource type="Script" uid="uid://cpyu5kslqfxim" path="res://code/genotypedisplayer.gd" id="1_x6005"]
 [ext_resource type="Texture2D" uid="uid://b6kpxv6nje44i" path="res://assets/imagefiles/UI/switch_left.png" id="2_ifu1j"]
 [ext_resource type="PackedScene" uid="uid://dwohfqly6kr63" path="res://assets/3Dcharacters/malesyllabubextras.glb" id="3_5yd31"]
 [ext_resource type="PackedScene" uid="uid://cwd4hiy2u0kr2" path="res://assets/3Dcharacters/femalesyllabub.glb" id="3_7q6yg"]

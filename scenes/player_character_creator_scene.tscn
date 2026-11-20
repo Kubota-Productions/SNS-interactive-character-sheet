@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://dsohun8d1epmx" path="res://assets/imagefiles/audiopausebuttonpressed.png" id="9_fv7pl"]
 [ext_resource type="Texture2D" uid="uid://dxj623lukgr34" path="res://assets/imagefiles/audioskipbutton.png" id="10_6edvf"]
 [ext_resource type="Texture2D" uid="uid://bn4vjajwfg856" path="res://assets/imagefiles/audioskipbuttonpressed.png" id="11_2wtvd"]
-[ext_resource type="Texture2D" uid="uid://beeiraejh3xy6" path="res://assets/imagefiles/page3.jpg" id="12_hdcbn"]
 [ext_resource type="FontFile" uid="uid://c5vb0i0l4vcxj" path="res://assets/fonts/MuseoModerno-Medium.ttf" id="13_or8ya"]
 [ext_resource type="StyleBox" uid="uid://c3aprgnpedo2g" path="res://assets/fonts/LineEditbackgroundcolour.tres" id="14_8cyuk"]
 [ext_resource type="Script" uid="uid://cdyitwb357sub" path="res://code/line_edit_scripts/line_editname.gd" id="15_amb5h"]
@@ -25,6 +24,7 @@
 [ext_resource type="Script" uid="uid://3jpwgrofsnql" path="res://code/add_image.gd" id="21_u3h14"]
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="22_hwnst"]
 [ext_resource type="PackedScene" uid="uid://s1vxqn38w167" path="res://scenes/Genotypedisplayer.tscn" id="25_a0p86"]
+[ext_resource type="Script" uid="uid://b1jtldfb82x0e" path="res://code/gamepdf.gd" id="26_jmwwa"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jmwwa"]
 
@@ -109,6 +109,21 @@ grow_vertical = 2
 focus_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="PDF" type="TextureRect" parent="Control" unique_id=3999613]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8588542
+anchor_right = 1.2723958
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+script = ExtResource("26_jmwwa")
+pdf_path = "uid://cjppxj2t41vam"
+metadata/_edit_use_anchors_ = true
+
 [node name="BoxContainer" type="BoxContainer" parent="Control" unique_id=141431171]
 layout_mode = 1
 anchors_preset = 4
@@ -168,11 +183,6 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/BoxContainer/VBoxContainer/Audioplayermenu" unique_id=793473789]
-
-[node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer" unique_id=1894865502]
-layout_mode = 2
-texture = ExtResource("12_hdcbn")
-expand_mode = 3
 
 [node name="Page2" type="Sprite2D" parent="Control/BoxContainer" unique_id=1688860601]
 position = Vector2(3039, 469)

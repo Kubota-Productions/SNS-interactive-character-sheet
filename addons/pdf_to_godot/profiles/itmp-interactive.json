@@ -1,0 +1,505 @@
+{
+  "fields": {
+    "Leverage153": {
+      "kind": "checkbox"
+    },
+    "Leverage154": {
+      "kind": "checkbox"
+    },
+    "Leverage155": {
+      "kind": "checkbox"
+    },
+    "Leverage173": {
+      "kind": "checkbox"
+    },
+    "Leverage174": {
+      "kind": "checkbox"
+    },
+    "Leverage175": {
+      "kind": "checkbox"
+    },
+    "Leverage162": {
+      "kind": "checkbox"
+    },
+    "Leverage163": {
+      "kind": "checkbox"
+    },
+    "Leverage164": {
+      "kind": "checkbox"
+    },
+    "Leverage165": {
+      "kind": "checkbox"
+    },
+    "Leverage166": {
+      "kind": "checkbox"
+    },
+    "Leverage167": {
+      "kind": "checkbox"
+    },
+    "Leverage168": {
+      "kind": "checkbox"
+    },
+    "Leverage169": {
+      "kind": "checkbox"
+    },
+    "Leverage170": {
+      "kind": "checkbox"
+    },
+    "Leverage176": {
+      "kind": "checkbox"
+    },
+    "Leverage177": {
+      "kind": "checkbox"
+    },
+    "Leverage171": {
+      "kind": "checkbox"
+    },
+    "Leverage172": {
+      "kind": "checkbox"
+    },
+    "Leverage178": {
+      "kind": "checkbox"
+    },
+    "Leverage179": {
+      "kind": "checkbox"
+    },
+    "Leverage180": {
+      "kind": "checkbox"
+    },
+    "Leverage181": {
+      "kind": "checkbox"
+    },
+    "Leverage182": {
+      "kind": "checkbox"
+    },
+    "Leverage183": {
+      "kind": "checkbox"
+    },
+    "Leverage184": {
+      "kind": "checkbox"
+    },
+    "Leverage185": {
+      "kind": "checkbox"
+    },
+    "Leverage186": {
+      "kind": "checkbox"
+    },
+    "Leverage187": {
+      "kind": "checkbox"
+    },
+    "Leverage188": {
+      "kind": "checkbox"
+    },
+    "Leverage189": {
+      "kind": "checkbox"
+    },
+    "Leverage190": {
+      "kind": "checkbox"
+    },
+    "Leverage191": {
+      "kind": "checkbox"
+    },
+    "Leverage192": {
+      "kind": "checkbox"
+    },
+    "Leverage193": {
+      "kind": "checkbox"
+    },
+    "Leverage194": {
+      "kind": "checkbox"
+    },
+    "Leverage195": {
+      "kind": "checkbox"
+    },
+    "Leverage196": {
+      "kind": "checkbox"
+    },
+    "Leverage197": {
+      "kind": "checkbox"
+    },
+    "Leverage198": {
+      "kind": "checkbox"
+    },
+    "Leverage199": {
+      "kind": "checkbox"
+    },
+    "Leverage200": {
+      "kind": "checkbox"
+    },
+    "Leverage201": {
+      "kind": "checkbox"
+    },
+    "Leverage202": {
+      "kind": "checkbox"
+    },
+    "Leverage203": {
+      "kind": "checkbox"
+    },
+    "Leverage204": {
+      "kind": "checkbox"
+    },
+    "Leverage205": {
+      "kind": "checkbox"
+    },
+    "Leverage206": {
+      "kind": "checkbox"
+    },
+    "Leverage207": {
+      "kind": "checkbox"
+    },
+    "Leverage208": {
+      "kind": "checkbox"
+    },
+    "Leverage209": {
+      "kind": "checkbox"
+    },
+    "Leverage210": {
+      "kind": "checkbox"
+    },
+    "Leverage211": {
+      "kind": "checkbox"
+    },
+    "Leverage212": {
+      "kind": "checkbox"
+    },
+    "Leverage213": {
+      "kind": "checkbox"
+    },
+    "Leverage214": {
+      "kind": "checkbox"
+    },
+    "Leverage215": {
+      "kind": "checkbox"
+    },
+    "Leverage216": {
+      "kind": "checkbox"
+    },
+    "Leverage217": {
+      "kind": "checkbox"
+    },
+    "Leverage218": {
+      "kind": "checkbox"
+    },
+    "Leverage219": {
+      "kind": "checkbox"
+    },
+    "Leverage220": {
+      "kind": "checkbox"
+    },
+    "Leverage221": {
+      "kind": "checkbox"
+    },
+    "Leverage222": {
+      "kind": "checkbox"
+    },
+    "Leverage223": {
+      "kind": "checkbox"
+    },
+    "Leverage224": {
+      "kind": "checkbox"
+    },
+    "Leverage225": {
+      "kind": "checkbox"
+    },
+    "Leverage226": {
+      "kind": "checkbox"
+    },
+    "Leverage227": {
+      "kind": "checkbox"
+    },
+    "Leverage228": {
+      "kind": "checkbox"
+    },
+    "Leverage229": {
+      "kind": "checkbox"
+    },
+    "Leverage230": {
+      "kind": "checkbox"
+    },
+    "Leverage231": {
+      "kind": "checkbox"
+    },
+    "Leverage232": {
+      "kind": "checkbox"
+    },
+    "Leverage233": {
+      "kind": "checkbox"
+    },
+    "Leverage234": {
+      "kind": "checkbox"
+    },
+    "Leverage235": {
+      "kind": "checkbox"
+    },
+    "Leverage236": {
+      "kind": "checkbox"
+    },
+    "Leverage237": {
+      "kind": "checkbox"
+    },
+    "Leverage238": {
+      "kind": "checkbox"
+    },
+    "Leverage239": {
+      "kind": "checkbox"
+    },
+    "Leverage240": {
+      "kind": "checkbox"
+    },
+    "Leverage241": {
+      "kind": "checkbox"
+    },
+    "Leverage242": {
+      "kind": "checkbox"
+    },
+    "Leverage243": {
+      "kind": "checkbox"
+    },
+    "Leverage244": {
+      "kind": "checkbox"
+    },
+    "Leverage245": {
+      "kind": "checkbox"
+    },
+    "Leverage246": {
+      "kind": "checkbox"
+    },
+    "Leverage247": {
+      "kind": "checkbox"
+    },
+    "Leverage2010": {
+      "kind": "checkbox"
+    },
+    "Leverage2011": {
+      "kind": "checkbox"
+    },
+    "Leverage2012": {
+      "kind": "checkbox"
+    },
+    "Leverage2013": {
+      "kind": "checkbox"
+    },
+    "Leverage2014": {
+      "kind": "checkbox"
+    },
+    "Leverage2015": {
+      "kind": "checkbox"
+    },
+    "Leverage2016": {
+      "kind": "checkbox"
+    },
+    "Leverage2017": {
+      "kind": "checkbox"
+    },
+    "Leverage2018": {
+      "kind": "checkbox"
+    },
+    "Leverage2019": {
+      "kind": "checkbox"
+    },
+    "Leverage248": {
+      "kind": "checkbox"
+    },
+    "Leverage249": {
+      "kind": "checkbox"
+    },
+    "Leverage250": {
+      "kind": "checkbox"
+    },
+    "Leverage251": {
+      "kind": "checkbox"
+    },
+    "Leverage252": {
+      "kind": "checkbox"
+    },
+    "Leverage253": {
+      "kind": "checkbox"
+    },
+    "Leverage254": {
+      "kind": "checkbox"
+    },
+    "Leverage255": {
+      "kind": "checkbox"
+    },
+    "Leverage256": {
+      "kind": "checkbox"
+    },
+    "Leverage257": {
+      "kind": "checkbox"
+    },
+    "Leverage258": {
+      "kind": "checkbox"
+    },
+    "Leverage259": {
+      "kind": "checkbox"
+    },
+    "Leverage260": {
+      "kind": "checkbox"
+    },
+    "Leverage261": {
+      "kind": "checkbox"
+    },
+    "Leverage262": {
+      "kind": "checkbox"
+    },
+    "Leverage263": {
+      "kind": "checkbox"
+    },
+    "Leverage264": {
+      "kind": "checkbox"
+    },
+    "Leverage265": {
+      "kind": "checkbox"
+    },
+    "Leverage266": {
+      "kind": "checkbox"
+    },
+    "Leverage267": {
+      "kind": "checkbox"
+    },
+    "Leverage268": {
+      "kind": "checkbox"
+    },
+    "Leverage269": {
+      "kind": "checkbox"
+    },
+    "Leverage270": {
+      "kind": "checkbox"
+    },
+    "Leverage271": {
+      "kind": "checkbox"
+    },
+    "Leverage272": {
+      "kind": "checkbox"
+    },
+    "Leverage273": {
+      "kind": "checkbox"
+    },
+    "Leverage274": {
+      "kind": "checkbox"
+    },
+    "Leverage275": {
+      "kind": "checkbox"
+    },
+    "Leverage276": {
+      "kind": "checkbox"
+    },
+    "Leverage277": {
+      "kind": "checkbox"
+    },
+    "Leverage278": {
+      "kind": "checkbox"
+    },
+    "Leverage279": {
+      "kind": "checkbox"
+    },
+    "Leverage280": {
+      "kind": "checkbox"
+    },
+    "Leverage281": {
+      "kind": "checkbox"
+    },
+    "Leverage282": {
+      "kind": "checkbox"
+    },
+    "Leverage283": {
+      "kind": "checkbox"
+    },
+    "Leverage284": {
+      "kind": "checkbox"
+    },
+    "Leverage285": {
+      "kind": "checkbox"
+    },
+    "Leverage2020": {
+      "kind": "checkbox"
+    },
+    "Leverage2021": {
+      "kind": "checkbox"
+    },
+    "Leverage2022": {
+      "kind": "checkbox"
+    },
+    "Leverage2023": {
+      "kind": "checkbox"
+    },
+    "Leverage2024": {
+      "kind": "checkbox"
+    },
+    "Leverage2025": {
+      "kind": "checkbox"
+    },
+    "Leverage2026": {
+      "kind": "checkbox"
+    },
+    "Leverage2027": {
+      "kind": "checkbox"
+    },
+    "Leverage2028": {
+      "kind": "checkbox"
+    },
+    "Leverage2029": {
+      "kind": "checkbox"
+    },
+    "Leverage286": {
+      "kind": "checkbox"
+    },
+    "Leverage287": {
+      "kind": "checkbox"
+    },
+    "Leverage288": {
+      "kind": "checkbox"
+    },
+    "Leverage289": {
+      "kind": "checkbox"
+    },
+    "Leverage290": {
+      "kind": "checkbox"
+    },
+    "Leverage291": {
+      "kind": "checkbox"
+    },
+    "Leverage292": {
+      "kind": "checkbox"
+    },
+    "Leverage293": {
+      "kind": "checkbox"
+    },
+    "Leverage294": {
+      "kind": "checkbox"
+    },
+    "Leverage295": {
+      "kind": "checkbox"
+    },
+    "Leverage296": {
+      "kind": "checkbox"
+    },
+    "Leverage297": {
+      "kind": "checkbox"
+    },
+    "Leverage298": {
+      "kind": "checkbox"
+    },
+    "Leverage299": {
+      "kind": "checkbox"
+    },
+    "Leverage300": {
+      "kind": "checkbox"
+    },
+    "Leverage301": {
+      "kind": "checkbox"
+    },
+    "Leverage302": {
+      "kind": "checkbox"
+    },
+    "Leverage303": {
+      "kind": "checkbox"
+    },
+    "Leverage304": {
+      "kind": "checkbox"
+    },
+    "Leverage305": {
+      "kind": "checkbox"
+    }
+  }
+}

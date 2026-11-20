@@ -39,6 +39,10 @@ window/stretch/mode="viewport"
 mouse_cursor/custom_image="uid://dhj210o663nqh"
 mouse_cursor/custom_image_hotspot=Vector2(13, 4)
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godotsteam/plugin.cfg", "res://addons/pdf_to_godot/plugin.cfg", "res://addons/pdfium-gde/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

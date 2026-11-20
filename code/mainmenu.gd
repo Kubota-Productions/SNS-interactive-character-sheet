@@ -155,3 +155,249 @@ func _on_delete_a_screen_2_pressed() -> void:
 
 func _on_load_a_screen_pressed() -> void:
 	_on_load_a_stscreen_pressed()
+	
+
+#region multiplayer
+
+const MULTIPLAYER_PORT: int = 7777
+const MAX_PLAYERS: int = 8
+
+var multiplayer_peer: ENetMultiplayerPeer
+var entered_ip: String = ""
+
+var player_name: String = "Player"
+var players: Dictionary = {}
+var is_ready: bool = false
+
+@onready var lobby_status: Label = $VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby/Label
+@onready var player_list: VBoxContainer = $VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby/PlayerList
+@onready var player_name_input: LineEdit = $VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby/PlayerNameInput
+@onready var ready_button: Button = $VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby/Ready
+
+func _ready() -> void:
+	# Listen for multiplayer connection events.
+	multiplayer.peer_connected.connect(_on_peer_connected)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	multiplayer.connection_failed.connect(_on_connection_failed)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+func register_player() -> void:
+	player_name = player_name_input.text.strip_edges()
+
+	if player_name.is_empty():
+		player_name = "Player"
+
+	var my_id = multiplayer.get_unique_id()
+
+	print("Registering player: ", player_name)
+
+	if multiplayer.is_server():
+		players[1] = player_name
+		update_lobby.rpc(players)
+	else:
+		# Display your own name immediately.
+		players[my_id] = player_name
+		update_lobby(players)
+
+		# Tell the host your name.
+		request_player_registration.rpc_id(1, player_name)
+
+func _on_player_name_input_text_submitted(new_text: String) -> void:
+	print("Name submitted: ", new_text)
+
+	player_name = new_text.strip_edges()
+
+	if player_name.is_empty():
+		player_name = "Player"
+
+	register_player()
+
+@rpc("any_peer", "call_remote", "reliable")
+func request_player_registration(pname: String) -> void:
+	if not multiplayer.is_server():
+		return
+
+	var sender_id = multiplayer.get_remote_sender_id()
+	players[sender_id] = pname
+
+	update_lobby.rpc(players)
+
+
+@rpc("authority", "call_local", "reliable")
+func update_lobby(updated_players: Dictionary) -> void:
+	print("Updating lobby: ", updated_players)
+
+	players = updated_players
+
+	# Remove old player buttons.
+	for child in player_list.get_children():
+		player_list.remove_child(child)
+		child.queue_free()
+
+	# Create a button for every player.
+	for id in players:
+		var player_button := Button.new()
+
+		player_button.text = "%s (ID: %s)" % [players[id], id]
+		player_button.custom_minimum_size = Vector2(200, 40)
+		player_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+		player_list.add_child(player_button)
+
+	lobby_status.text = "Players connected: %d" % players.size()
+
+# HOST A GAME
+func host_game() -> void:
+	# Don't attempt to host if already connected.
+	if multiplayer.multiplayer_peer != null:
+		print("Already connected or hosting!")
+		return
+
+	var new_peer := ENetMultiplayerPeer.new()
+
+	var error := new_peer.create_server(
+		MULTIPLAYER_PORT,
+		MAX_PLAYERS
+	)
+
+	if error != OK:
+		print("Failed to create server!")
+		print("ENet error: ", error)
+		print("Error description: ", error_string(error))
+		new_peer.close()
+		return
+
+	multiplayer_peer = new_peer
+	multiplayer.multiplayer_peer = multiplayer_peer
+
+	print("Hosting multiplayer game!")
+	print("Your player ID: ", multiplayer.get_unique_id())
+
+	register_player()
+
+func _on_join_pressed() -> void:
+	if entered_ip.is_empty():
+		print("Please enter an IP address!")
+		return
+
+	join_game(entered_ip)
+
+# JOIN A GAME
+func join_game(ip_address: String) -> void:
+	if multiplayer.multiplayer_peer != null:
+		print("Already connected or hosting!")
+		return
+
+	ip_address = ip_address.strip_edges()
+
+	if ip_address.is_empty():
+		print("Please enter an IP address!")
+		return
+
+	var new_peer := ENetMultiplayerPeer.new()
+
+	var error := new_peer.create_client(
+		ip_address,
+		MULTIPLAYER_PORT
+	)
+
+	if error != OK:
+		print("Failed to create client!")
+		print("ENet error: ", error)
+		print("Error description: ", error_string(error))
+		new_peer.close()
+		return
+
+	multiplayer_peer = new_peer
+	multiplayer.multiplayer_peer = multiplayer_peer
+
+	print("Attempting to connect to: ", ip_address)
+
+func _on_ready_button_pressed() -> void:
+	is_ready = not is_ready
+
+	if is_ready:
+		ready_button.text = "Ready!"
+	else:
+		ready_button.text = "Not Ready"
+
+func _on_ip_input_text_changed(new_text: String) -> void:
+	entered_ip = new_text.strip_edges()
+
+# DISCONNECT FROM GAME
+func disconnect_from_game() -> void:
+	if multiplayer.multiplayer_peer == null:
+		print("Already disconnected.")
+		return
+
+	print("Disconnecting from multiplayer...")
+
+	# Save a reference to the current connection.
+	var old_peer = multiplayer.multiplayer_peer
+
+	# Remove it from the multiplayer API.
+	multiplayer.multiplayer_peer = null
+
+	# Close the old ENet connection.
+	old_peer.close()
+
+	multiplayer_peer = null
+
+	# Reset local lobby information.
+	players.clear()
+	is_ready = false
+
+	for child in player_list.get_children():
+		player_list.remove_child(child)
+		child.queue_free()
+	lobby_status.text = "Not connected"
+	ready_button.text = "Not Ready"
+
+	print("Disconnected successfully!")
+
+func _on_peer_connected(id: int) -> void:
+	print("Player connected! ID: ", id)
+
+func _on_peer_disconnected(id: int) -> void:
+	print("Player disconnected! ID: ", id)
+
+	if multiplayer.is_server():
+		players.erase(id)
+		update_lobby(players)
+		update_lobby.rpc(players)
+
+func _on_connected_to_server() -> void:
+	print("Successfully connected to host!")
+	register_player()
+
+func _on_connection_failed() -> void:
+	print("Connection failed!")
+	disconnect_from_game()
+
+func _on_server_disconnected() -> void:
+	print("Host disconnected!")
+	disconnect_from_game()
+
+# SIMPLE MULTIPLAYER CHAT
+func send_chat_message(message: String) -> void:
+	if multiplayer.multiplayer_peer == null:
+		print("You are not connected to multiplayer.")
+		return
+
+	if message.strip_edges().is_empty():
+		return
+
+	rpc("receive_chat_message", multiplayer.get_unique_id(), message)
+
+
+@rpc("any_peer", "call_local", "reliable")
+func receive_chat_message(sender_id: int, message: String) -> void:
+	print("[Player ", sender_id, "]: ", message)
+
+
+# CHECK CONNECTION STATUS
+func is_multiplayer_active() -> bool:
+	return multiplayer.multiplayer_peer != null and multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED
+
+#endregion

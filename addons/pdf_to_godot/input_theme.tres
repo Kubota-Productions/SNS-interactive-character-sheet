@@ -1,0 +1,31 @@
+[gd_resource type="Theme" format=3 uid="uid://bdhd3eu8uxqkk"]
+
+[ext_resource type="FontFile" path="res://addons/pdf_to_godot/fonts/LiberationSans-Regular.ttf" id="font"]
+
+[sub_resource type="StyleBoxEmpty" id="focus"]
+
+[sub_resource type="StyleBoxEmpty" id="line"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="notes"]
+content_margin_left = 4.0
+content_margin_top = 3.0
+content_margin_right = 4.0
+content_margin_bottom = 3.0
+
+[resource]
+default_font = ExtResource("font")
+default_font_size = 13
+LineEdit/colors/font_color = Color(0.08, 0.08, 0.08, 1)
+LineEdit/colors/font_placeholder_color = Color(0.4, 0.4, 0.4, 1)
+LineEdit/styles/focus = SubResource("focus")
+LineEdit/styles/normal = SubResource("line")
+LineEdit/styles/read_only = SubResource("line")
+TextEdit/colors/font_color = Color(0.08, 0.08, 0.08, 1)
+TextEdit/colors/font_placeholder_color = Color(0.4, 0.4, 0.4, 1)
+TextEdit/styles/focus = SubResource("focus")
+TextEdit/styles/normal = SubResource("notes")
+TextEdit/styles/read_only = SubResource("notes")

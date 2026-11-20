@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://h8igbr3eu1bv"]
+
+[ext_resource type="Script" uid="uid://c2cbna1mvv6m1" path="res://code/combat_grid_3d.gd" id="1_k5g8n"]
+[ext_resource type="Script" uid="uid://c70pcdj3eorn2" path="res://code/rts_camera.gd" id="2_i0an3"]
+
+[node name="CombatScene3d" type="Node3D" unique_id=1682606188]
+script = ExtResource("1_k5g8n")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1201511619 node_paths=PackedStringArray("camera")]
+script = ExtResource("2_i0an3")
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=921251756]

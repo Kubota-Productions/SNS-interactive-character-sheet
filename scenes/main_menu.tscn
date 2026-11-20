@@ -74,10 +74,63 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -74.5
-offset_right = 268.0
-offset_bottom = 74.5
+offset_top = -217.5
+offset_right = 454.0
+offset_bottom = 217.5
 grow_vertical = 2
+
+[node name="HBoxContainerMultiplayer" type="HBoxContainer" parent="VBoxContainer" unique_id=312320551]
+layout_mode = 2
+
+[node name="VBoxContainerMultiplayer" type="VBoxContainer" parent="VBoxContainer/HBoxContainerMultiplayer" unique_id=2080303012]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer" unique_id=777814110]
+layout_mode = 2
+text = "//Connect"
+horizontal_alignment = 1
+
+[node name="Host" type="Button" parent="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer" unique_id=1178977512]
+layout_mode = 2
+text = "Host
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer" unique_id=982028195]
+layout_mode = 2
+
+[node name="IPInput" type="LineEdit" parent="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer/HBoxContainer" unique_id=792823155]
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "127.9.0.1"
+expand_to_text_length = true
+
+[node name="Join" type="Button" parent="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer/HBoxContainer" unique_id=977907494]
+layout_mode = 2
+text = "Join
+"
+
+[node name="Disconnect" type="Button" parent="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer" unique_id=53250132]
+layout_mode = 2
+text = "Disconnect
+"
+
+[node name="MultiplayerLobby" type="VBoxContainer" parent="VBoxContainer/HBoxContainerMultiplayer" unique_id=826883176]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby" unique_id=1940185689]
+layout_mode = 2
+text = "Lobby"
+horizontal_alignment = 1
+
+[node name="PlayerList" type="VBoxContainer" parent="VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby" unique_id=463667146]
+layout_mode = 2
+
+[node name="PlayerNameInput" type="LineEdit" parent="VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby" unique_id=1850783042]
+layout_mode = 2
+
+[node name="Ready" type="Button" parent="VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby" unique_id=372861215]
+layout_mode = 2
+text = "Ready"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=902382973]
 layout_mode = 2
@@ -247,6 +300,12 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
+[connection signal="pressed" from="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer/Host" to="." method="host_game"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer/HBoxContainer/IPInput" to="." method="_on_ip_input_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer/HBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainerMultiplayer/VBoxContainerMultiplayer/Disconnect" to="." method="disconnect_from_game"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby/PlayerNameInput" to="." method="_on_player_name_input_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby/Ready" to="." method="_on_ready_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/DeleteASheet" to="." method="_on_delete_a_sheet_pressed"]
