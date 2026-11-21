@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://o3a4hmxlyq8v" path="res://assets/imagefiles/UI/switch_right.png" id="3_tfo67"]
 [ext_resource type="PackedScene" uid="uid://ddfyna0e78un1" path="res://assets/3Dcharacters/Datadoll.glb" id="4_87yrl"]
 [ext_resource type="Texture2D" uid="uid://bon76vyqs6kuu" path="res://assets/imagefiles/UI/switch_right_outline.png" id="5_x6005"]
-[ext_resource type="PackedScene" uid="uid://dr0531irak02g" path="res://assets/3Dcharacters/Cognitiveextras.glb" id="7_e5joy"]
-[ext_resource type="PackedScene" uid="uid://dws0cxqot2pum" path="res://assets/3Dcharacters/Cognitive.glb" id="9_g8k4i"]
 [ext_resource type="PackedScene" uid="uid://bhsnwdcenmmlk" path="res://assets/3Dcharacters/Hellion.glb" id="12_e5joy"]
 
 [node name="Control" type="Control" unique_id=665325542]
@@ -67,13 +65,6 @@ visible = false
 [node name="Datadoll" parent="SubViewportContainer/SubViewport" unique_id=1217820588 instance=ExtResource("4_87yrl")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
 visible = false
-
-[node name="Cognitive" parent="SubViewportContainer/SubViewport" unique_id=1381532731 instance=ExtResource("9_g8k4i")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)
-visible = false
-
-[node name="Cognitiveextras" parent="SubViewportContainer/SubViewport/Cognitive" unique_id=621962704 instance=ExtResource("7_e5joy")]
-transform = Transform3D(1, 0, 0, 0, 1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0, 0)
 
 [node name="Hellion" parent="SubViewportContainer/SubViewport" unique_id=1909826464 instance=ExtResource("12_e5joy")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -66, 0, 7)

@@ -3,7 +3,7 @@ extends Control
 @onready var malesyllabub: Node3D = $SubViewportContainer/SubViewport/malesyllabub
 @onready var femalesyllabub: Node3D = $SubViewportContainer/SubViewport/femalesyllabub
 @onready var datadoll: Node3D = $SubViewportContainer/SubViewport/Datadoll
-@onready var cognitive: Node3D = $SubViewportContainer/SubViewport/Cognitive
+#@onready var cognitive: Node3D = $SubViewportContainer/SubViewport/Cognitive
 @onready var hellion: Node3D = $SubViewportContainer/SubViewport/Hellion
 
 # Rotation speed in degrees per second
@@ -41,7 +41,7 @@ func _on_option_button_item_selected(index: int) -> void:
 	malesyllabub.visible = false
 	femalesyllabub.visible = false
 	datadoll.visible = false
-	cognitive.visible = false
+	#cognitive.visible = false
 	hellion.visible = false
 
 	# Show only the selected one
@@ -49,7 +49,7 @@ func _on_option_button_item_selected(index: int) -> void:
 		0: malesyllabub.visible = true
 		1: femalesyllabub.visible = true
 		2: datadoll.visible = true
-		3: cognitive.visible = true
+		#3: cognitive.visible = true
 		4: hellion.visible = true
 		
 	$HBoxContainer/OptionButton.release_focus()
@@ -64,6 +64,6 @@ func _get_active_model() -> Node3D:
 	if malesyllabub.visible: return malesyllabub
 	if femalesyllabub.visible: return femalesyllabub
 	if datadoll.visible: return datadoll
-	if cognitive.visible: return cognitive
+	#if cognitive.visible: return cognitive
 	if hellion.visible: return hellion
 	return malesyllabub # fallback

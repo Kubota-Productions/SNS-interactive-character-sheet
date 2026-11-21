@@ -23,13 +23,13 @@ func _enter_tree() -> void:
 #region character sheet
 func _on_load_a_sheet_pressed() -> void:
 	if selected_save_file != "" and GlobalFunctions.load_character(selected_save_file):
-		get_parent()._switch_to(preload("res://scenes/player_character_creator_scene.tscn"))
+		get_parent()._switch_to(load("res://scenes/player_character_creator_scene.tscn"))
 	else:
 		warning_dialog_character.popup_centered()
 
 func _on_add_a_sheet_pressed() -> void:
 	GlobalFunctions.new_character()
-	get_parent()._switch_to(preload("res://scenes/player_character_creator_scene.tscn"))
+	get_parent()._switch_to(load("res://scenes/player_character_creator_scene.tscn"))
 
 func _on_delete_a_sheet_pressed() -> void:
 	if selected_save_file != "":
@@ -109,13 +109,13 @@ func _notification(what: int) -> void:
 #region storyteller screen
 func _on_load_a_stscreen_pressed() -> void:
 	if st_selected_save_file != "" and GlobalFunctions.load_storyteller(st_selected_save_file):
-		get_parent()._switch_to(preload("res://scenes/Storyteller_scene.tscn"))
+		get_parent()._switch_to(load("res://scenes/Storyteller_scene.tscn"))
 	else:
 		warning_dialog_storyteller.popup_centered()
 
 func _on_add_a_stscreen_pressed() -> void:
 	GlobalFunctions.new_storyteller()
-	get_parent()._switch_to(preload("res://scenes/Storyteller_scene.tscn"))
+	get_parent()._switch_to(load("res://scenes/Storyteller_scene.tscn"))
 
 func _on_delete_a_stscreen_pressed() -> void:
 	if st_selected_save_file != "":
@@ -157,13 +157,19 @@ func _on_load_a_screen_pressed() -> void:
 	_on_load_a_stscreen_pressed()
 	
 
-#region multiplayer
 
-const MULTIPLAYER_PORT: int = 7777
+#region STEAM MULTIPLAYER
+
 const MAX_PLAYERS: int = 8
+const LOBBY_TYPE_FRIENDS_ONLY: int = 1  # same value as Steam.LOBBY_TYPE_FRIENDS_ONLY
 
-var multiplayer_peer: ENetMultiplayerPeer
-var entered_ip: String = ""
+## GodotSteam is a GDExtension. It is looked up at runtime instead of writing `Steam.` in code,
+## so if the extension is missing from a build this script still loads and the menu buttons work.
+## It stays null when GodotSteam isn't available.
+var steam = null
+
+var steam_peer: MultiplayerPeer = null
+var steam_lobby_id: int = 0
 
 var player_name: String = "Player"
 var players: Dictionary = {}
@@ -174,21 +180,206 @@ var is_ready: bool = false
 @onready var player_name_input: LineEdit = $VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby/PlayerNameInput
 @onready var ready_button: Button = $VBoxContainer/HBoxContainerMultiplayer/MultiplayerLobby/Ready
 
+
 func _ready() -> void:
-	# Listen for multiplayer connection events.
+	# Look up GodotSteam. It is missing if the GDExtension didn't load in this build.
+	if not Engine.has_singleton("Steam"):
+		push_error("GodotSteam is not loaded in this build, Steam multiplayer is disabled.")
+		lobby_status.text = "Steam not available"
+		set_process(false)
+		return
+	steam = Engine.get_singleton("Steam")
+
+	# Start Steamworks
+	var init_result: Dictionary = steam.steamInitEx()
+
+	if init_result["status"] > 0:
+		push_error("Steam initialization failed: " + str(init_result))
+		lobby_status.text = "Steam initialization failed"
+		return
+
+	print("Steam initialized!")
+	print("Steam username: ", steam.getPersonaName())
+
+	# Multiplayer connection signals.
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
+	# Steam lobby signals.
+	steam.lobby_created.connect(_on_steam_lobby_created)
+	steam.lobby_joined.connect(_on_steam_lobby_joined)
+	steam.join_requested.connect(_on_steam_join_requested)
+
+	# Create extra lobby buttons.
+	var invite_button := Button.new()
+	invite_button.text = "Invite Friends"
+	invite_button.pressed.connect(invite_friends)
+	player_list.get_parent().add_child(invite_button)
+
+	var leave_button := Button.new()
+	leave_button.text = "Leave Lobby"
+	leave_button.pressed.connect(disconnect_from_game)
+	player_list.get_parent().add_child(leave_button)
+
+	lobby_status.text = "Not connected to a Steam lobby"
+
+	# Handle an invitation accepted while the game was closed.
+	var args := OS.get_cmdline_args()
+	for i in range(args.size() - 1):
+		if args[i] == "+connect_lobby":
+			steam.joinLobby(int(args[i + 1]))
+			break
+
+
+func _process(_delta: float) -> void:
+	# Steam callbacks must be processed.
+	if steam != null:
+		steam.run_callbacks()
+
+
+# HOST A STEAM LOBBY
+func host_game() -> void:
+	if steam == null:
+		lobby_status.text = "Steam not available"
+		return
+
+	if steam_peer != null or steam_lobby_id != 0:
+		print("Already in a Steam lobby!")
+		return
+
+	print("Creating Steam friends-only lobby...")
+	lobby_status.text = "Creating Steam lobby..."
+
+	steam.createLobby(LOBBY_TYPE_FRIENDS_ONLY, MAX_PLAYERS)
+
+
+func _on_steam_lobby_created(result: int, lobby_id: int) -> void:
+	if result != 1:
+		print("Failed to create Steam lobby: ", result)
+		lobby_status.text = "Failed to create lobby"
+		return
+
+	steam_lobby_id = lobby_id
+
+	steam.setLobbyData(
+		steam_lobby_id,
+		"name",
+		steam.getPersonaName() + "'s Game"
+	)
+
+	steam.setLobbyJoinable(steam_lobby_id, true)
+
+	print("Steam lobby created: ", steam_lobby_id)
+
+	# Create the Steam multiplayer host.
+	var new_peer = ClassDB.instantiate("SteamMultiplayerPeer")
+
+	if new_peer == null:
+		push_error("SteamMultiplayerPeer is not registered in this build.")
+		steam.leaveLobby(steam_lobby_id)
+		steam_lobby_id = 0
+		return
+
+	var error = new_peer.create_host(0)
+
+	if error != OK:
+		push_error("Failed to create Steam host: " + str(error))
+		steam.leaveLobby(steam_lobby_id)
+		steam_lobby_id = 0
+		return
+
+	steam_peer = new_peer
+	multiplayer.multiplayer_peer = steam_peer
+
+	lobby_status.text = "Hosting Steam lobby!"
+
+	print("Steam host started!")
+	print("Your multiplayer ID: ", multiplayer.get_unique_id())
+
+	register_player()
+
+
+# JOIN A STEAM LOBBY AFTER ACCEPTING AN INVITE
+func _on_steam_join_requested(lobby_id: int, _friend_id: int) -> void:
+	print("Steam invitation received: ", lobby_id)
+
+	if steam_peer != null:
+		disconnect_from_game()
+
+	steam.joinLobby(lobby_id)
+
+
+func _on_steam_lobby_joined(
+	lobby_id: int,
+	_permissions: int,
+	_locked: bool,
+	response: int
+) -> void:
+
+	if response != 1:
+		print("Failed to join Steam lobby: ", response)
+		lobby_status.text = "Failed to join lobby"
+		return
+
+	steam_lobby_id = lobby_id
+
+	var host_steam_id: int = steam.getLobbyOwner(lobby_id)
+
+	# The host also receives lobby_joined for its own lobby.
+	if host_steam_id == steam.getSteamID():
+		return
+
+	print("Joined Steam lobby: ", lobby_id)
+	print("Lobby owner Steam ID: ", host_steam_id)
+
+	var new_peer = ClassDB.instantiate("SteamMultiplayerPeer")
+
+	if new_peer == null:
+		push_error("SteamMultiplayerPeer is not registered in this build.")
+		return
+
+	var error = new_peer.create_client(host_steam_id, 0)
+
+	if error != OK:
+		push_error("Failed to connect to Steam host: " + str(error))
+		return
+
+	steam_peer = new_peer
+	multiplayer.multiplayer_peer = steam_peer
+
+	lobby_status.text = "Connecting to host..."
+
+
+# OPEN STEAM'S INVITE OVERLAY
+func invite_friends() -> void:
+	if steam_lobby_id == 0:
+		print("You need to host a Steam lobby first!")
+		return
+
+	steam.activateGameOverlayInviteDialog(steam_lobby_id)
+
+
+# Existing Join button can also open the invite overlay.
+func _on_join_pressed() -> void:
+	invite_friends()
+
+
+func _persona_name() -> String:
+	return steam.getPersonaName() if steam != null else ""
+
+
+# PLAYER NAME REGISTRATION
 func register_player() -> void:
 	player_name = player_name_input.text.strip_edges()
 
 	if player_name.is_empty():
-		player_name = "Player"
+		player_name = _persona_name()
 
-	var my_id = multiplayer.get_unique_id()
+	if player_name.is_empty():
+		player_name = "Player"
 
 	print("Registering player: ", player_name)
 
@@ -196,22 +387,17 @@ func register_player() -> void:
 		players[1] = player_name
 		update_lobby.rpc(players)
 	else:
-		# Display your own name immediately.
-		players[my_id] = player_name
-		update_lobby(players)
-
-		# Tell the host your name.
 		request_player_registration.rpc_id(1, player_name)
 
-func _on_player_name_input_text_submitted(new_text: String) -> void:
-	print("Name submitted: ", new_text)
 
+func _on_player_name_input_text_submitted(new_text: String) -> void:
 	player_name = new_text.strip_edges()
 
 	if player_name.is_empty():
-		player_name = "Player"
+		player_name = _persona_name()
 
 	register_player()
+
 
 @rpc("any_peer", "call_remote", "reliable")
 func request_player_registration(pname: String) -> void:
@@ -224,96 +410,26 @@ func request_player_registration(pname: String) -> void:
 	update_lobby.rpc(players)
 
 
+# UPDATE THE PLAYER BUTTONS
 @rpc("authority", "call_local", "reliable")
 func update_lobby(updated_players: Dictionary) -> void:
-	print("Updating lobby: ", updated_players)
-
 	players = updated_players
 
-	# Remove old player buttons.
 	for child in player_list.get_children():
 		player_list.remove_child(child)
 		child.queue_free()
 
-	# Create a button for every player.
 	for id in players:
 		var player_button := Button.new()
-
 		player_button.text = "%s (ID: %s)" % [players[id], id]
 		player_button.custom_minimum_size = Vector2(200, 40)
 		player_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
 		player_list.add_child(player_button)
 
 	lobby_status.text = "Players connected: %d" % players.size()
 
-# HOST A GAME
-func host_game() -> void:
-	# Don't attempt to host if already connected.
-	if multiplayer.multiplayer_peer != null:
-		print("Already connected or hosting!")
-		return
 
-	var new_peer := ENetMultiplayerPeer.new()
-
-	var error := new_peer.create_server(
-		MULTIPLAYER_PORT,
-		MAX_PLAYERS
-	)
-
-	if error != OK:
-		print("Failed to create server!")
-		print("ENet error: ", error)
-		print("Error description: ", error_string(error))
-		new_peer.close()
-		return
-
-	multiplayer_peer = new_peer
-	multiplayer.multiplayer_peer = multiplayer_peer
-
-	print("Hosting multiplayer game!")
-	print("Your player ID: ", multiplayer.get_unique_id())
-
-	register_player()
-
-func _on_join_pressed() -> void:
-	if entered_ip.is_empty():
-		print("Please enter an IP address!")
-		return
-
-	join_game(entered_ip)
-
-# JOIN A GAME
-func join_game(ip_address: String) -> void:
-	if multiplayer.multiplayer_peer != null:
-		print("Already connected or hosting!")
-		return
-
-	ip_address = ip_address.strip_edges()
-
-	if ip_address.is_empty():
-		print("Please enter an IP address!")
-		return
-
-	var new_peer := ENetMultiplayerPeer.new()
-
-	var error := new_peer.create_client(
-		ip_address,
-		MULTIPLAYER_PORT
-	)
-
-	if error != OK:
-		print("Failed to create client!")
-		print("ENet error: ", error)
-		print("Error description: ", error_string(error))
-		new_peer.close()
-		return
-
-	multiplayer_peer = new_peer
-	multiplayer.multiplayer_peer = multiplayer_peer
-
-	print("Attempting to connect to: ", ip_address)
-
+# READY BUTTON
 func _on_ready_button_pressed() -> void:
 	is_ready = not is_ready
 
@@ -322,66 +438,69 @@ func _on_ready_button_pressed() -> void:
 	else:
 		ready_button.text = "Not Ready"
 
-func _on_ip_input_text_changed(new_text: String) -> void:
-	entered_ip = new_text.strip_edges()
 
-# DISCONNECT FROM GAME
+# DISCONNECT FROM STEAM
 func disconnect_from_game() -> void:
-	if multiplayer.multiplayer_peer == null:
+	if steam_peer == null and steam_lobby_id == 0:
 		print("Already disconnected.")
 		return
 
-	print("Disconnecting from multiplayer...")
+	print("Leaving Steam multiplayer...")
 
-	# Save a reference to the current connection.
-	var old_peer = multiplayer.multiplayer_peer
+	if steam_lobby_id != 0:
+		steam.leaveLobby(steam_lobby_id)
+		steam_lobby_id = 0
 
-	# Remove it from the multiplayer API.
-	multiplayer.multiplayer_peer = null
+	if steam_peer != null:
+		multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
+		steam_peer.close()
+		steam_peer = null
 
-	# Close the old ENet connection.
-	old_peer.close()
-
-	multiplayer_peer = null
-
-	# Reset local lobby information.
 	players.clear()
 	is_ready = false
 
 	for child in player_list.get_children():
 		player_list.remove_child(child)
 		child.queue_free()
+
 	lobby_status.text = "Not connected"
 	ready_button.text = "Not Ready"
 
-	print("Disconnected successfully!")
+	print("Disconnected from Steam!")
 
+
+# MULTIPLAYER CONNECTION EVENTS
 func _on_peer_connected(id: int) -> void:
 	print("Player connected! ID: ", id)
+
 
 func _on_peer_disconnected(id: int) -> void:
 	print("Player disconnected! ID: ", id)
 
 	if multiplayer.is_server():
 		players.erase(id)
-		update_lobby(players)
 		update_lobby.rpc(players)
 
+
 func _on_connected_to_server() -> void:
-	print("Successfully connected to host!")
+	print("Successfully connected to Steam host!")
 	register_player()
+	lobby_status.text = "Connected to Steam host!"
+
 
 func _on_connection_failed() -> void:
-	print("Connection failed!")
+	print("Steam connection failed!")
 	disconnect_from_game()
 
+
 func _on_server_disconnected() -> void:
-	print("Host disconnected!")
+	print("Steam host disconnected!")
 	disconnect_from_game()
+
 
 # SIMPLE MULTIPLAYER CHAT
 func send_chat_message(message: String) -> void:
-	if multiplayer.multiplayer_peer == null:
+	if steam_peer == null:
 		print("You are not connected to multiplayer.")
 		return
 
@@ -396,8 +515,7 @@ func receive_chat_message(sender_id: int, message: String) -> void:
 	print("[Player ", sender_id, "]: ", message)
 
 
-# CHECK CONNECTION STATUS
 func is_multiplayer_active() -> bool:
-	return multiplayer.multiplayer_peer != null and multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED
+	return steam_peer != null and steam_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED
 
 #endregion

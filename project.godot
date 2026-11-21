@@ -41,7 +41,7 @@ mouse_cursor/custom_image_hotspot=Vector2(13, 4)
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godotsteam/plugin.cfg", "res://addons/pdf_to_godot/plugin.cfg", "res://addons/pdfium-gde/plugin.cfg")
+enabled=PackedStringArray("res://addons/pdf_to_godot/plugin.cfg", "res://addons/pdfium-gde/plugin.cfg")
 
 [file_customization]
 
@@ -75,3 +75,8 @@ textures/canvas_textures/default_texture_filter=2
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.839216, 0.121569, 0.14902, 1)
+
+[steam]
+
+initialization/app_data/app_id=12145
+initialization/processes/initialize_on_startup=true
