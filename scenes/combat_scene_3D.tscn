@@ -3,11 +3,32 @@
 [ext_resource type="Script" uid="uid://c2cbna1mvv6m1" path="res://code/combat_grid_3d.gd" id="1_k5g8n"]
 [ext_resource type="Script" uid="uid://c70pcdj3eorn2" path="res://code/rts_camera.gd" id="2_i0an3"]
 
-[node name="CombatScene3d" type="Node3D" unique_id=1682606188]
+[node name="3D_Combat_Scene" type="Control" unique_id=1316443257]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1361546674]
+custom_minimum_size = Vector2(7680, 4320)
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.25, 0.25)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=618413053]
+handle_input_locally = false
+size = Vector2i(7680, 4320)
+render_target_update_mode = 4
+
+[node name="CombatScene3d" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1682606188]
 script = ExtResource("1_k5g8n")
 
-[node name="Node3D" type="Node3D" parent="." unique_id=1201511619 node_paths=PackedStringArray("camera")]
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/CombatScene3d" unique_id=1201511619 node_paths=PackedStringArray("camera")]
 script = ExtResource("2_i0an3")
 camera = NodePath("Camera3D")
 
-[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=921251756]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CombatScene3d/Node3D" unique_id=921251756]
+current = true

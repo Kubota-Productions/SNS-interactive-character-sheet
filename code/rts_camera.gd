@@ -66,45 +66,61 @@ func _ready() -> void:
 	_target_yaw = _yaw
 	_apply()
 
+func _is_combat_viewport_active() -> bool:
+	var vp := get_viewport()
+	return vp.get_visible_rect().has_point(vp.get_mouse_position())
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _is_combat_viewport_active():
+		return
+
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			_target_dist = clampf(_target_dist * zoom_factor, min_distance, max_distance)
+			_target_dist = clampf(
+				_target_dist * zoom_factor,
+				min_distance,
+				max_distance
+			)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			_target_dist = clampf(_target_dist / zoom_factor, min_distance, max_distance)
-
+			_target_dist = clampf(
+				_target_dist / zoom_factor,
+				min_distance,
+				max_distance
+			)
 
 func _process(delta: float) -> void:
-	# --- panning
 	var input := Vector2.ZERO
-	if Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT):
-		input.x -= 1.0
-	if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):
-		input.x += 1.0
-	if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP):
-		input.y -= 1.0
-	if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):
-		input.y += 1.0
-	if edge_scroll:
-		input += _edge_scroll_input()
 
-	if input != Vector2.ZERO:
-		var speed := pan_speed * (_dist / 10.0) # pan faster when zoomed out
-		if Input.is_physical_key_pressed(KEY_SHIFT):
-			speed *= fast_multiplier
-		# "Forward" follows where the camera is facing; diagonals aren't faster.
-		var dir := input.limit_length(1.0)
-		var move := Basis(Vector3.UP, _target_yaw) * Vector3(dir.x, 0.0, dir.y)
-		_target_pos += move * speed * delta
+	# Only accept movement when the mouse is over the combat viewport.
+	if _is_combat_viewport_active():
+		if Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT):
+			input.x -= 1.0
+		if Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT):
+			input.x += 1.0
+		if Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP):
+			input.y -= 1.0
+		if Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN):
+			input.y += 1.0
 
-	# --- rotating
-	if Input.is_physical_key_pressed(KEY_Q):
-		_target_yaw += deg_to_rad(rotate_speed_deg) * delta
-	if Input.is_physical_key_pressed(KEY_E):
-		_target_yaw -= deg_to_rad(rotate_speed_deg) * delta
+		if edge_scroll:
+			input += _edge_scroll_input()
 
-	# --- smoothing (frame-rate independent)
+		if input != Vector2.ZERO:
+			var speed := pan_speed * (_dist / 10.0)
+
+			if Input.is_physical_key_pressed(KEY_SHIFT):
+				speed *= fast_multiplier
+
+			var dir := input.limit_length(1.0)
+			var move := Basis(Vector3.UP, _target_yaw) * Vector3(dir.x, 0.0, dir.y)
+			_target_pos += move * speed * delta
+
+		if Input.is_physical_key_pressed(KEY_Q):
+			_target_yaw += deg_to_rad(rotate_speed_deg) * delta
+		if Input.is_physical_key_pressed(KEY_E):
+			_target_yaw -= deg_to_rad(rotate_speed_deg) * delta
+
+	# Always smooth, even when the mouse leaves the combat viewport.
 	var t := 1.0 - exp(-smoothing * delta)
 	global_position = global_position.lerp(_target_pos, t)
 	_yaw = lerp_angle(_yaw, _target_yaw, t)

@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="22_hwnst"]
 [ext_resource type="PackedScene" uid="uid://s1vxqn38w167" path="res://scenes/Genotypedisplayer.tscn" id="25_a0p86"]
 [ext_resource type="Script" uid="uid://b1jtldfb82x0e" path="res://code/gamepdf.gd" id="26_jmwwa"]
+[ext_resource type="PackedScene" uid="uid://h8igbr3eu1bv" path="res://scenes/combat_scene_3D.tscn" id="26_l13rv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jmwwa"]
 
@@ -65,12 +66,13 @@ shader_parameter/mouse_radius = 0.1
 [node name="Node2D" type="Node2D" unique_id=1201309714]
 script = ExtResource("1_miv1v")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1942366885]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1942366885 node_paths=PackedStringArray("combat_scene")]
 position = Vector2(500, 540)
 script = ExtResource("2_hwnst")
 left_limit = -100.0
 right_limit = 2000.0
-down_limit = 1000.0
+down_limit = 2000.0
+combat_scene = NodePath("../3Dcombatscene")
 
 [node name="backgrounddots" type="Control" parent="." unique_id=893409376]
 layout_mode = 3
@@ -1792,6 +1794,12 @@ offset_right = -20.0
 offset_bottom = 1080.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
+
+[node name="3Dcombatscene" parent="." unique_id=1316443257 instance=ExtResource("26_l13rv")]
+offset_left = -226.0
+offset_top = 1108.0
+offset_right = -226.0
+offset_bottom = 1108.0
 
 [connection signal="pressed" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audioplaybutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audioplaybutton_pressed"]
 [connection signal="toggled" from="Control/BoxContainer/VBoxContainer/Audioplayermenu/audiopausebutton" to="Control/BoxContainer/VBoxContainer/Audioplayermenu" method="_on_audiopausebutton_toggled"]

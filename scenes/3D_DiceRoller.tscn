@@ -13,7 +13,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_oxkh2"]
 size = Vector3(82.4297, 1, 56.8643)
 
-[node name="Control" type="Control" unique_id=44342768]
+[node name="3D_Diceroller" type="Control" unique_id=44342768]
 light_mask = 17
 layout_mode = 3
 anchors_preset = 15
