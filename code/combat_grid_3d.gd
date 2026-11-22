@@ -25,6 +25,14 @@ extends Node3D
 ##   Middle mouse drag             -> draw a measuring line
 ##   Keys 1 / 2 / 3                -> choose circle / square / triangle for new shapes
 ##   +1 / +10 buttons              -> grow the grid by that many rows/columns on that side
+##
+## Multiplayer (host-authoritative; see the Lobby and CombatSync autoloads)
+##   The host is the storyteller: every tool above works for them and they own the board.
+##   Every connected player gets one shape with their name floating above it. Players can only
+##   drag their own shape, draw measuring lines (middle drag) and delete their own lines.
+##   They cannot change the terrain, hollow out levels, resize the grid or touch anyone else's
+##   shape. The host checks every request and then copies the result to everybody.
+##   Without a lobby this behaves exactly like the single player version.
 
 enum ShapeType { CIRCLE, SQUARE, TRIANGLE }
 enum Side { NORTH, SOUTH, WEST, EAST }
@@ -41,6 +49,14 @@ const NO_CELL := Vector2i(1000000, 1000000)
 const BTN_SIZE := Vector2(48, 36)
 const BTN_GAP := 6.0
 const EDGE_OFFSET := 1.2      # how far outside the grid the +1/+10 buttons are anchored
+const NET_FLUSH_INTERVAL := 0.1        # seconds between terrain updates sent to the players
+const NAME_TAG_HEIGHT := 0.5          # how far above a shape its name floats
+const MAX_LINES_PER_PLAYER := 10      # a player's oldest line goes when they draw more than this
+const MAX_LINE_LENGTH := 500.0
+const PENDING_LINE_TIMEOUT_MS := 5000 # how long a player's new line waits for the host's OK
+const UI_REFERENCE_HEIGHT := 1080.0   # labels/buttons are normal size in a viewport this tall
+const HOST_ID := 1
+const NPC_OWNER := 0                  # owner of the shapes the storyteller placed
 
 const COL_BASE := Color.WHITE
 const COL_HOVER := Color(0.82, 0.9, 1.0)
@@ -96,6 +112,9 @@ class Token:
 	var shape: int
 	var color: Color
 	var node: MeshInstance3D
+	var id := 0
+	var owner_peer := 0 # NPC_OWNER = placed by the storyteller, else the peer id of the player it belongs to
+	var tag: Label3D    # the player's name floating above the shape
 
 
 class Measurement:
@@ -104,6 +123,9 @@ class Measurement:
 	var line: MeshInstance3D
 	var label: Label3D
 	var mat: StandardMaterial3D
+	var id := 0         # 0 = a player's new line that the host hasn't confirmed yet
+	var owner_peer := 0
+	var born_msec := 0
 
 
 class Hit:
@@ -161,7 +183,23 @@ var _status: Label
 var _side_buttons: Dictionary = {} # Side -> [Button (+1), Button (+10)]
 
 
+# --- multiplayer ---
+var _sync = null          # the CombatSync node under the Lobby autoload (null = no Lobby: single player)
+var _online := false      # connected to a lobby
+var _authority := true    # the storyteller, or playing without a lobby: may edit the board
+var _my_id := HOST_ID
+var _mouse_over := true   # false while the board is shown in a container the mouse isn't over
+var _next_token_id := 1
+var _next_measure_id := 1
+var _net_dirty_levels: Dictionary = {}    # Vector2i -> true: terrain changes not sent yet
+var _net_dirty_interiors: Dictionary = {}
+var _net_rect_dirty := false
+var _net_timer := 0.0
+var _pending_lines: Array[Measurement] = [] # my lines waiting for the host to confirm them
+
+
 func _ready() -> void:
+	_isolate_world()
 	_grid_rect = Rect2i(Vector2i.ZERO, start_size)
 	if add_default_lighting:
 		_add_default_lighting()
@@ -171,12 +209,63 @@ func _ready() -> void:
 	_update_status()
 	if get_viewport().get_camera_3d() == null:
 		push_warning("vtt_grid_3d: no Camera3D found. Add the rts_camera.gd rig (Node3D + Camera3D child).")
+	_hook_container()
+	_net_setup()
 
 
-func _process(_delta: float) -> void:
+func _exit_tree() -> void:
+	if is_instance_valid(_sync):
+		_sync.unregister_grid(self)
+
+
+func _process(delta: float) -> void:
+	_refresh_role()
 	_layout_buttons()
 	if _extras_dirty:
 		_rebuild_extras()
+	_release_failsafe()
+	_expire_pending_lines()
+	if _authority and _online:
+		_net_timer += delta
+		if _net_timer >= NET_FLUSH_INTERVAL:
+			_net_timer = 0.0
+			_flush_terrain()
+
+
+## The combat view lives in a SubViewport. Giving it its own 3D world keeps its tiles, sun and sky
+## apart from the dice roller / genotype viewers, which would otherwise share one world with it.
+func _isolate_world() -> void:
+	var vp := get_viewport()
+	if vp is SubViewport and not vp.own_world_3d:
+		vp.own_world_3d = true
+
+
+## When the board is shown inside a SubViewportContainer, remember whether the mouse is over it,
+## so keys typed somewhere else (a text field on the sheet, say) aren't read as board shortcuts.
+func _hook_container() -> void:
+	var container := get_viewport().get_parent() as SubViewportContainer
+	if container == null:
+		return
+	_mouse_over = false
+	container.mouse_entered.connect(func(): _mouse_over = true)
+	container.mouse_exited.connect(func():
+		_mouse_over = false
+		_set_hover(NO_CELL)
+	)
+
+
+## A mouse release that happens outside the container can be missed. If no button is held any
+## more, finish whatever the grid thought was still going on so it can't get stuck.
+func _release_failsafe() -> void:
+	match _mode:
+		Mode.IDLE:
+			return
+		Mode.MEASURING:
+			if not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+				_finish_measuring()
+		_:
+			if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				_left_released()
 
 
 # ------------------------------------------------------------------ setup
@@ -311,6 +400,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_key(event: InputEventKey) -> void:
+	if not _authority or not _mouse_over:
+		return # players have no shortcuts, and keys typed elsewhere are not for the board
 	if not event.pressed or event.echo:
 		return
 	match event.keycode:
@@ -327,6 +418,13 @@ func _on_key(event: InputEventKey) -> void:
 
 func _left_pressed() -> void:
 	if _mode != Mode.IDLE:
+		return
+
+	# Players can only pick up their own shape. Nothing else on the board answers to them.
+	if not _authority:
+		var mine := _pick()
+		if mine and mine.token and mine.token.owner_peer == _my_id:
+			_begin_token_drag(mine.token)
 		return
 
 	# Ctrl + drag grabs the current selection whatever is under the cursor, so a pit that is
@@ -358,16 +456,20 @@ func _left_pressed() -> void:
 	_press_mouse = get_viewport().get_mouse_position()
 
 	if hit.token:
-		_mode = Mode.DRAGGING_TOKEN
-		_dragged = hit.token
-		_drag_cell = hit.token.cell
-		_drag_segment = hit.token.segment
-		_place_token_at(_dragged, _drag_cell, _drag_segment, DRAG_LIFT)
+		_begin_token_drag(hit.token)
 	else:
 		# Not decided yet: a plain click places a shape, a drag selects or pulls.
 		_press_segment = _standing_segment(hit)
 		_press_in_selection = _has_selection and _selection.has_point(hit.cell)
 		_mode = Mode.PENDING
+
+
+func _begin_token_drag(t: Token) -> void:
+	_mode = Mode.DRAGGING_TOKEN
+	_dragged = t
+	_drag_cell = t.cell
+	_drag_segment = t.segment
+	_place_token_at(_dragged, _drag_cell, _drag_segment, DRAG_LIFT)
 
 
 func _left_released() -> void:
@@ -380,9 +482,7 @@ func _left_released() -> void:
 				if _token_at(_press_cell, _press_segment) == null:
 					_add_token(_press_cell, _press_segment)
 		Mode.DRAGGING_TOKEN:
-			_dragged.cell = _drag_cell
-			_dragged.segment = _drag_segment
-			_place_token(_dragged)
+			_commit_token_move(_dragged, _drag_cell, _drag_segment)
 			_dragged = null
 		Mode.SELECTING, Mode.PULLING:
 			pass # selection / new heights simply stay as they are
@@ -566,6 +666,8 @@ func _set_level(cell: Vector2i, level: int) -> void:
 		_levels.erase(cell)
 	else:
 		_levels[cell] = level
+	if _authority and _online:
+		_net_dirty_levels[cell] = true
 
 
 func _top_y(cell: Vector2i) -> float:
@@ -593,6 +695,8 @@ func _begin_pull() -> void:
 ## Every selected tile moves by the same amount from where it started, so any relief
 ## inside the selection is kept (tiles just stop at min_height / max_height).
 func _set_pull(delta_levels: int) -> void:
+	if not _authority:
+		return
 	if delta_levels == _pull_delta:
 		return
 	_pull_delta = delta_levels
@@ -615,6 +719,8 @@ func _selection_handle_point() -> Vector3:
 
 
 func _shift_selection(levels: int) -> void:
+	if not _authority:
+		return
 	if not _has_selection or _mode != Mode.IDLE:
 		return
 	for c in _cells_in(_selection):
@@ -655,6 +761,8 @@ func _set_interior(cell: Vector2i, k: int, hollow: bool) -> void:
 		if _interiors[cell].is_empty():
 			_interiors.erase(cell)
 	_extras_dirty = true
+	if _authority and _online:
+		_net_dirty_interiors[cell] = true
 
 
 ## Height shapes stand at on top of a tile: the highest solid surface (the roof, or the floor
@@ -703,6 +811,8 @@ func _segment_under_hit(hit: Hit) -> int:
 
 
 func _toggle_interior(hit: Hit) -> void:
+	if not _authority:
+		return
 	var k := _segment_under_hit(hit)
 	if k < 0:
 		_status.text = "Raise the tile first, then Shift + click one of its levels to hollow it out"
@@ -783,6 +893,9 @@ func _cells_in(rect: Rect2i) -> Array[Vector2i]:
 
 
 func _update_status() -> void:
+	if not _authority:
+		_status.text = "Drag your own shape to move it   |   Middle-drag to measure   |   Right-click a line you drew to remove it"
+		return
 	if not _has_selection:
 		_status.text = "Drag across the grid to select an area"
 		return
@@ -799,15 +912,36 @@ func _update_status() -> void:
 
 # ------------------------------------------------------------------ shapes
 
+## Storyteller only: puts a new shape on the board (and on every player's screen).
 func _add_token(cell: Vector2i, segment: int = -1) -> void:
+	if not _authority:
+		return
+	var t := _spawn_token(_alloc_token_id(), cell, segment, current_shape, _next_color(), NPC_OWNER)
+	_broadcast_token_added(t)
+
+
+func _next_color() -> Color:
+	var color := Color.CORNFLOWER_BLUE
+	if not shape_palette.is_empty():
+		color = shape_palette[_color_index % shape_palette.size()]
+		_color_index += 1
+	return color
+
+
+func _alloc_token_id() -> int:
+	_next_token_id += 1
+	return _next_token_id - 1
+
+
+## Builds a shape's node (plus the floating name for a player's shape) and registers it.
+func _spawn_token(id: int, cell: Vector2i, segment: int, shape: int, color: Color, owner_peer: int) -> Token:
 	var t := Token.new()
+	t.id = id
 	t.cell = cell
 	t.segment = segment
-	t.shape = current_shape
-	t.color = Color.CORNFLOWER_BLUE
-	if not shape_palette.is_empty():
-		t.color = shape_palette[_color_index % shape_palette.size()]
-		_color_index += 1
+	t.shape = shape
+	t.color = color
+	t.owner_peer = owner_peer
 
 	var mat := StandardMaterial3D.new()
 	mat.albedo_color = t.color
@@ -816,8 +950,48 @@ func _add_token(cell: Vector2i, segment: int = -1) -> void:
 	t.node.material_override = mat
 	add_child(t.node)
 
-	_place_token(t)
+	if owner_peer != NPC_OWNER:
+		t.tag = Label3D.new()
+		t.tag.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		t.tag.no_depth_test = true # readable even when the shape is behind a wall
+		t.tag.pixel_size = 0.008
+		t.tag.font_size = 56
+		t.tag.outline_size = 14
+		t.tag.position = Vector3(0.0, TOKEN_HEIGHT / 2.0 + NAME_TAG_HEIGHT, 0.0)
+		t.node.add_child(t.tag) # a child of the shape, so it follows the shape around
+		_style_tag(t)
+
 	_tokens.append(t)
+	_place_token(t)
+	return t
+
+
+func _style_tag(t: Token) -> void:
+	if t.tag == null:
+		return
+	t.tag.text = _name_for(t.owner_peer)
+	# Your own name is yellow so you can find yourself.
+	t.tag.modulate = Color(1.0, 0.9, 0.45) if (_online and t.owner_peer == _my_id) else Color.WHITE
+
+
+func _refresh_tags() -> void:
+	for t in _tokens:
+		_style_tag(t)
+
+
+func _name_for(peer_id: int) -> String:
+	if is_instance_valid(_sync):
+		return _sync.name_of(peer_id)
+	return "Player"
+
+
+## Local only: takes a shape off this machine's board (the callers tell the other players).
+func _remove_token(t: Token) -> void:
+	if t == _dragged:
+		_dragged = null
+		_mode = Mode.IDLE
+	t.node.queue_free()
+	_tokens.erase(t)
 
 
 func _make_token_mesh(shape: int) -> Mesh:
@@ -863,27 +1037,40 @@ func _right_pressed() -> void:
 	if _mode != Mode.IDLE:
 		return
 
+	# Players can only remove the lines they drew themselves.
+	if not _authority:
+		var mine := _measurement_under_mouse(_my_id)
+		if mine >= 0:
+			_sync.send_remove_measure(_measurements[mine].id)
+		return
+
 	# Shapes take priority over lines (lines usually start/end on a shape).
 	var hit := _pick()
 	if hit and hit.token:
-		hit.token.node.queue_free()
-		_tokens.erase(hit.token)
+		if hit.token.owner_peer == NPC_OWNER: # a player's own shape stays until they leave
+			var token_id := hit.token.id
+			_remove_token(hit.token)
+			_broadcast_token_removed(token_id)
 		return
 
 	var i := _measurement_under_mouse()
 	if i >= 0:
-		_free_measurement(_measurements[i])
-		_measurements.remove_at(i)
+		var line_id := _measurements[i].id
+		_remove_measurement(_measurements[i])
+		if _online:
+			_sync.broadcast_measure_removed(line_id)
 
 
 ## Lines are tested in screen space, so they're easy to click however far away they are.
-func _measurement_under_mouse() -> int:
+func _measurement_under_mouse(owner_filter: int = -1) -> int:
 	var cam := get_viewport().get_camera_3d()
 	if cam == null:
 		return -1
 	var mouse := get_viewport().get_mouse_position()
 	for i in range(_measurements.size() - 1, -1, -1): # newest first
 		var m := _measurements[i]
+		if owner_filter >= 0 and m.owner_peer != owner_filter:
+			continue # a player can only pick their own lines
 		if cam.is_position_behind(m.from) or cam.is_position_behind(m.to):
 			continue
 		var a := cam.unproject_position(m.from)
@@ -913,13 +1100,26 @@ func _finish_measuring() -> void:
 	if _mode != Mode.MEASURING:
 		return
 	_mode = Mode.IDLE
-	# Ignore accidental middle clicks that didn't actually drag anywhere.
-	if _measure.from.distance_to(_measure.to) > 0.1:
-		_measure.mat.albedo_color = Color.RED
-		_measurements.append(_measure)
-	else:
-		_free_measurement(_measure)
+	var m := _measure
 	_measure = null
+	# Ignore accidental middle clicks that didn't actually drag anywhere.
+	if m.from.distance_to(m.to) <= 0.1:
+		_free_measurement(m)
+		return
+
+	m.mat.albedo_color = Color.RED
+	m.owner_peer = _my_id
+	if not _authority:
+		# Shown right away; the host's copy replaces it once the host has confirmed the line.
+		m.born_msec = Time.get_ticks_msec()
+		_pending_lines.append(m)
+		_sync.send_add_measure(m.from, m.to)
+		return
+
+	m.id = _alloc_measure_id()
+	_measurements.append(m)
+	if _online:
+		_sync.broadcast_measure_added(m.id, m.owner_peer, m.from, m.to)
 
 
 func _measure_point(hit: Hit) -> Vector3:
@@ -972,7 +1172,7 @@ func _update_measurement(m: Measurement) -> void:
 		m.line.quaternion = Quaternion(Vector3.UP, delta / length) # cylinder's Y axis -> line
 		m.line.scale = Vector3(1.0, length, 1.0)
 	m.label.position = mid + Vector3.UP * 0.5
-	m.label.text = _format_distance(m.from, m.to)
+	m.label.text = _line_prefix(m) + _format_distance(m.from, m.to)
 
 
 func _free_measurement(m: Measurement) -> void:
@@ -1010,6 +1210,8 @@ func _num(value: float) -> String:
 # ------------------------------------------------------------------ expanding the grid
 
 func _expand(side: int, amount: int) -> void:
+	if not _authority:
+		return # only the storyteller resizes the grid
 	match side:
 		Side.NORTH:
 			_grid_rect.position.y -= amount
@@ -1022,15 +1224,28 @@ func _expand(side: int, amount: int) -> void:
 		Side.EAST:
 			_grid_rect.size.x += amount
 	_rebuild_grid()
+	if _online:
+		_net_rect_dirty = true
 
 
 ## Keeps a +1 / +10 pair near the middle of each edge of the grid. The buttons follow the
 ## edges as the camera moves, and slide to the screen border if the edge is off-screen.
 func _layout_buttons() -> void:
+	var view := get_viewport().get_visible_rect().size
+	# The board can be drawn into a very large SubViewport that is shown scaled down, so the
+	# labels and buttons are scaled up to stay readable.
+	var ui_scale := maxf(view.y / UI_REFERENCE_HEIGHT, 1.0)
+	_ui.scale = Vector2(ui_scale, ui_scale)
+
 	var cam := get_viewport().get_camera_3d()
-	if cam == null:
+	if cam == null or not _authority:
+		# Players don't get the grid-size buttons.
+		for buttons in _side_buttons.values():
+			for b in buttons:
+				b.visible = false
 		return
-	var screen := get_viewport().get_visible_rect().size
+
+	var screen := view / ui_scale
 	var r := _grid_rect
 	var cx := r.position.x + r.size.x / 2.0
 	var cz := r.position.y + r.size.y / 2.0
@@ -1052,7 +1267,7 @@ func _layout_buttons() -> void:
 		if behind:
 			continue
 
-		var p := cam.unproject_position(world_pos)
+		var p := cam.unproject_position(world_pos) / ui_scale
 		p.x = clampf(p.x, pair_w / 2.0 + 4.0, screen.x - pair_w / 2.0 - 4.0)
 		p.y = clampf(p.y, BTN_SIZE.y / 2.0 + 4.0, screen.y - BTN_SIZE.y / 2.0 - 4.0)
 		for i in 2:
@@ -1240,3 +1455,514 @@ func _in_grid(cell: Vector2i) -> bool:
 
 func _clamp_cell(cell: Vector2i) -> Vector2i:
 	return cell.clamp(_grid_rect.position, _grid_rect.end - Vector2i.ONE)
+
+
+
+# ------------------------------------------------------------------ multiplayer
+# The rules: only the host (the storyteller) changes the board. A player's requests (move my
+# shape, add or remove my line) are checked by the host, applied there, then copied to everybody.
+# Everything below named net_* is called by CombatSync. The ones that start with net_request_ run
+# on the host and treat the sender as untrusted.
+
+func _net_setup() -> void:
+	_sync = get_node_or_null("/root/Lobby/CombatSync")
+	if _sync == null:
+		return # no Lobby autoload: a plain single player board
+	_refresh_role()
+	_sync.register_grid(self)
+
+
+## Works out whether this machine is the storyteller, a player, or offline. Runs every frame
+## (it is cheap) so a lobby that starts or ends while the board is open is noticed.
+func _refresh_role() -> void:
+	var online := false
+	var authority := true
+	var my_id := HOST_ID
+	if is_instance_valid(_sync) and _sync.is_online():
+		online = true
+		authority = multiplayer.is_server()
+		my_id = multiplayer.get_unique_id()
+	if online == _online and authority == _authority and my_id == _my_id:
+		return
+	_online = online
+	_authority = authority
+	_my_id = my_id
+	_reset_interaction()
+	_refresh_tags()
+	_refresh_lines()
+	_update_status()
+
+
+## Drops anything half done (a drag, a selection) when the role changes.
+func _reset_interaction() -> void:
+	if _dragged != null:
+		_place_token(_dragged)
+		_dragged = null
+	if _measure != null:
+		_free_measurement(_measure)
+		_measure = null
+	_mode = Mode.IDLE
+	if not _authority:
+		_set_selection(Rect2i(), false)
+
+
+func _token_by_id(id: int) -> Token:
+	for t in _tokens:
+		if t.id == id:
+			return t
+	return null
+
+
+func _token_of_peer(peer_id: int) -> Token:
+	for t in _tokens:
+		if t.owner_peer == peer_id:
+			return t
+	return null
+
+
+func _measurement_by_id(id: int) -> Measurement:
+	for m in _measurements:
+		if m.id == id:
+			return m
+	return null
+
+
+func _alloc_measure_id() -> int:
+	_next_measure_id += 1
+	return _next_measure_id - 1
+
+
+## Called when a shape is dropped. The storyteller's move is final and is copied to everybody. A
+## player's move is shown at once but is only a request: the host's answer decides.
+func _commit_token_move(t: Token, cell: Vector2i, segment: int) -> void:
+	var moved := t.cell != cell or t.segment != segment
+	t.cell = cell
+	t.segment = segment
+	_place_token(t)
+	if not moved or not _online:
+		return
+	if _authority:
+		_sync.broadcast_token_moved(t.id, cell, segment)
+	else:
+		_sync.send_move_token(t.id, cell, segment)
+
+
+func _broadcast_token_added(t: Token) -> void:
+	if _online and _authority:
+		_sync.broadcast_token_added(t.id, t.cell, t.segment, t.shape, t.color, t.owner_peer)
+
+
+func _broadcast_token_removed(token_id: int) -> void:
+	if _online and _authority:
+		_sync.broadcast_token_removed(token_id)
+
+
+## Local only (the callers tell the other players).
+func _remove_measurement(m: Measurement) -> void:
+	_free_measurement(m)
+	_measurements.erase(m)
+
+
+func _spawn_measurement(line_id: int, owner_peer: int, from: Vector3, to: Vector3) -> Measurement:
+	var m := _make_measurement(Color.RED)
+	m.id = line_id
+	m.owner_peer = owner_peer
+	m.from = from
+	m.to = to
+	_update_measurement(m)
+	_measurements.append(m)
+	return m
+
+
+## Other people's lines say whose they are ("Alex: 4 metres (4 tiles)").
+func _line_prefix(m: Measurement) -> String:
+	if _online and m.owner_peer != _my_id and m.owner_peer != NPC_OWNER:
+		return _name_for(m.owner_peer) + ": "
+	return ""
+
+
+func _refresh_lines() -> void:
+	for m in _measurements:
+		_update_measurement(m)
+
+
+## A player's new line is shown straight away while the host's confirmation travels back. If the
+## host never confirms it (it was refused), it is taken down again after a few seconds.
+func _expire_pending_lines() -> void:
+	if _pending_lines.is_empty():
+		return
+	var now := Time.get_ticks_msec()
+	while not _pending_lines.is_empty() and now - _pending_lines[0].born_msec > PENDING_LINE_TIMEOUT_MS:
+		_free_measurement(_pending_lines.pop_front())
+
+
+## The empty tile nearest the middle of the grid, spiralling outwards.
+func _find_free_cell() -> Vector2i:
+	var center := _grid_rect.position + _grid_rect.size / 2
+	var max_ring := maxi(_grid_rect.size.x, _grid_rect.size.y)
+	for ring in range(0, max_ring + 1):
+		for dy in range(-ring, ring + 1):
+			for dx in range(-ring, ring + 1):
+				if maxi(absi(dx), absi(dy)) != ring:
+					continue
+				var c := center + Vector2i(dx, dy)
+				if _in_grid(c) and _token_at(c, -1) == null:
+					return c
+	return center
+
+
+func _make_player_token(peer_id: int) -> Token:
+	return _spawn_token(_alloc_token_id(), _find_free_cell(), -1, ShapeType.CIRCLE, _next_color(), peer_id)
+
+
+func _valid_point(p: Vector3) -> bool:
+	if not (is_finite(p.x) and is_finite(p.y) and is_finite(p.z)):
+		return false
+	var footprint := Rect2(Vector2(_grid_rect.position) - Vector2(5, 5), Vector2(_grid_rect.size) + Vector2(10, 10))
+	return footprint.has_point(Vector2(p.x, p.z)) \
+		and p.y >= (min_height - 5) * height_step and p.y <= (max_height + 5) * height_step
+
+
+## Keeps a player from covering the board in lines: their oldest one goes first.
+func _enforce_line_limit(peer_id: int) -> void:
+	if peer_id == HOST_ID:
+		return
+	var mine: Array[Measurement] = []
+	for m in _measurements:
+		if m.owner_peer == peer_id:
+			mine.append(m)
+	while mine.size() > MAX_LINES_PER_PLAYER:
+		var oldest: Measurement = mine.pop_front()
+		var line_id := oldest.id
+		_remove_measurement(oldest)
+		_sync.broadcast_measure_removed(line_id)
+
+
+# ---- saving and loading the whole board
+
+func make_snapshot() -> Dictionary:
+	var levels := PackedInt32Array()
+	for c in _levels:
+		levels.push_back(c.x)
+		levels.push_back(c.y)
+		levels.push_back(_levels[c])
+	var interiors := []
+	for c in _interiors:
+		var ks := PackedInt32Array()
+		for k in _interiors[c]:
+			ks.push_back(k)
+		interiors.append([c, ks])
+	var tokens := []
+	for t in _tokens:
+		tokens.append([t.id, t.cell, t.segment, t.shape, t.color, t.owner_peer])
+	var lines := []
+	for m in _measurements:
+		lines.append([m.id, m.owner_peer, m.from, m.to])
+	return {
+		"rect": _grid_rect,
+		"levels": levels,
+		"interiors": interiors,
+		"tokens": tokens,
+		"measures": lines,
+		"next_token": _next_token_id,
+		"next_measure": _next_measure_id,
+		"color_index": _color_index,
+	}
+
+
+## Replaces everything on this machine's board with the snapshot. `keep_owner` (optional) is a
+## Callable(owner_peer) -> bool that can leave out shapes and lines of players who are gone.
+func _apply_snapshot(data: Dictionary, keep_owner: Callable = Callable()) -> void:
+	_clear_all()
+
+	var rect: Rect2i = data.get("rect", Rect2i(Vector2i.ZERO, start_size))
+	if rect.size.x < 1 or rect.size.y < 1:
+		rect = Rect2i(Vector2i.ZERO, start_size)
+	_grid_rect = rect
+
+	var levels: PackedInt32Array = data.get("levels", PackedInt32Array())
+	for i in range(0, levels.size() - 2, 3):
+		_levels[Vector2i(levels[i], levels[i + 1])] = levels[i + 2]
+	for entry in data.get("interiors", []):
+		var cell: Vector2i = entry[0]
+		var ks: PackedInt32Array = entry[1]
+		for k in ks:
+			if not _interiors.has(cell):
+				_interiors[cell] = {}
+			_interiors[cell][k] = true
+
+	for e in data.get("tokens", []):
+		var owner_peer: int = e[5]
+		if keep_owner.is_valid() and not keep_owner.call(owner_peer):
+			continue
+		_spawn_token(e[0], e[1], e[2], e[3], e[4], owner_peer)
+	for e in data.get("measures", []):
+		var line_owner: int = e[1]
+		if keep_owner.is_valid() and not keep_owner.call(line_owner):
+			continue
+		_spawn_measurement(e[0], line_owner, e[2], e[3])
+
+	_next_token_id = int(data.get("next_token", 1))
+	_next_measure_id = int(data.get("next_measure", 1))
+	_color_index = int(data.get("color_index", 0))
+
+	_rebuild_grid()
+	_refresh_tokens()
+	_update_status()
+
+
+func _clear_all() -> void:
+	for t in _tokens:
+		t.node.queue_free()
+	_tokens.clear()
+	for m in _measurements:
+		_free_measurement(m)
+	_measurements.clear()
+	for m in _pending_lines:
+		_free_measurement(m)
+	_pending_lines.clear()
+	if _measure != null:
+		_free_measurement(_measure)
+		_measure = null
+	_levels.clear()
+	_interiors.clear()
+	_pull_start_levels.clear()
+	_net_dirty_levels.clear()
+	_net_dirty_interiors.clear()
+	_net_rect_dirty = false
+	_dragged = null
+	_mode = Mode.IDLE
+	_selection = Rect2i()
+	_has_selection = false
+	_hover_cell = NO_CELL
+	_next_token_id = 1
+	_next_measure_id = 1
+	_color_index = 0
+	_extras_dirty = true
+
+
+# ---- host: sending terrain changes
+
+## Sends the terrain changes made since the last call (rate limited by _process).
+func _flush_terrain() -> void:
+	if _net_dirty_levels.is_empty() and _net_dirty_interiors.is_empty() and not _net_rect_dirty:
+		return
+	var levels := PackedInt32Array()
+	for c in _net_dirty_levels:
+		levels.push_back(c.x)
+		levels.push_back(c.y)
+		levels.push_back(_level(c))
+	var interiors := []
+	for c in _net_dirty_interiors:
+		var ks := PackedInt32Array()
+		if _interiors.has(c):
+			for k in _interiors[c]:
+				ks.push_back(k)
+		interiors.append([c, ks]) # an empty list means "no hollow levels any more"
+	_net_dirty_levels.clear()
+	_net_dirty_interiors.clear()
+	_net_rect_dirty = false
+	_sync.broadcast_terrain(_grid_rect, levels, interiors)
+
+
+# ---- host: handling a player's request (the sender is never trusted)
+
+## A player opened the board: give them a shape (if they have none) and send them the board.
+func net_peer_joined(peer_id: int) -> void:
+	if not (_authority and _online):
+		return
+	var t := _token_of_peer(peer_id)
+	var created := false
+	if t == null:
+		t = _make_player_token(peer_id)
+		created = true
+	_sync.send_snapshot(peer_id, make_snapshot())
+	if created:
+		_broadcast_token_added(t)
+
+
+## A player left: their shape and lines go.
+func net_peer_left(peer_id: int) -> void:
+	if not _authority:
+		return
+	var t := _token_of_peer(peer_id)
+	if t != null:
+		var token_id := t.id
+		_remove_token(t)
+		_broadcast_token_removed(token_id)
+	for m in _measurements.duplicate():
+		if m.owner_peer == peer_id:
+			var line_id: int = m.id
+			_remove_measurement(m)
+			if _online:
+				_sync.broadcast_measure_removed(line_id)
+
+
+## The board just opened on the host's screen: make sure every player who is waiting has a shape,
+## then send everybody the board (some of them may have opened theirs before the host did).
+func net_authority_ready(peer_ids: Array) -> void:
+	for id in peer_ids:
+		if _token_of_peer(id) == null:
+			_make_player_token(id)
+	if _online:
+		_sync.broadcast_snapshot(make_snapshot())
+
+
+## Restores the host's board from before (shapes of players who have left are dropped).
+func net_load_state(state: Dictionary) -> void:
+	var peers := multiplayer.get_peers()
+	_apply_snapshot(state, func(owner_peer: int) -> bool:
+		return owner_peer == NPC_OWNER or owner_peer == HOST_ID or peers.has(owner_peer)
+	)
+
+
+## A player wants to move their shape. Only their own shape, only onto a free, valid spot.
+func net_request_move(sender: int, token_id: int, cell: Vector2i, segment: int) -> void:
+	if not (_authority and _online):
+		return
+	var t := _token_by_id(token_id)
+	if t == null or t.owner_peer != sender:
+		return # not their shape: ignored completely
+
+	var ok := _in_grid(cell) and segment >= -1 and segment <= max_height
+	if ok and segment >= 0 and not _is_interior(cell, segment):
+		ok = false
+	if ok:
+		var other := _token_at(cell, segment)
+		ok = other == null or other == t
+
+	if ok:
+		t.cell = cell
+		t.segment = segment
+		_place_token(t)
+		_sync.broadcast_token_moved(t.id, cell, segment)
+	else:
+		_sync.send_token_moved_to(sender, t.id, t.cell, t.segment) # puts their copy back
+
+
+## A player drew a measuring line.
+func net_request_measure(sender: int, from: Vector3, to: Vector3) -> void:
+	if not (_authority and _online):
+		return
+	if not _valid_point(from) or not _valid_point(to) or from.distance_to(to) > MAX_LINE_LENGTH:
+		return
+	var m := _spawn_measurement(_alloc_measure_id(), sender, from, to)
+	_sync.broadcast_measure_added(m.id, sender, from, to)
+	_enforce_line_limit(sender)
+
+
+## A player wants to remove a line: only their own.
+func net_request_remove_measure(sender: int, line_id: int) -> void:
+	if not (_authority and _online):
+		return
+	var m := _measurement_by_id(line_id)
+	if m == null or m.owner_peer != sender:
+		return
+	_remove_measurement(m)
+	_sync.broadcast_measure_removed(line_id)
+
+
+# ---- players: applying what the host sends
+
+func net_apply_snapshot(data: Dictionary) -> void:
+	_apply_snapshot(data)
+
+
+func net_apply_terrain(rect: Rect2i, levels: PackedInt32Array, interiors: Array) -> void:
+	var rect_changed := rect != _grid_rect
+	var bounds := Rect2i()
+	var has_bounds := false
+	_grid_rect = rect
+
+	for i in range(0, levels.size() - 2, 3):
+		var c := Vector2i(levels[i], levels[i + 1])
+		_set_level(c, levels[i + 2])
+		bounds = bounds.merge(Rect2i(c, Vector2i.ONE)) if has_bounds else Rect2i(c, Vector2i.ONE)
+		has_bounds = true
+	for entry in interiors:
+		var c: Vector2i = entry[0]
+		var ks: PackedInt32Array = entry[1]
+		_interiors.erase(c)
+		for k in ks:
+			_set_interior(c, k, true)
+		bounds = bounds.merge(Rect2i(c, Vector2i.ONE)) if has_bounds else Rect2i(c, Vector2i.ONE)
+		has_bounds = true
+
+	_extras_dirty = true
+	if rect_changed:
+		_rebuild_grid()
+	elif has_bounds:
+		_refresh_area(bounds)
+	_refresh_tokens()
+	_update_status()
+
+
+func net_token_added(token_id: int, cell: Vector2i, segment: int, shape: int, color: Color, owner_peer: int) -> void:
+	var t := _token_by_id(token_id)
+	if t == null:
+		_spawn_token(token_id, cell, segment, shape, color, owner_peer)
+		return
+	t.cell = cell
+	t.segment = segment
+	if t != _dragged:
+		_place_token(t)
+
+
+func net_token_moved(token_id: int, cell: Vector2i, segment: int) -> void:
+	var t := _token_by_id(token_id)
+	if t == null:
+		return
+	t.cell = cell
+	t.segment = segment
+	if t != _dragged: # while I'm dragging my own shape, my drop will decide
+		_place_token(t)
+
+
+func net_token_removed(token_id: int) -> void:
+	var t := _token_by_id(token_id)
+	if t != null:
+		_remove_token(t)
+
+
+func net_measure_added(line_id: int, owner_peer: int, from: Vector3, to: Vector3) -> void:
+	if _measurement_by_id(line_id) != null:
+		return
+	if owner_peer == _my_id and not _pending_lines.is_empty():
+		_free_measurement(_pending_lines.pop_front()) # the host's copy replaces my preview
+	_spawn_measurement(line_id, owner_peer, from, to)
+
+
+func net_measure_removed(line_id: int) -> void:
+	var m := _measurement_by_id(line_id)
+	if m != null:
+		_remove_measurement(m)
+
+
+# ---- events from CombatSync
+
+## The connection state changed (for example this game just connected to the host).
+func net_refresh() -> void:
+	_refresh_role()
+
+
+func net_names_changed() -> void:
+	_refresh_tags()
+	_refresh_lines()
+
+
+func net_on_left_lobby(was_host: bool, was_client: bool) -> void:
+	_refresh_role() # offline again: this machine is its own storyteller
+	if was_client:
+		# The board belonged to the host. Start a fresh, empty one.
+		_clear_all()
+		_grid_rect = Rect2i(Vector2i.ZERO, start_size)
+		_rebuild_grid()
+		_update_status()
+	elif was_host:
+		# Everybody is gone, so are their shapes and lines. The storyteller's own stay.
+		for t in _tokens.duplicate():
+			if t.owner_peer != NPC_OWNER:
+				_remove_token(t)
+		for m in _measurements.duplicate():
+			if m.owner_peer != HOST_ID:
+				_remove_measurement(m)

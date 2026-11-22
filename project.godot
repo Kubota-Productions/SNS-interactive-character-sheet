@@ -30,6 +30,7 @@ buses/default_bus_layout="uid://bkf30gsw3gqgr"
 
 GlobalFunctions="*res://code/singleton/global_functions.gd"
 UISounds="*uid://bcqeeoy3e7pcp"
+Lobby="*uid://b36wk30pcb1cy"
 
 [display]
 

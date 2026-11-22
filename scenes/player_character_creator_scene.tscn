@@ -23,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://bm37hyw5q703g" path="res://assets/imagefiles/inventorysquare.png" id="20_ieuud"]
 [ext_resource type="Script" uid="uid://3jpwgrofsnql" path="res://code/add_image.gd" id="21_u3h14"]
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="22_hwnst"]
-[ext_resource type="PackedScene" uid="uid://s1vxqn38w167" path="res://scenes/Genotypedisplayer.tscn" id="25_a0p86"]
 [ext_resource type="Script" uid="uid://b1jtldfb82x0e" path="res://code/gamepdf.gd" id="26_jmwwa"]
 [ext_resource type="PackedScene" uid="uid://h8igbr3eu1bv" path="res://scenes/combat_scene_3D.tscn" id="26_l13rv"]
 
@@ -1787,13 +1786,10 @@ stretch_mode = 5
 [node name="FileDialog" type="FileDialog" parent="Control" unique_id=1791750834]
 
 [node name="DiceRoller" parent="." unique_id=1452560944 instance=ExtResource("22_hwnst")]
-
-[node name="Genotypedisplayer" parent="." unique_id=1922566142 instance=ExtResource("25_a0p86")]
-offset_left = -420.0
-offset_right = -20.0
-offset_bottom = 1080.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
+offset_left = -232.0
+offset_top = 568.0
+offset_right = -232.0
+offset_bottom = 568.0
 
 [node name="3Dcombatscene" parent="." unique_id=1316443257 instance=ExtResource("26_l13rv")]
 offset_left = -226.0

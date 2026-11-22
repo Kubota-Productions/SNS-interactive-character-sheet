@@ -8,10 +8,7 @@
 [ext_resource type="Script" uid="uid://b203m6ynquqgb" path="res://assets/imagefiles/UI/mousefollowmenuui.gd" id="4_qyp6a"]
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="5_fbui4"]
 [ext_resource type="Script" uid="uid://bx4pc2vord1iq" path="res://code/storyteller/save_st_screen.gd" id="6_353v8"]
-[ext_resource type="Texture2D" uid="uid://bmbtrf1ooigsm" path="res://assets/imagefiles/st1.png" id="6_gocmh"]
-[ext_resource type="Texture2D" uid="uid://b2ttyls2b1u1p" path="res://assets/imagefiles/st3.png" id="7_fhtor"]
-[ext_resource type="Texture2D" uid="uid://c4jq26s13xwxu" path="res://assets/imagefiles/st2.png" id="8_nqyor"]
-[ext_resource type="Texture2D" uid="uid://bf6rdlqws8tnt" path="res://assets/imagefiles/st4.png" id="9_fhtor"]
+[ext_resource type="PackedScene" uid="uid://h8igbr3eu1bv" path="res://scenes/combat_scene_3D.tscn" id="6_qyp6a"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_a4rfs"]
 
@@ -52,12 +49,13 @@ shader_parameter/mouse_radius = 0.1
 [node name="StorytellerSceneMain" type="Node2D" unique_id=1783231299]
 script = ExtResource("1_fvrw6")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1642251992]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1642251992 node_paths=PackedStringArray("combat_scene")]
 position = Vector2(500, 540)
 script = ExtResource("2_4mdlk")
 left_limit = -100.0
 right_limit = 9500.0
 down_limit = 1000.0
+combat_scene = NodePath("../Control/3D_Combat_Scene")
 
 [node name="backgrounddots" type="Control" parent="." unique_id=1102672173]
 layout_mode = 3
@@ -118,33 +116,10 @@ texture = ExtResource("3_353v8")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="Control/BoxContainer" unique_id=1262944019]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("6_gocmh")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="TextureRect3" type="TextureRect" parent="Control/BoxContainer" unique_id=1639519036]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("8_nqyor")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="TextureRect4" type="TextureRect" parent="Control/BoxContainer" unique_id=1419837190]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("7_fhtor")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="TextureRect5" type="TextureRect" parent="Control/BoxContainer" unique_id=2099287037]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("9_fhtor")
-expand_mode = 3
-stretch_mode = 5
+[node name="3D_Combat_Scene" parent="Control" unique_id=1316443257 instance=ExtResource("6_qyp6a")]
+layout_mode = 0
+offset_left = 1923.0
+offset_right = 1963.0
 
 [node name="LineEdit" type="LineEdit" parent="." unique_id=1746158194]
 offset_right = 238.0

@@ -47,6 +47,9 @@ var _target_yaw := 0.0
 var _target_dist := 20.0
 var _yaw := 0.0
 var _dist := 20.0
+## True while the mouse is over the board. When the board is shown inside a SubViewportContainer
+## this follows the container, so keys typed elsewhere (a text field on the sheet) don't move it.
+var _mouse_over := true
 
 
 func _ready() -> void:
@@ -65,10 +68,20 @@ func _ready() -> void:
 	_yaw = rotation.y
 	_target_yaw = _yaw
 	_apply()
+	_hook_container()
+
+
+func _hook_container() -> void:
+	var container := get_viewport().get_parent() as SubViewportContainer
+	if container == null:
+		return # the scene is running on its own, so the whole window is the board
+	_mouse_over = false
+	container.mouse_entered.connect(func(): _mouse_over = true)
+	container.mouse_exited.connect(func(): _mouse_over = false)
+
 
 func _is_combat_viewport_active() -> bool:
-	var vp := get_viewport()
-	return vp.get_visible_rect().has_point(vp.get_mouse_position())
+	return _mouse_over
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not _is_combat_viewport_active():
