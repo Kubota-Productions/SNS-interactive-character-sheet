@@ -370,6 +370,7 @@ func debug_host_local() -> void:
 	multiplayer.multiplayer_peer = peer
 	_set_status("Hosting local test game")
 	register_player()
+	_arrange_test_window(0)
 
 
 func debug_join_local() -> void:
@@ -382,3 +383,17 @@ func debug_join_local() -> void:
 	steam_peer = peer
 	multiplayer.multiplayer_peer = peer
 	_set_status("Connecting to local test game...")
+	_arrange_test_window(1)
+
+
+## The game normally starts fullscreen, which would hide the other test copy. This makes it a
+## normal window, 60% of the screen wide: the host in the top left corner, the joiner in the
+## bottom right, so both can be seen (click one to bring it to the front).
+func _arrange_test_window(slot: int) -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	await get_tree().process_frame # the window needs a frame to leave fullscreen
+	var area := DisplayServer.screen_get_usable_rect()
+	var width := int(area.size.x * 0.6)
+	var size := Vector2i(width, mini(int(width * 9.0 / 16.0), area.size.y))
+	DisplayServer.window_set_size(size)
+	DisplayServer.window_set_position(area.position + Vector2i(Vector2(area.size - size) * float(slot)))

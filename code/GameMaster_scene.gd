@@ -1,8 +1,8 @@
 extends Node2D
 
 func _enter_tree() -> void:
-	if GlobalFunctions.storyteller == null:
-		GlobalFunctions.new_storyteller()
+	if GlobalFunctions.gamemaster == null:
+		GlobalFunctions.new_gamemaster()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

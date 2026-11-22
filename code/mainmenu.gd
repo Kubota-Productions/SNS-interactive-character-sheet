@@ -197,6 +197,19 @@ func _ready() -> void:
 		leave_button.pressed.connect(disconnect_from_game)
 		player_list.get_parent().add_child(leave_button)
 
+	# Only in debug builds (running from the editor): test the multiplayer on this PC, no Steam
+	# or friend needed. Run two copies of the game, press "host" in one and "join" in the other.
+	if OS.is_debug_build():
+		var test_host := Button.new()
+		test_host.text = "TEST: host on this PC"
+		test_host.pressed.connect(Callable(lobby, "debug_host_local"))
+		player_list.get_parent().add_child(test_host)
+
+		var test_join := Button.new()
+		test_join.text = "TEST: join on this PC"
+		test_join.pressed.connect(Callable(lobby, "debug_join_local"))
+		player_list.get_parent().add_child(test_join)
+
 	lobby_status.text = lobby.status
 	_refresh_player_list()
 
