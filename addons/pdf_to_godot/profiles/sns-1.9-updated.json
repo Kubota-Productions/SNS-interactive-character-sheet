@@ -1,0 +1,148 @@
+{
+  "name": "Text Field 216",
+  "appearance": "Signature Field 2",
+  "ignore": [
+    "Button 2",
+    "Button 3",
+    "Button 4",
+    "Button 5",
+    "Button 11",
+    "Button 12",
+    "Button 13",
+    "Button 15",
+    "Button 16",
+    "Button 17",
+    "Button 18",
+    "Button 19",
+    "Button 14",
+    "Button 10",
+    "Button 9",
+    "Button 6",
+    "Button 7",
+    "Button 8",
+    "Button 20",
+    "Button 21",
+    "Button 22",
+    "Button 23",
+    "Button 24",
+    "Button 25"
+  ],
+  "symbols": [
+    "Text Field 80",
+    "Text Field 81",
+    "Text Field 82",
+    "Text Field 83",
+    "Text Field 84",
+    "Text Field 85",
+    "Text Field 86",
+    "Text Field 87",
+    "Text Field 88",
+    "Text Field 89",
+    "Text Field 90",
+    "Text Field 91",
+    "Text Field 92",
+    "Text Field 93",
+    "Text Field 94",
+    "Text Field 95",
+    "Text Field 96",
+    "Text Field 97",
+    "Text Field 98",
+    "Text Field 99",
+    "Text Field 100",
+    "Text Field 101",
+    "Text Field 102",
+    "Text Field 103",
+    "Text Field 104",
+    "Text Field 105",
+    "Text Field 106",
+    "Text Field 107",
+    "Text Field 108",
+    "Text Field 109",
+    "Text Field 1010",
+    "Text Field 1011",
+    "Text Field 1012",
+    "Text Field 1013",
+    "Text Field 1014",
+    "Text Field 1015"
+  ],
+  "fields": {
+    "Leverage6": {
+      "kind": "checkbox"
+    },
+    "Leverage7": {
+      "kind": "checkbox"
+    },
+    "Leverage8": {
+      "kind": "checkbox"
+    },
+    "Leverage9": {
+      "kind": "checkbox"
+    },
+    "Leverage16": {
+      "kind": "checkbox"
+    },
+    "Leverage17": {
+      "kind": "checkbox"
+    },
+    "Leverage18": {
+      "kind": "checkbox"
+    },
+    "Leverage20": {
+      "kind": "checkbox"
+    },
+    "Leverage21": {
+      "kind": "checkbox"
+    },
+    "Leverage22": {
+      "kind": "checkbox"
+    },
+    "Leverage23": {
+      "kind": "checkbox"
+    },
+    "Leverage24": {
+      "kind": "checkbox"
+    },
+    "Leverage25": {
+      "kind": "checkbox"
+    },
+    "Leverage26": {
+      "kind": "checkbox"
+    },
+    "Leverage27": {
+      "kind": "checkbox"
+    },
+    "Leverage28": {
+      "kind": "checkbox"
+    },
+    "Leverage29": {
+      "kind": "checkbox"
+    },
+    "Leverage30": {
+      "kind": "checkbox"
+    },
+    "Leverage31": {
+      "kind": "checkbox"
+    },
+    "Leverage32": {
+      "kind": "checkbox"
+    },
+    "Leverage33": {
+      "kind": "checkbox"
+    },
+    "Leverage34": {
+      "kind": "checkbox"
+    },
+    "Leverage35": {
+      "kind": "checkbox"
+    },
+    "Leverage36": {
+      "kind": "checkbox"
+    },
+    "Text Field 216": {
+      "tag": "character.name"
+    },
+    "Signature Field 2": {
+      "tag": "character.appearance"
+    }
+  }
+}

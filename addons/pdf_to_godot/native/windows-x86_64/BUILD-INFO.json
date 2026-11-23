@@ -1,0 +1,17 @@
+{
+  "version": "0.3.0",
+  "platform": "windows-x86_64",
+  "godot_minimum": "4.4",
+  "pdfium": "chromium/8138",
+  "source_sha256": "d995a19a224d2c39caef5031532ca7310772f94ee3b12b0a4ff87f716fd3f525",
+  "source_revision": "ee43af5faa5e816fb07b840d4be0959d8082e60e",
+  "includes_uncommitted_changes": true,
+  "build_profile": "release",
+  "build_queue_job": "54a9c42c58494676b3cabfe420ef6a8a",
+  "build_input_digest": "2d1842d5793293b6a5576478ce5e3196e033742a6b9c6ed9ad67fd302d1a30f6",
+  "files": {
+    "pdf_to_godot.dll": "f7ca2569413ecf74295aca256996db42d0c27ee5ca38ffa01ebefe1a207a8d9d",
+    "pdfium.dll": "71a3e63e6ab8f5746a0fc9de9bc3d0c0dc07eb60990dfd37d9db7fc891821943"
+  },
+  "crt": "static"
+}

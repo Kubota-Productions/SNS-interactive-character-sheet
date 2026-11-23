@@ -1,25 +1,25 @@
 extends Node
-## Autoload "GlobalFunctions": owns the currently open character sheet / storyteller screen
+## Autoload "GlobalFunctions": owns the currently open character sheet / gamemaster screen
 ## and handles loading, autosaving, renaming, deleting and listing their save files.
 
 const SAVE_SUFFIX := "_savedata"
 const SAVE_EXT := ".res"  # compact binary. Use ".tres" while debugging to get readable saves.
 const CHARACTER_DIR := "user://characters/"
-const STORYTELLER_DIR := "user://storytellers/"
+const GAMEMASTER_DIR := "user://gamemasters/"
 const AUTOSAVE_DELAY := 0.5  # seconds after the last edit
 
 ## The sheet / screen currently open. The main menu sets these before switching scenes.
 var character: CharacterSaveData = null
-var storyteller: StorytellerSaveData = null
+var gamemaster: GamemasterSaveData = null
 
 var _character_dirty := false
-var _storyteller_dirty := false
+var _gamemaster_dirty := false
 var _autosave_timer := Timer.new()
 
 
 func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(CHARACTER_DIR)
-	DirAccess.make_dir_recursive_absolute(STORYTELLER_DIR)
+	DirAccess.make_dir_recursive_absolute(GAMEMASTER_DIR)
 
 	_autosave_timer.one_shot = true
 	_autosave_timer.wait_time = AUTOSAVE_DELAY
@@ -41,9 +41,9 @@ func flush() -> void:
 	if _character_dirty and character != null:
 		_character_dirty = false
 		_write(character, _path(CHARACTER_DIR, character.character_name))
-	if _storyteller_dirty and storyteller != null:
-		_storyteller_dirty = false
-		_write(storyteller, _path(STORYTELLER_DIR, storyteller.storyteller_name))
+	if _gamemaster_dirty and gamemaster != null:
+		_gamemaster_dirty = false
+		_write(gamemaster, _path(GAMEMASTER_DIR, gamemaster.gamemaster_name))
 
 
 #region characters
@@ -93,47 +93,47 @@ func _on_character_changed() -> void:
 #endregion
 
 
-#region storyteller screens
-func new_storyteller() -> void:
-	var screen := StorytellerSaveData.new()
-	screen.storyteller_name = _unique_name(STORYTELLER_DIR, "new_story")
-	_set_storyteller(screen)
+#region gamemaster screens
+func new_gamemaster() -> void:
+	var screen := GamemasterSaveData.new()
+	screen.gamemaster_name = _unique_name(GAMEMASTER_DIR, "new_story")
+	_set_gamemaster(screen)
 
-func load_storyteller(storyteller_name: String) -> bool:
-	var loaded := _load(_path(STORYTELLER_DIR, storyteller_name)) as StorytellerSaveData
+func load_gamemaster(gamemaster_name: String) -> bool:
+	var loaded := _load(_path(GAMEMASTER_DIR, gamemaster_name)) as GamemasterSaveData
 	if loaded == null:
-		push_error("Could not load storyteller screen '%s'." % storyteller_name)
+		push_error("Could not load gamemaster screen '%s'." % gamemaster_name)
 		return false
-	loaded.storyteller_name = storyteller_name
-	_set_storyteller(loaded)
+	loaded.gamemaster_name = gamemaster_name
+	_set_gamemaster(loaded)
 	return true
 
-func rename_storyteller(new_name: String) -> String:
-	var final_name := _rename_file(STORYTELLER_DIR, storyteller.storyteller_name, new_name)
-	if final_name != storyteller.storyteller_name:
-		storyteller.storyteller_name = final_name
-		storyteller.emit_changed()
+func rename_gamemaster(new_name: String) -> String:
+	var final_name := _rename_file(GAMEMASTER_DIR, gamemaster.gamemaster_name, new_name)
+	if final_name != gamemaster.gamemaster_name:
+		gamemaster.gamemaster_name = final_name
+		gamemaster.emit_changed()
 		flush()
 	return final_name
 
-func delete_storyteller(storyteller_name: String) -> void:
-	if storyteller != null and storyteller.storyteller_name == storyteller_name:
-		_storyteller_dirty = false
-		storyteller = null
-	DirAccess.remove_absolute(_path(STORYTELLER_DIR, storyteller_name))
+func delete_gamemaster(gamemaster_name: String) -> void:
+	if gamemaster != null and gamemaster.gamemaster_name == gamemaster_name:
+		_gamemaster_dirty = false
+		gamemaster = null
+	DirAccess.remove_absolute(_path(GAMEMASTER_DIR, gamemaster_name))
 
-func list_storytellers() -> PackedStringArray:
-	return _list(STORYTELLER_DIR)
+func list_gamemasters() -> PackedStringArray:
+	return _list(GAMEMASTER_DIR)
 
-func _set_storyteller(screen: StorytellerSaveData) -> void:
+func _set_gamemaster(screen: GamemasterSaveData) -> void:
 	flush()
-	if storyteller != null:
-		storyteller.changed.disconnect(_on_storyteller_changed)
-	storyteller = screen
-	storyteller.changed.connect(_on_storyteller_changed)
+	if gamemaster != null:
+		gamemaster.changed.disconnect(_on_gamemaster_changed)
+	gamemaster = screen
+	gamemaster.changed.connect(_on_gamemaster_changed)
 
-func _on_storyteller_changed() -> void:
-	_storyteller_dirty = true
+func _on_gamemaster_changed() -> void:
+	_gamemaster_dirty = true
 	_autosave_timer.start()
 #endregion
 
@@ -207,7 +207,7 @@ func _migrate_legacy_saves() -> void:
 		if file_name.ends_with("0savedata.json"):
 			_migrate_legacy_character(file_name)
 		elif file_name.ends_with("1savedata.json"):
-			_migrate_legacy_storyteller(file_name)
+			_migrate_legacy_gamemaster(file_name)
 
 func _read_legacy_array(file_name: String) -> Array:
 	var file := FileAccess.open("user://" + file_name, FileAccess.READ)
@@ -245,12 +245,12 @@ func _migrate_legacy_character(file_name: String) -> void:
 	_archive_legacy(file_name)
 	_archive_legacy("%s_appearance.png" % character_name)
 
-func _migrate_legacy_storyteller(file_name: String) -> void:
-	var storyteller_name := file_name.trim_suffix("1savedata.json")
-	var target := _path(STORYTELLER_DIR, storyteller_name)
+func _migrate_legacy_gamemaster(file_name: String) -> void:
+	var gamemaster_name := file_name.trim_suffix("1savedata.json")
+	var target := _path(GAMEMASTER_DIR, gamemaster_name)
 	if not FileAccess.file_exists(target):
-		var screen := StorytellerSaveData.new()
-		screen.storyteller_name = storyteller_name
+		var screen := GamemasterSaveData.new()
+		screen.gamemaster_name = gamemaster_name
 		var legacy := _read_legacy_array(file_name)
 		for i in legacy.size():
 			var value := str(legacy[i])

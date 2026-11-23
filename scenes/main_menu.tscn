@@ -163,27 +163,27 @@ layout_mode = 2
 text = "Delete a sheet
 "
 
-[node name="VBoxContainerstoryteller" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=301710102]
+[node name="VBoxContainergamemaster" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=301710102]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller" unique_id=1285098705]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainergamemaster" unique_id=1285098705]
 layout_mode = 2
-text = "Storyteller"
+text = "GameMaster"
 horizontal_alignment = 1
 
-[node name="LoadAScreen" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller" unique_id=2074483798]
+[node name="LoadAScreen" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainergamemaster" unique_id=2074483798]
 layout_mode = 2
 text = "Load a Screen"
 
-[node name="AcceptDialog" type="AcceptDialog" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/LoadAScreen" unique_id=1244474845]
+[node name="AcceptDialog" type="AcceptDialog" parent="VBoxContainer/HBoxContainer/VBoxContainergamemaster/LoadAScreen" unique_id=1244474845]
 auto_translate_mode = 1
 dialog_text = "Please select a screen first, or create one."
 
-[node name="AddAScreen" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller" unique_id=260827939]
+[node name="AddAScreen" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainergamemaster" unique_id=260827939]
 layout_mode = 2
 text = "Add a Screen"
 
-[node name="DeleteAScreen2" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainerstoryteller" unique_id=1593794428]
+[node name="DeleteAScreen2" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainergamemaster" unique_id=1593794428]
 layout_mode = 2
 text = "Delete a Screen"
 
@@ -288,14 +288,14 @@ position = Vector2(1532, 539.756)
 scale = Vector2(0.299194, 0.299194)
 texture = ExtResource("2_ekxnf")
 
-[node name="ScrollContainerstoryteller" type="ScrollContainer" parent="." unique_id=501919904]
+[node name="ScrollContainergamemaster" type="ScrollContainer" parent="." unique_id=501919904]
 layout_mode = 0
 offset_left = 647.0
 offset_top = 31.0
 offset_right = 797.0
 offset_bottom = 1031.0
 
-[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainerstoryteller" unique_id=824122160]
+[node name="HBoxContainer" type="VBoxContainer" parent="ScrollContainergamemaster" unique_id=824122160]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -309,9 +309,9 @@ size_flags_vertical = 6
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet" to="." method="_on_load_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/AddASheet" to="." method="_on_add_a_sheet_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerplayer/DeleteASheet" to="." method="_on_delete_a_sheet_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/LoadAScreen" to="." method="_on_load_a_screen_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/AddAScreen" to="." method="_on_add_a_screen_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainerstoryteller/DeleteAScreen2" to="." method="_on_delete_a_screen_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainergamemaster/LoadAScreen" to="." method="_on_load_a_screen_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainergamemaster/AddAScreen" to="." method="_on_add_a_screen_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainergamemaster/DeleteAScreen2" to="." method="_on_delete_a_screen_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Join the Discord!" to="." method="_on_join_the_discord_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Socials" to="." method="_on_socials_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainerresources/VBoxContainerresources/Website" to="." method="_on_website_pressed"]

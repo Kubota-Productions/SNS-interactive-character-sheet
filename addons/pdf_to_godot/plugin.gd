@@ -7,6 +7,7 @@ var _output: LineEdit
 var _config: LineEdit
 var _scale: SpinBox
 var _dpi: SpinBox
+var _page_layout: OptionButton
 var _picker: EditorFileDialog
 var _message: AcceptDialog
 var _thread: Thread
@@ -26,8 +27,17 @@ func _enter_tree() -> void:
 	_config = _path_row(form, "Field overrides (optional)", "JSON file, or leave empty", EditorFileDialog.ACCESS_FILESYSTEM, "*.json; Field overrides")
 	_scale = _number_row(form, "Scene pixels per PDF point", 0.1, 10.0, 0.1, 1.2)
 	_dpi = _number_row(form, "Artwork DPI", 36, 600, 1, 144)
+	var layout_label := Label.new()
+	layout_label.text = "Page layout"
+	form.add_child(layout_label)
+	_page_layout = OptionButton.new()
+	_page_layout.add_item("Side by side (stretch w)")
+	_page_layout.add_item("Scrollable (standard)")
+	_page_layout.add_item("Separate scenes")
+	_page_layout.select(1)
+	form.add_child(_page_layout)
 	var help := Label.new()
-	help.text = "Each import creates a new folder containing sheet.tscn and its artwork.\nConversion runs inside Godot using the PDF engine bundled with this addon."
+	help.text = "Each import creates a new folder containing scenes and page artwork.\nConversion runs inside Godot using the PDF engine bundled with this addon."
 	form.add_child(help)
 	_window.confirmed.connect(_start)
 	get_editor_interface().get_base_control().add_child(_window)
@@ -129,8 +139,16 @@ func _start() -> void:
 			_show_message("The selected field overrides file does not exist.")
 			return
 		configuration = FileAccess.get_file_as_string(_config.text)
+	var parsed := JSON.new()
+	if parsed.parse(configuration) != OK or not parsed.data is Dictionary:
+		_show_message("Field overrides must be a JSON object.")
+		return
+	var options: Dictionary = parsed.data
+	options["page_layout"] = ["side_by_side", "scrollable", "separate_scenes"][_page_layout.selected]
+	configuration = JSON.stringify(options)
+	var scene_file := "page_1.tscn" if _page_layout.selected == 2 else "sheet.tscn"
 	_thread = Thread.new()
-	error = _thread.start(_convert.bind(_pdf.text, output, configuration, _scale.value, int(_dpi.value), _output.text.path_join("sheet.tscn")))
+	error = _thread.start(_convert.bind(_pdf.text, output, configuration, _scale.value, int(_dpi.value), _output.text.path_join(scene_file)))
 	if error != OK:
 		_thread = null
 		_show_message("Could not start PDF import: " + error_string(error))
@@ -154,7 +172,10 @@ func _process(_delta: float) -> void:
 	set_process(false)
 	if not result.ok:
 		_busy = false
-		_show_message("Import failed:\n" + result.message)
+		var detail: String = result.message
+		if "configured field does not exist:" in detail:
+			detail += "\n\nThe selected field overrides do not match this PDF's fields.\nChoose the profile for this exact PDF revision, or leave Field overrides empty.\nFor SNS1.9CSinteractiveupdated.pdf, use profiles/sns-1.9-updated.json."
+		_show_message("Import failed:\n" + detail)
 		return
 	var filesystem := get_editor_interface().get_resource_filesystem()
 	var pending := {}

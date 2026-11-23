@@ -1,3 +1,4 @@
+@tool
 extends Control
 ## Explicit indexed state API. Connect value_changed for an existing save system,
 ## or set save_path to opt into debounced JSON autosave.
@@ -8,14 +9,25 @@ signal save_failed(path: String, error: Error)
 
 const FieldScript = preload("field.gd")
 @export var save_path: String = ""
+@export var show_page_navigation := true
+@export var side_by_side := false
 var _fields: Dictionary = {}
 var _timer: Timer
 var _dirty := false
 var _applying := false
 var _valid := true
 var _tags: Dictionary = {}
+var _page_scroll: ScrollContainer
+var _pages: BoxContainer
+var _page_navigation: HBoxContainer
+var _previous_page: Button
+var _next_page: Button
+var _page_label: Label
 
 func _ready() -> void:
+	_setup_pages()
+	if Engine.is_editor_hint():
+		return
 	_register(self)
 	_timer = Timer.new()
 	_timer.one_shot = true
@@ -24,6 +36,102 @@ func _ready() -> void:
 	_timer.timeout.connect(flush)
 	if save_path != "" and FileAccess.file_exists(save_path):
 		load_state(save_path)
+
+func _setup_pages() -> void:
+	_page_scroll = get_node_or_null("Scroll") as ScrollContainer
+	if _page_scroll == null:
+		return
+	_pages = _page_scroll.get_node_or_null("Pages") as BoxContainer
+	if Engine.is_editor_hint():
+		# The editor canvas must be able to pan/frame every page. A clipped
+		# ScrollContainer otherwise hides later pages even when selected.
+		_page_scroll.clip_contents = false
+		_page_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		_page_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+		return
+	_page_scroll.clip_contents = true
+	_page_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	_page_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	_page_scroll.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	if side_by_side:
+		_page_scroll.resized.connect(_fit_pages_to_width)
+		_fit_pages_to_width.call_deferred()
+		return
+	if get_page_count() < 2 or not show_page_navigation:
+		return
+	_page_navigation = HBoxContainer.new()
+	_page_navigation.name = "PageNavigation"
+	_page_navigation.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	_page_navigation.offset_left = 8
+	_page_navigation.offset_right = -8
+	_page_navigation.offset_top = 4
+	_page_navigation.offset_bottom = 36
+	_page_navigation.add_theme_constant_override("separation", 12)
+	_previous_page = Button.new()
+	_previous_page.name = "PreviousPage"
+	_previous_page.text = "Previous"
+	_previous_page.pressed.connect(func(): go_to_page(get_current_page() - 1))
+	_page_navigation.add_child(_previous_page)
+	_page_label = Label.new()
+	_page_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_page_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_page_navigation.add_child(_page_label)
+	_next_page = Button.new()
+	_next_page.name = "NextPage"
+	_next_page.text = "Next"
+	_next_page.pressed.connect(func(): go_to_page(get_current_page() + 1))
+	_page_navigation.add_child(_next_page)
+	add_child(_page_navigation)
+	_page_scroll.offset_top = 40
+	_page_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_ALWAYS
+	_page_scroll.get_v_scroll_bar().value_changed.connect(_update_page_navigation)
+	_page_scroll.resized.connect(_update_page_navigation)
+	_update_page_navigation.call_deferred()
+
+func _fit_pages_to_width() -> void:
+	var total_width := 0.0
+	for page in _pages.get_children():
+		total_width += Vector2(page.get_meta("page_size")).x
+	var gaps := _pages.get_theme_constant("separation") * maxi(0, get_page_count() - 1)
+	var available := _page_scroll.size.x - _page_scroll.get_v_scroll_bar().size.x - gaps
+	var factor := maxf(0.01, available / maxf(1.0, total_width))
+	for page in _pages.get_children():
+		page.custom_minimum_size = Vector2(page.get_meta("page_size")) * factor
+		page.get_node("Content").scale = Vector2.ONE * factor
+
+func get_page_count() -> int:
+	return _pages.get_child_count() if _pages != null else 0
+
+func get_current_page() -> int:
+	if get_page_count() == 0:
+		return 0
+	if side_by_side:
+		return 1
+	var bar := _page_scroll.get_v_scroll_bar()
+	if bar.max_value > bar.page and bar.value >= bar.max_value - bar.page - 1:
+		return get_page_count()
+	var current := 1
+	for i in get_page_count():
+		if _pages.get_child(i).position.y <= _page_scroll.scroll_vertical + 1:
+			current = i + 1
+	return current
+
+func go_to_page(page_number: int) -> void:
+	if get_page_count() == 0:
+		return
+	var page: Control = _pages.get_child(clampi(page_number, 1, get_page_count()) - 1)
+	_page_scroll.scroll_vertical = roundi(page.position.y)
+	_update_page_navigation()
+
+func _update_page_navigation(_value: float = 0) -> void:
+	if _page_navigation == null:
+		return
+	var current := get_current_page()
+	var bar := _page_scroll.get_v_scroll_bar()
+	var all_visible := bar.max_value <= bar.page
+	_page_label.text = "All %s pages" % get_page_count() if all_visible else "Page %s of %s" % [current, get_page_count()]
+	_previous_page.disabled = all_visible or current <= 1
+	_next_page.disabled = all_visible or current >= get_page_count()
 
 func _register(node: Node) -> void:
 	if node.get_script() == FieldScript:
@@ -157,4 +265,5 @@ func save_state(path: String) -> Error:
 	return DirAccess.rename_absolute(temporary, absolute)
 
 func _exit_tree() -> void:
-	flush()
+	if not Engine.is_editor_hint():
+		flush()

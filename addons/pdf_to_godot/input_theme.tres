@@ -1,6 +1,6 @@
-[gd_resource type="Theme" format=3 uid="uid://bdhd3eu8uxqkk"]
+[gd_resource type="Theme" format=3 uid="uid://ddmke3uyamlr6"]
 
-[ext_resource type="FontFile" path="res://addons/pdf_to_godot/fonts/LiberationSans-Regular.ttf" id="font"]
+[ext_resource type="FontFile" uid="uid://dwluer5clma6e" path="res://addons/pdf_to_godot/fonts/LiberationSans-Regular.ttf" id="font"]
 
 [sub_resource type="StyleBoxEmpty" id="focus"]
 

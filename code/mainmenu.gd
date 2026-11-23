@@ -4,21 +4,17 @@ extends Control
 @onready var v_box_container: VBoxContainer = $ScrollContainerplayer/HBoxContainer
 @onready var warning_dialog_character: AcceptDialog = $VBoxContainer/HBoxContainer/VBoxContainerplayer/LoadASheet/AcceptDialog
 var selected_save_file: String = ""
-var selected_save_file_storyteller: String = ""
 #endregion
 
-#region st sheet variables
-@onready var st_scroll_container: ScrollContainer = $ScrollContainerstoryteller
-@onready var st_v_box_container: VBoxContainer = $ScrollContainerstoryteller/HBoxContainer
-@onready var warning_dialog_storyteller: AcceptDialog = $VBoxContainer/HBoxContainer/VBoxContainerstoryteller/LoadAScreen/AcceptDialog
-var st_selected_save_file: String = ""
-var st_selected_save_file_storyteller: String = ""
+#region GM screen variables
+@onready var warning_dialog_gamemaster: AcceptDialog = _find_gm_warning_dialog()
+var gm_selected_save_file: String = ""
 
 #endregion
 
 func _enter_tree() -> void:
 	list_save_files()
-	st_list_save_files()
+	gm_list_save_files()
 
 #region character sheet
 func _on_load_a_sheet_pressed() -> void:
@@ -53,7 +49,7 @@ func _fill_list(container: Node, names: PackedStringArray, selected: String, on_
 	for child in container.get_children():
 		child.queue_free()
 
-	var group := ButtonGroup.new()  # one group per list, so characters and storytellers don't interfere
+	var group := ButtonGroup.new()  # one group per list, so characters and GM screens don't interfere
 	var selection_found := false
 
 	for save_name in names:
@@ -106,31 +102,76 @@ func _notification(what: int) -> void:
 		list_save_files()
 #endregion
 
-#region storyteller screen
-func _on_load_a_stscreen_pressed() -> void:
-	if st_selected_save_file != "" and GlobalFunctions.load_storyteller(st_selected_save_file):
-		get_parent()._switch_to(load("res://scenes/Storyteller_scene.tscn"))
+#region GM screen
+## The GM (GameMaster) screen. Its saves are listed by GlobalFunctions.
+const GM_SCENE_PATH := "res://scenes/GameMaster_scene.tscn"
+
+func _gm_scene() -> PackedScene:
+	if ResourceLoader.exists(GM_SCENE_PATH):
+		return load(GM_SCENE_PATH) as PackedScene
+	push_error("The GM scene was not found: " + GM_SCENE_PATH)
+	return null
+
+
+## The list of GM screens is the menu's other ScrollContainer (the character list is
+## ScrollContainerplayer). Looked up by structure so it doesn't depend on what the node is called.
+func _gm_list() -> Node:
+	for child in get_children():
+		if child is ScrollContainer and child.name != &"ScrollContainerplayer":
+			return child.get_node_or_null("HBoxContainer")
+	push_error("Main menu: could not find the list of GM screens.")
+	return null
+
+
+## The "nothing selected / could not load" popup that belongs to the Load button of the GM column.
+## Found by the button's name, so it still works if the column's container was renamed.
+func _find_gm_warning_dialog() -> AcceptDialog:
+	var load_button := find_child("LoadAScreen", true, false)
+	if load_button != null:
+		for child in load_button.get_children():
+			if child is AcceptDialog:
+				return child
+	push_warning("Main menu: could not find the AcceptDialog under the LoadAScreen button.")
+	return null
+
+
+func _show_gm_warning() -> void:
+	if warning_dialog_gamemaster != null:
+		warning_dialog_gamemaster.popup_centered()
+
+
+func _on_load_a_gm_screen_pressed() -> void:
+	var scene := _gm_scene()
+	if gm_selected_save_file != "" and scene != null and GlobalFunctions.load_gamemaster(gm_selected_save_file):
+		get_parent()._switch_to(scene)
 	else:
-		warning_dialog_storyteller.popup_centered()
+		_show_gm_warning()
 
-func _on_add_a_stscreen_pressed() -> void:
-	GlobalFunctions.new_storyteller()
-	get_parent()._switch_to(load("res://scenes/Storyteller_scene.tscn"))
+func _on_add_a_gm_screen_pressed() -> void:
+	var scene := _gm_scene()
+	if scene == null:
+		_show_gm_warning()
+		return
+	GlobalFunctions.new_gamemaster()
+	get_parent()._switch_to(scene)
 
-func _on_delete_a_stscreen_pressed() -> void:
-	if st_selected_save_file != "":
-		GlobalFunctions.delete_storyteller(st_selected_save_file)
-		st_selected_save_file = ""
-		st_list_save_files()
+func _on_delete_a_gm_screen_pressed() -> void:
+	if gm_selected_save_file != "":
+		GlobalFunctions.delete_gamemaster(gm_selected_save_file)
+		gm_selected_save_file = ""
+		gm_list_save_files()
 	else:
 		print("No file selected to delete.")
 
-func st_list_save_files() -> void:
-	st_selected_save_file = _fill_list(
-		$ScrollContainerstoryteller/HBoxContainer,
-		GlobalFunctions.list_storytellers(),
-		st_selected_save_file,
-		func(save_name: String): st_selected_save_file = save_name
+func gm_list_save_files() -> void:
+	var list := _gm_list()
+	if list == null:
+		return
+	gm_selected_save_file = _fill_list(
+		list,
+		GlobalFunctions.list_gamemasters(),
+		gm_selected_save_file,
+		func(save_name: String): gm_selected_save_file = save_name
 	)
 #endregion
 
@@ -146,15 +187,15 @@ func _on_exit_pressed() -> void:
 
 
 func _on_add_a_screen_pressed() -> void:
-	_on_add_a_stscreen_pressed()
+	_on_add_a_gm_screen_pressed()
 
 
 func _on_delete_a_screen_2_pressed() -> void:
-	_on_delete_a_stscreen_pressed()
+	_on_delete_a_gm_screen_pressed()
 
 
 func _on_load_a_screen_pressed() -> void:
-	_on_load_a_stscreen_pressed()
+	_on_load_a_gm_screen_pressed()
 	
 
 

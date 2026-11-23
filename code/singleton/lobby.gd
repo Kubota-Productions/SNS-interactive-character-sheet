@@ -5,7 +5,7 @@ extends Node
 ## It lives for the whole run of the game, so the lobby survives switching between the menu, the
 ## character sheet and the storyteller screen. (When this code lived in the menu script, leaving
 ## the menu threw the lobby away.) It also creates the CombatSync node that carries the 3D combat
-## board between players.
+## board between players, and the SheetSync node that carries the character sheets to the GM.
 
 signal status_changed(text: String)
 signal players_changed
@@ -17,6 +17,8 @@ const LOBBY_TYPE_FRIENDS_ONLY: int = 1  # same value as Steam.LOBBY_TYPE_FRIENDS
 const MAX_NAME_LENGTH := 24
 const DEBUG_PORT := 24565
 const CombatSyncScript := preload("res://code/singleton/combat_sync.gd")
+const SheetSyncScript := preload("res://code/singleton/sheet_sync.gd")
+const DiceSyncScript := preload("res://code/singleton/dice_sync.gd")
 
 ## GodotSteam is a GDExtension. It is looked up at runtime instead of writing `Steam.` in code,
 ## so if the extension is missing from a build this script still loads and the game still runs.
@@ -33,6 +35,8 @@ var typed_name: String = ""
 var status: String = "Not connected to a Steam lobby"
 
 var combat: Node = null
+var sheets: Node = null
+var dice: Node = null
 
 
 func _ready() -> void:
@@ -40,6 +44,16 @@ func _ready() -> void:
 	combat = CombatSyncScript.new()
 	combat.name = "CombatSync"  # must be identical on every machine: RPCs find it by its path
 	add_child(combat)
+
+	# Carries each player's character sheet to the GM screen (view only, players -> GM).
+	sheets = SheetSyncScript.new()
+	sheets.name = "SheetSync"  # same rule: the name must be identical on every machine
+	add_child(sheets)
+
+	# Keeps the history of dice rolls (the GM saves it, the players are sent it).
+	dice = DiceSyncScript.new()
+	dice.name = "DiceSync"
+	add_child(dice)
 
 	# Multiplayer connection signals (also used by the local test game, see the bottom).
 	multiplayer.peer_connected.connect(_on_peer_connected)
