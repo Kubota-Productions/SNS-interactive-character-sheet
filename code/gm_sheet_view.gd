@@ -9,7 +9,13 @@ extends Node2D
 ##   * every control ignores the mouse and can't take keyboard focus
 ## What is left is the sheet's pictures and its text boxes / buttons, which this script fills in
 ## from the SheetModel (the view-only copy of the player's sheet) and keeps up to date.
+## The inventory is the exception: its grid is replaced by a read-only InventoryGrid, which is the
+## one thing here that reacts to the mouse (it shows an item's name and note when you hover it).
 ## Nothing in here is ever saved, and nothing is ever sent back to the player.
+
+const InventoryItems := preload("res://code/charactersheet-scripts/inventory_items.gd")
+const InventoryGridScript := preload("res://code/charactersheet-scripts/inventory_grid.gd")
+
 
 const SHEET_SCENE_PATH := "res://scenes/player_character_creator_scene.tscn"
 
@@ -23,11 +29,6 @@ const REMOVE_SCRIPTS := ["camera_2d.gd", "gamepdf.gd", "audioplayerscript.gd", "
 const REMOVE_SCENES := ["combat_scene_3D.tscn", "3D_DiceRoller.tscn"]
 const REMOVE_TYPES := ["Camera2D", "Camera3D", "AudioStreamPlayer", "AudioStreamPlayer2D", "AudioStreamPlayer3D", "Window"]
 
-## The sheet's right-click symbol popup works on buttons with these indexes (see
-## texture_button_leverage.gd); each of those shows a symbol on top of the button.
-const SYMBOL_INDEX_FIRST := 75
-const SYMBOL_INDEX_LAST := 110
-
 var peer_id: int = 0
 var player_name: String = ""
 
@@ -35,8 +36,13 @@ var _model = null  # the SheetModel being shown
 
 var _text_widgets: Dictionary = {}  # index -> [LineEdit or TextEdit]
 var _toggle_widgets: Dictionary = {}  # index -> [button]
-var _symbol_labels: Dictionary = {}  # index -> Label
 var _name_widgets: Array = []  # the LineEdits that show the character's name
+
+# The inventory: where the sheet's own inventory was, so a read-only grid can take its place.
+var _inventory_parent: Node = null
+var _inventory_area := Rect2()
+var _inventory_texture: Texture2D = null
+var _inventory_grid = null  # the read-only InventoryGrid
 var _appearance_rect: TextureRect = null
 var _default_appearance: Texture2D = null
 var _tag: Label = null
@@ -104,6 +110,9 @@ func _make_inert(sheet: Node) -> void:
 			node.get_parent().remove_child(node)
 			node.free()
 
+	# 1b. Take the sheet's inventory out (a read-only one is added at the end).
+	_take_out_inventory(sheet)
+
 	# 2. Look at what is left: note which widgets show which part of the sheet.
 	var nodes: Array = []
 	_collect(sheet, nodes)
@@ -126,6 +135,58 @@ func _make_inert(sheet: Node) -> void:
 		if node is Control:
 			node.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			node.focus_mode = Control.FOCUS_NONE
+
+	# 5. Put the read-only inventory where the sheet's own was. This is added last, so it keeps
+	#    its script and its mouse (it can only show things, see inventory_grid.gd).
+	_add_inventory_view()
+
+
+## The sheet's inventory is either one InventoryGrid node, or the 36 old inventory buttons that
+## make one when the sheet starts. Both are removed from the copy, remembering where they were.
+func _take_out_inventory(sheet: Node) -> void:
+	var all_nodes: Array = []
+	_collect(sheet, all_nodes)
+
+	var grid_node: Control = null
+	var old_buttons: Array = []
+	for node in all_nodes:
+		var script: Script = node.get_script()
+		if script == null:
+			continue
+		if script.resource_path.get_file() == "inventory_grid.gd" and node is Control:
+			grid_node = node
+		elif node is TextureButton and InventoryItems.is_old_button_index(node.get("index")):
+			old_buttons.append(node)
+
+	if not old_buttons.is_empty():
+		var layout := InventoryGridScript.layout_from_old_buttons(old_buttons)
+		_inventory_parent = old_buttons[0].get_parent()
+		_inventory_area = layout["rect"]
+		_inventory_texture = layout["texture"]
+	elif grid_node != null:
+		_inventory_parent = grid_node.get_parent()
+		_inventory_area = Rect2(grid_node.position, grid_node.size)
+		_inventory_texture = grid_node.get("filled_texture")
+
+	for node in old_buttons:
+		node.get_parent().remove_child(node)
+		node.free()
+	if grid_node != null:
+		grid_node.get_parent().remove_child(grid_node)
+		grid_node.free()
+
+
+func _add_inventory_view() -> void:
+	if _inventory_parent == null:
+		return
+	var grid = InventoryGridScript.new()
+	grid.name = "InventoryView"
+	grid.read_only = true
+	grid.filled_texture = _inventory_texture
+	grid.position = _inventory_area.position
+	grid.size = _inventory_area.size
+	_inventory_parent.add_child(grid)
+	_inventory_grid = grid
 
 
 func _collect(node: Node, out: Array) -> void:
@@ -174,16 +235,6 @@ func _note_widget(node: Node) -> void:
 		_add_widget(_text_widgets, index, node)
 	elif node is BaseButton:
 		_add_widget(_toggle_widgets, index, node)
-		if index >= SYMBOL_INDEX_FIRST and index <= SYMBOL_INDEX_LAST:
-			# Same look as the label texture_button_leverage.gd puts on these buttons.
-			var label := Label.new()
-			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-			label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			label.add_theme_font_size_override("font_size", 32)
-			node.add_child(label)
-			label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-			_symbol_labels[index] = label
 
 
 func _add_widget(table: Dictionary, index: int, node: Node) -> void:
@@ -202,8 +253,8 @@ func _on_model_updated(kind: String, index: int) -> void:
 			_show_text(index)
 		"toggle":
 			_show_toggle(index)
-		"symbol":
-			_show_symbol(index)
+		"inventory":
+			_show_inventory()
 		"name":
 			_show_name()
 			_refresh_tag()
@@ -216,8 +267,7 @@ func _refresh_all() -> void:
 		_show_text(index)
 	for index in _toggle_widgets:
 		_show_toggle(index)
-	for index in _symbol_labels:
-		_show_symbol(index)
+	_show_inventory()
 	_show_name()
 	_show_image()
 	_refresh_tag()
@@ -236,9 +286,9 @@ func _show_toggle(index: int) -> void:
 		button.set_pressed_no_signal(value)
 
 
-func _show_symbol(index: int) -> void:
-	if _symbol_labels.has(index):
-		_symbol_labels[index].text = _model.get_symbol(index)
+func _show_inventory() -> void:
+	if _inventory_grid != null:
+		_inventory_grid.show_items(_model.get_inventory())
 
 
 func _show_name() -> void:

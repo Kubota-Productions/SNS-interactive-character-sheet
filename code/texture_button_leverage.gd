@@ -1,82 +1,50 @@
 extends TextureButton
+## A checkbox-style button of the character sheet (leverage, torpor, hypo, ...). Whether it is
+## pressed is saved in the character data under its `index`.
+##
+## The buttons with index 75 to 110 used to be the cells of the inventory. The inventory is one
+## InventoryGrid now (see inventory_grid.gd). If those buttons are still in the scene, the first of
+## them adds the grid over them, and the grid removes them. You can delete them from the scene and
+## put an InventoryGrid in their place yourself, then this script no longer has anything to do
+## with the inventory.
+
+const InventoryGrid := preload("res://code/charactersheet-scripts/inventory_grid.gd")
+const Items := preload("res://code/charactersheet-scripts/inventory_items.gd")
+const GRID_ADDED := &"inventory_grid_added"
 
 @export var index: int = 1
 
-# Shared singleton popup
-static var canvas_layer: CanvasLayer
-static var popup: PopupPanel
-static var hbox: HBoxContainer
-static var current_button: TextureButton  # which button triggered the popup
-
-var symbol_label: Label  # only created for buttons that support symbols
-
-var symbolslist1 := ["★","☆","✦","✧","✩","✱","✫","✯","●","○","◍","◌"]
-var symbolslist2 := ["◐","◑","◒","◓","◔","◕","◉","☐","☒","▲","△","▼","▽"]
-var symbolslist3 := ["◆","◇","◈","◊","■","□","▣","▥","☾","❅","↔","∞","∑"]
-var symbolslist4 := ["≤","≥","∆","∇","π","Ω","√","±","÷","×","≈","≠","✣"]
 
 func _ready() -> void:
-	var sheet := GlobalFunctions.character
+	if Items.is_old_button_index(index):
+		_add_inventory_grid()
+		return
 
 	# No-signal version so loading doesn't trigger a save.
-	set_pressed_no_signal(sheet.get_toggle(index))
-
-	if index >= 75 and index <= 110:
-		if not canvas_layer:
-			canvas_layer = CanvasLayer.new()
-			get_tree().current_scene.add_child.call_deferred(canvas_layer)
-
-			popup = PopupPanel.new()
-			canvas_layer.add_child(popup)
-
-			hbox = HBoxContainer.new()
-			hbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			hbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
-			popup.add_child(hbox)
-
-			_add_symbol_column(symbolslist1)
-			_add_symbol_column(symbolslist2)
-			_add_symbol_column(symbolslist3)
-			_add_symbol_column(symbolslist4)
-
-		symbol_label = Label.new()
-		add_child(symbol_label)
-		symbol_label.text = sheet.get_symbol(index)
-		symbol_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		symbol_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		symbol_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		symbol_label.add_theme_font_size_override("font_size", 32)
-		symbol_label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	set_pressed_no_signal(GlobalFunctions.character.get_toggle(index))
 
 
-func _add_symbol_column(symbols: Array) -> void:
-	var vbox := VBoxContainer.new()
-	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	for s in symbols:
-		var btn := Button.new()
-		btn.text = s
-		btn.mouse_filter = Control.MOUSE_FILTER_STOP
-		btn.pressed.connect(func():
-			_on_symbol_selected(s)
-		)
-		vbox.add_child(btn)
-	hbox.add_child(vbox)
+func _add_inventory_grid() -> void:
+	var grid_container := get_parent()
+	if grid_container == null:
+		return
+
+	var parent := grid_container.get_parent()
+	if parent == null or parent.has_meta(GRID_ADDED):
+		return
+
+	parent.set_meta(GRID_ADDED, true)
+
+	for sibling in parent.get_children():
+		if sibling.get_script() == InventoryGrid:
+			return
+
+	var grid := InventoryGrid.new()
+	grid.name = "InventoryGrid"
+	parent.add_child.call_deferred(grid)
 
 
 func _on_toggled(toggled_on: bool) -> void:
+	if Items.is_old_button_index(index):
+		return  # old inventory cell, the inventory grid looks after those
 	GlobalFunctions.character.set_toggle(index, toggled_on)
-
-
-func _gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		if index >= 75 and index <= 110 and popup:
-			current_button = self
-			popup.position = get_global_mouse_position()
-			popup.popup()
-
-
-func _on_symbol_selected(symbol: String) -> void:
-	if current_button:
-		current_button.symbol_label.text = symbol
-		GlobalFunctions.character.set_symbol(current_button.index, symbol)
-	popup.hide()

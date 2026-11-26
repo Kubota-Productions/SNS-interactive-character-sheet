@@ -14,6 +14,7 @@ extends Node
 ## write back, to the players or even to the GM's own saved files.
 
 const SheetModelScript := preload("res://code/sheet_model.gd")
+const InventoryItems := preload("res://code/charactersheet-scripts/inventory_items.gd")
 
 ## How long to wait after a change before sending, so fast typing makes a few small messages
 ## instead of one per key press.
@@ -173,6 +174,8 @@ func _flush() -> void:
 	var symbols := _diff(_sent["symbols"], now["symbols"], "")
 	if not symbols.is_empty():
 		delta["symbols"] = symbols
+	if now["inventory"] != _sent["inventory"]:
+		delta["inventory"] = now["inventory"]  # the whole list: it is small
 
 	if not delta.is_empty():
 		_sent = now
@@ -188,6 +191,7 @@ func _snapshot(sheet) -> Dictionary:
 		"texts": _plain(sheet.get("texts")),
 		"toggles": _plain(sheet.get("toggles")),
 		"symbols": _plain(sheet.get("symbols")),
+		"inventory": _plain_list(sheet.get("inventory")),
 	}
 
 
@@ -196,6 +200,15 @@ func _plain(source) -> Dictionary:
 	if source is Dictionary:
 		for key in source:
 			out[key] = source[key]
+	return out
+
+
+## An independent copy of the inventory items as an ordinary list.
+func _plain_list(source) -> Array:
+	var out := []
+	if source is Array:
+		for item in source:
+			out.append(item.duplicate(true) if item is Dictionary else item)
 	return out
 
 
@@ -264,6 +277,7 @@ func submit_full(state: Dictionary) -> void:
 		"texts": _clean_strings(state.get("texts", null)),
 		"toggles": _clean_toggles(state.get("toggles", null)),
 		"symbols": _clean_strings(state.get("symbols", null)),
+		"inventory": InventoryItems.clean_items(state.get("inventory", null)),
 	}
 
 	var is_new := not models.has(id)
@@ -291,6 +305,8 @@ func submit_delta(delta: Dictionary) -> void:
 		clean["toggles"] = _clean_toggles(delta["toggles"])
 	if delta.has("symbols"):
 		clean["symbols"] = _clean_strings(delta["symbols"], true)
+	if delta.has("inventory"):
+		clean["inventory"] = InventoryItems.clean_items(delta["inventory"])
 	models[id].apply_delta(clean)
 
 

@@ -5,8 +5,8 @@ extends RefCounted
 ## read the same way, but it has no setters and it is never saved to disk or sent back to the player.
 ## Only SheetSync (the network side) calls the apply_* functions, with what the player sent.
 
-## kind is "all" (everything was replaced), "text", "toggle", "symbol", "name" or "image".
-## index is the widget index for "text", "toggle" and "symbol", otherwise -1.
+## kind is "all" (everything was replaced), "text", "toggle", "symbol", "name", "inventory" or
+## "image". index is the widget index for "text", "toggle" and "symbol", otherwise -1.
 signal updated(kind: String, index: int)
 
 const MAX_IMAGE_SIDE := 2048
@@ -15,6 +15,8 @@ var character_name: String = ""
 var texts: Dictionary = {}
 var toggles: Dictionary = {}
 var symbols: Dictionary = {}
+## The inventory items, see inventory_items.gd.
+var inventory: Array = []
 var appearance_texture: ImageTexture = null
 
 
@@ -30,6 +32,10 @@ func get_symbol(index: int) -> String:
 	return symbols.get(index, "")
 
 
+func get_inventory() -> Array:
+	return inventory
+
+
 func get_appearance_texture() -> ImageTexture:
 	return appearance_texture
 
@@ -43,6 +49,7 @@ func apply_full(state: Dictionary) -> void:
 	texts = state.get("texts", {})
 	toggles = state.get("toggles", {})
 	symbols = state.get("symbols", {})
+	inventory = state.get("inventory", [])
 	updated.emit("all", -1)
 
 
@@ -76,6 +83,11 @@ func apply_delta(delta: Dictionary) -> void:
 		else:
 			symbols[index] = changed_symbols[index]
 		updated.emit("symbol", index)
+
+	# The inventory always arrives as a whole (it is small).
+	if delta.has("inventory"):
+		inventory = delta["inventory"]
+		updated.emit("inventory", -1)
 
 
 ## `bytes` is a PNG or JPG picture (or empty, meaning "no picture").
