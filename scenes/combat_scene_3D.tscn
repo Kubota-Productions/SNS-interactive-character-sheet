@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://h8igbr3eu1bv"]
 
-[ext_resource type="Script" uid="uid://c2cbna1mvv6m1" path="res://code/combat_grid_3d.gd" id="1_k5g8n"]
-[ext_resource type="Script" uid="uid://c70pcdj3eorn2" path="res://code/rts_camera.gd" id="2_i0an3"]
+[ext_resource type="Script" uid="uid://c2cbna1mvv6m1" path="res://code/combatgrid/combat_grid_3d.gd" id="1_k5g8n"]
+[ext_resource type="Script" uid="uid://c70pcdj3eorn2" path="res://code/combatgrid/rts_camera.gd" id="2_i0an3"]
 
 [node name="3D_Combat_Scene" type="Control" unique_id=1316443257]
 layout_mode = 3

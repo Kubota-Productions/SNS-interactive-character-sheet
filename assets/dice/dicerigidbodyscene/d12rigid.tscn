@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw30rvc3yhfkx"]
+[gd_scene format=3 uid="uid://cw30rvc3yhfkx"]
 
-[ext_resource type="Script" uid="uid://cvpnx25mehifg" path="res://code/dicenormalcalucscripts/d_12_rigid.gd" id="1_4i35c"]
+[ext_resource type="Script" uid="uid://cvpnx25mehifg" path="res://code/diceroller/dicenormalcalucscripts/d_12_rigid.gd" id="1_4i35c"]
 [ext_resource type="ArrayMesh" uid="uid://dufvaaecstjyi" path="res://assets/dice/d12.res" id="1_qvrmv"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4i35c"]

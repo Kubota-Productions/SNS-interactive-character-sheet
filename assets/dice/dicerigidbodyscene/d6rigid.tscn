@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvwlvk3n3bsfa"]
+[gd_scene format=3 uid="uid://dvwlvk3n3bsfa"]
 
 [ext_resource type="ArrayMesh" uid="uid://dnyxkqh3p0a8v" path="res://assets/dice/d6.res" id="1_1c22v"]
-[ext_resource type="Script" uid="uid://cbfg2kvdt414f" path="res://code/dicenormalcalucscripts/d_6_rigid.gd" id="1_itoes"]
+[ext_resource type="Script" uid="uid://cbfg2kvdt414f" path="res://code/diceroller/dicenormalcalucscripts/d_6_rigid.gd" id="1_itoes"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_itoes"]
 points = PackedVector3Array(0.513032, 0.512932, 0.512932, -0.513032, 0.512932, 0.512932, 0.513032, -0.513032, 0.512932, 0.513032, 0.512932, -0.513032, -0.513032, 0.512932, -0.513032, -0.513032, -0.513032, 0.512932, 0.513032, -0.513032, -0.513032, -0.513032, -0.513032, -0.513032)

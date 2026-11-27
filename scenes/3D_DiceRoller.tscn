@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cmyf7lq7gwdva"]
 
-[ext_resource type="Script" uid="uid://b4uivwpaqgeb6" path="res://code/dice_roller.gd" id="1_x06xs"]
+[ext_resource type="Script" uid="uid://b4uivwpaqgeb6" path="res://code/diceroller/dice_roller.gd" id="1_x06xs"]
 [ext_resource type="PackedScene" uid="uid://dey1qfrvi3oxw" path="res://assets/dice/dicerigidbodyscene/d2rigid.tscn" id="2_hwxkx"]
 [ext_resource type="PackedScene" uid="uid://chgn4ubsdjkgs" path="res://assets/dice/dicerigidbodyscene/d4rigid.tscn" id="3_oxkh2"]
 [ext_resource type="PackedScene" uid="uid://dvwlvk3n3bsfa" path="res://assets/dice/dicerigidbodyscene/d6rigid.tscn" id="4_42xte"]
@@ -79,7 +79,7 @@ transform = Transform3D(1.43165, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 canvas_cull_mask = 4294967279
 oversampling_override = 1.0
 mode = 3
-position = Vector2i(959, 259)
+position = Vector2i(863, 259)
 size = Vector2i(100, 275)
 unresizable = true
 theme = ExtResource("9_42xte")

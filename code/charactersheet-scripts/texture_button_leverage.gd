@@ -25,18 +25,23 @@ func _ready() -> void:
 
 
 func _add_inventory_grid() -> void:
-	var parent := get_parent()
+	var grid_container := get_parent()
+	if grid_container == null:
+		return
+
+	var parent := grid_container.get_parent()
 	if parent == null or parent.has_meta(GRID_ADDED):
-		return  # one grid for all 36 buttons
+		return
+
 	parent.set_meta(GRID_ADDED, true)
 
 	for sibling in parent.get_children():
 		if sibling.get_script() == InventoryGrid:
-			return  # the scene already has a grid of its own
+			return
 
 	var grid := InventoryGrid.new()
 	grid.name = "InventoryGrid"
-	parent.add_child.call_deferred(grid)  # the parent is still setting up its children
+	parent.add_child.call_deferred(grid)
 
 
 func _on_toggled(toggled_on: bool) -> void:

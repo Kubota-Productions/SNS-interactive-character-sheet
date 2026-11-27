@@ -1,6 +1,6 @@
 extends Node3D
 
-const HistoryPanelScript := preload("res://code/dice_history_panel.gd")
+const HistoryPanelScript := preload("res://code/diceroller/dice_history_panel.gd")
 
 @export var d2_scene: PackedScene
 @export var d4_scene: PackedScene

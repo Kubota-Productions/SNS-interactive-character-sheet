@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://b203m6ynquqgb" path="res://assets/imagefiles/UI/mousefollowmenuui.gd" id="3_goya3"]
 [ext_resource type="Texture2D" uid="uid://civyicxkv26ie" path="res://assets/imagefiles/STscreen@201x.jpg" id="4_safdd"]
 [ext_resource type="PackedScene" uid="uid://h8igbr3eu1bv" path="res://scenes/combat_scene_3D.tscn" id="5_pkbpt"]
-[ext_resource type="Script" uid="uid://bx4pc2vord1iq" path="res://code/GameMaster/save_GM_screen.gd" id="6_g08xg"]
-[ext_resource type="Script" uid="uid://c82qnv7f7o1d1" path="res://code/GameMaster/text_edit.gd" id="7_8jyxo"]
+[ext_resource type="Script" uid="uid://bx4pc2vord1iq" path="res://code/gamemasterscreen-scripts/save_GM_screen.gd" id="6_g08xg"]
+[ext_resource type="Script" uid="uid://c82qnv7f7o1d1" path="res://code/gamemasterscreen-scripts/text_edit.gd" id="7_8jyxo"]
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="8_ile6x"]
 [ext_resource type="PackedScene" uid="uid://m4ie1xhnf3eg" path="res://scenes/PDF.tscn" id="9_764df"]
 

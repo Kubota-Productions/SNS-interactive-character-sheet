@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cp13el0w7wefl"]
 
-[ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/player_character_creator_scene.gd" id="1_miv1v"]
+[ext_resource type="Script" uid="uid://bulydo3fi63bi" path="res://code/charactersheet-scripts/player_character_creator_scene.gd" id="1_miv1v"]
 [ext_resource type="Script" uid="uid://cmi4i6e3q5iwo" path="res://code/camera_2d.gd" id="2_hwnst"]
 [ext_resource type="Shader" uid="uid://2qcjhmiysyba" path="res://assets/imagefiles/UI/wobblygrid.gdshader" id="3_htdrn"]
 [ext_resource type="Script" uid="uid://b203m6ynquqgb" path="res://assets/imagefiles/UI/mousefollowmenuui.gd" id="4_a0p86"]
-[ext_resource type="Script" uid="uid://dgaqaokifjpfj" path="res://code/charactersheet-scripts/text_edit1.gd" id="17_5ctmv"]
+[ext_resource type="Script" uid="uid://dgaqaokifjpfj" path="res://code/charactersheet-scripts/CharacterSheet_textedit.gd" id="10_sudvb"]
 [ext_resource type="Texture2D" uid="uid://dhxnf4htg3ba5" path="res://assets/imagefiles/dot.png" id="18_pa2h2"]
-[ext_resource type="Script" uid="uid://b1w3un47lwgyc" path="res://code/texture_button_leverage.gd" id="19_5kcf6"]
+[ext_resource type="Script" uid="uid://b1w3un47lwgyc" path="res://code/charactersheet-scripts/texture_button_leverage.gd" id="19_5kcf6"]
 [ext_resource type="Texture2D" uid="uid://bm37hyw5q703g" path="res://assets/imagefiles/inventorysquare.png" id="20_ieuud"]
 [ext_resource type="PackedScene" uid="uid://cmyf7lq7gwdva" path="res://scenes/3D_DiceRoller.tscn" id="22_hwnst"]
 [ext_resource type="PackedScene" uid="uid://h8igbr3eu1bv" path="res://scenes/combat_scene_3D.tscn" id="26_l13rv"]
@@ -397,7 +397,7 @@ stretch_mode = 4
 script = ExtResource("19_5kcf6")
 index = 74
 
-[node name="Field1" type="TextEdit" parent="Scroll/Control" unique_id=1656598213]
+[node name="line" type="TextEdit" parent="Scroll/Control" unique_id=1656598213]
 clip_contents = true
 layout_mode = 0
 offset_left = 26.664978
@@ -411,8 +411,76 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 3"
+
+[node name="line2" type="TextEdit" parent="Scroll/Control" unique_id=1794810681]
+clip_contents = true
+layout_mode = 0
+offset_left = 31.634644
+offset_top = 8.16482
+offset_right = 316.3464
+offset_bottom = 35.60398
+grow_vertical = 2
+tooltip_text = "Text Field 2"
+theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
+script = ExtResource("10_sudvb")
+metadata/pdf_field = "Text Field 2"
+
+[node name="line3" type="TextEdit" parent="Scroll/Control" unique_id=136699598]
+clip_contents = true
+layout_mode = 0
+offset_left = 13.606323
+offset_top = 83.84883
+offset_right = 180.45361
+offset_bottom = 102.84883
+grow_vertical = 2
+tooltip_text = "Text Field 52"
+theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
+script = ExtResource("10_sudvb")
+metadata/pdf_field = "Text Field 52"
+
+[node name="line4" type="TextEdit" parent="Scroll/Control" unique_id=1686365906]
+clip_contents = true
+layout_mode = 0
+offset_left = 26.532227
+offset_top = 137.1612
+offset_right = 197.15878
+offset_bottom = 156.1612
+grow_vertical = 2
+tooltip_text = "Text Field 53"
+theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
+script = ExtResource("10_sudvb")
+metadata/pdf_field = "Text Field 53"
+
+[node name="line5" type="TextEdit" parent="Scroll/Control" unique_id=216898232]
+clip_contents = true
+layout_mode = 0
+offset_left = 14.0199585
+offset_top = 174.7488
+offset_right = 180.86761
+offset_bottom = 193.7488
+grow_vertical = 2
+tooltip_text = "Text Field 54"
+theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
+script = ExtResource("10_sudvb")
+metadata/pdf_field = "Text Field 54"
 
 [node name="Field37" type="TextEdit" parent="Scroll/Control" unique_id=551749270]
 clip_contents = true
@@ -428,7 +496,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 42"
 
 [node name="Field38" type="TextEdit" parent="Scroll/Control" unique_id=758818135]
@@ -445,7 +513,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 43"
 
 [node name="Field39" type="TextEdit" parent="Scroll/Control" unique_id=2120977729]
@@ -462,7 +530,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 44"
 
 [node name="Field40" type="TextEdit" parent="Scroll/Control" unique_id=470105476]
@@ -479,7 +547,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 46"
 
 [node name="Field41" type="TextEdit" parent="Scroll/Control" unique_id=729197927]
@@ -496,7 +564,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 47"
 
 [node name="Field42" type="TextEdit" parent="Scroll/Control" unique_id=1280880218]
@@ -513,7 +581,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 48"
 
 [node name="Field43" type="TextEdit" parent="Scroll/Control" unique_id=15901653]
@@ -530,7 +598,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 49"
 
 [node name="Field44" type="TextEdit" parent="Scroll/Control" unique_id=1366347878]
@@ -547,7 +615,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 50"
 
 [node name="Field45" type="TextEdit" parent="Scroll/Control" unique_id=1975618295]
@@ -564,76 +632,8 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 51"
-
-[node name="Field46" type="TextEdit" parent="Scroll/Control" unique_id=1794810681]
-clip_contents = true
-layout_mode = 0
-offset_left = 31.634644
-offset_top = 8.16482
-offset_right = 316.3464
-offset_bottom = 35.60398
-grow_vertical = 2
-tooltip_text = "Text Field 2"
-theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
-theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
-metadata/pdf_field = "Text Field 2"
-
-[node name="Field48" type="TextEdit" parent="Scroll/Control" unique_id=136699598]
-clip_contents = true
-layout_mode = 0
-offset_left = 13.606323
-offset_top = 83.84883
-offset_right = 180.45361
-offset_bottom = 102.84883
-grow_vertical = 2
-tooltip_text = "Text Field 52"
-theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
-theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
-metadata/pdf_field = "Text Field 52"
-
-[node name="Field49" type="TextEdit" parent="Scroll/Control" unique_id=1686365906]
-clip_contents = true
-layout_mode = 0
-offset_left = 26.532227
-offset_top = 137.1612
-offset_right = 197.15878
-offset_bottom = 156.1612
-grow_vertical = 2
-tooltip_text = "Text Field 53"
-theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
-theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
-metadata/pdf_field = "Text Field 53"
-
-[node name="Field50" type="TextEdit" parent="Scroll/Control" unique_id=216898232]
-clip_contents = true
-layout_mode = 0
-offset_left = 14.0199585
-offset_top = 174.7488
-offset_right = 180.86761
-offset_bottom = 193.7488
-grow_vertical = 2
-tooltip_text = "Text Field 54"
-theme_override_colors/search_result_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
-theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0.3019608, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
-metadata/pdf_field = "Text Field 54"
 
 [node name="Field51" type="TextEdit" parent="Scroll/Control" unique_id=719506017]
 clip_contents = true
@@ -649,7 +649,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 79"
 
 [node name="Field52" type="TextEdit" parent="Scroll/Control" unique_id=572186428]
@@ -666,7 +666,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 55"
 
 [node name="Field53" type="TextEdit" parent="Scroll/Control" unique_id=277290450]
@@ -683,7 +683,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 56"
 
 [node name="Field54" type="TextEdit" parent="Scroll/Control" unique_id=511729093]
@@ -700,7 +700,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 57"
 
 [node name="Field55" type="TextEdit" parent="Scroll/Control" unique_id=2027164134]
@@ -717,7 +717,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 58"
 
 [node name="Field56" type="TextEdit" parent="Scroll/Control" unique_id=1726643282]
@@ -734,7 +734,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 59"
 
 [node name="Field57" type="TextEdit" parent="Scroll/Control" unique_id=542082784]
@@ -751,7 +751,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 60"
 
 [node name="Field58" type="TextEdit" parent="Scroll/Control" unique_id=531732989]
@@ -768,7 +768,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 61"
 
 [node name="Field59" type="TextEdit" parent="Scroll/Control" unique_id=1316090827]
@@ -785,7 +785,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 62"
 
 [node name="Field60" type="TextEdit" parent="Scroll/Control" unique_id=553431621]
@@ -802,7 +802,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 63"
 
 [node name="Field61" type="TextEdit" parent="Scroll/Control" unique_id=444474003]
@@ -819,7 +819,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 64"
 
 [node name="Field62" type="TextEdit" parent="Scroll/Control" unique_id=1375175586]
@@ -836,7 +836,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 65"
 
 [node name="Field63" type="TextEdit" parent="Scroll/Control" unique_id=831085340]
@@ -853,7 +853,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 66"
 
 [node name="Field64" type="TextEdit" parent="Scroll/Control" unique_id=1976422395]
@@ -870,7 +870,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 67"
 
 [node name="Field65" type="TextEdit" parent="Scroll/Control" unique_id=1809035704]
@@ -887,7 +887,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 68"
 
 [node name="Field66" type="TextEdit" parent="Scroll/Control" unique_id=1314622196]
@@ -904,7 +904,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 69"
 
 [node name="Field67" type="TextEdit" parent="Scroll/Control" unique_id=1418053565]
@@ -921,7 +921,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 70"
 
 [node name="Field68" type="TextEdit" parent="Scroll/Control" unique_id=1343152559]
@@ -938,7 +938,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 71"
 
 [node name="Field69" type="TextEdit" parent="Scroll/Control" unique_id=965720220]
@@ -955,7 +955,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 72"
 
 [node name="Field70" type="TextEdit" parent="Scroll/Control" unique_id=710399700]
@@ -972,7 +972,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 73"
 
 [node name="Field71" type="TextEdit" parent="Scroll/Control" unique_id=1136628205]
@@ -989,7 +989,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 74"
 
 [node name="Field72" type="TextEdit" parent="Scroll/Control" unique_id=2037006543]
@@ -1006,7 +1006,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 75"
 
 [node name="Field73" type="TextEdit" parent="Scroll/Control" unique_id=961545117]
@@ -1023,7 +1023,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 76"
 
 [node name="Field74" type="TextEdit" parent="Scroll/Control" unique_id=629144476]
@@ -1040,7 +1040,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 77"
 
 [node name="Field75" type="TextEdit" parent="Scroll/Control" unique_id=237607896]
@@ -1056,7 +1056,7 @@ theme_override_colors/search_result_border_color = Color(0.3019608, 0.3019608, 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/current_line_color = Color(0.2509804, 0.2509804, 0.25882354, 0)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8xdc")
-script = ExtResource("17_5ctmv")
+script = ExtResource("10_sudvb")
 metadata/pdf_field = "Text Field 78"
 
 [node name="GridContainer" type="GridContainer" parent="Scroll/Control" unique_id=249256333]
